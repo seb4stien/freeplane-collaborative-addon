@@ -29,7 +29,7 @@ import javax.swing.JOptionPane
 
 // todo : move to add-on attributes
 // todo : check existence + alert
-def vcsBin = "C:/Program Files (x86)/CVSNT/cvs.exe"
+def vcsBin = config.getProperty('vcsBin', "note : set /path/to/vcs in preferences")
 
 
 
