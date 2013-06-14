@@ -5,7 +5,7 @@
 //
 // Groovy script to execute version control system (CVS) actions
 //         
-// Copyright (c)2011 Auxilus Systems LLC
+// Copyright (c)2013 Sebastien Georget
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
