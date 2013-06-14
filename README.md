@@ -14,6 +14,7 @@ To install this add-on:
 * download last .addon.mm file
 * open it under freeplane
 * freeplane will ask if you want to install it
+* go to "Tools > Preferences > Scripts" to set the path to your VCS binary (currently only cvs is supported)
 
 Important : this add-on requires a command line cvs on your system.
 
@@ -34,13 +35,14 @@ Changelog
 v0.1 : initial revision
 * support for diff/update/commit via CVS (hard coded path)
 
+v0.2 :
+- added add-on icon
+- moved cvs path as addon property
 
 Todo
 =============================
 
-v0.2 :
-- add add-on icon
-- move cvs path as addon property
+
 
 v?.? :
 - user friendly messages
