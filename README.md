@@ -15,6 +15,7 @@ To install this add-on:
 * open it under freeplane
 * freeplane will ask if you want to install it
 
+Important : this add-on requires a command line cvs on your system.
 
 Content
 =============================
