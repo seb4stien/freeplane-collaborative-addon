@@ -1,6 +1,6 @@
 <map version="freeplane 1.2.0">
 <!--To view this file, download free mind mapping software Freeplane from http://freeplane.sourceforge.net -->
-<node TEXT="collaborative tools" ID="ID_1723255651" CREATED="1283093380553" MODIFIED="1371189532093" BACKGROUND_COLOR="#97c7dc">
+<node TEXT="collaborative tools" ID="ID_1723255651" CREATED="1283093380553" MODIFIED="1371197423182" BACKGROUND_COLOR="#97c7dc">
 <font SIZE="16" BOLD="true" ITALIC="true"/>
 <hook NAME="MapStyle">
     <properties show_icon_for_attributes="true" show_note_icons="true"/>
@@ -55,7 +55,7 @@
 <hook NAME="AutomaticEdgeColor" COUNTER="11"/>
 <attribute_layout NAME_WIDTH="121" VALUE_WIDTH="137"/>
 <attribute NAME="name" VALUE="collaborativeTools"/>
-<attribute NAME="version" VALUE="v0.1" OBJECT="org.freeplane.features.format.FormattedObject|v0.1|number:decimal:#0.####"/>
+<attribute NAME="version" VALUE="v0.2" OBJECT="org.freeplane.features.format.FormattedObject|v0.2|number:decimal:#0.####"/>
 <attribute NAME="author" VALUE="seb4stien"/>
 <attribute NAME="freeplaneVersionFrom" VALUE="1.2.23"/>
 <attribute NAME="freeplaneVersionTo" VALUE=""/>
@@ -110,7 +110,7 @@
   </body>
 </html>
 </richcontent>
-<node TEXT="This add-on provides tools to ease team working on a single map.&#xa;&#xa;The actions are available under &quot;Tools &gt; Collabborative tools&quot;" ID="ID_329459946" CREATED="1371159094606" MODIFIED="1371189364205"/>
+<node TEXT="This add-on provides tools to ease team working on a single map.&#xa;&#xa;The actions are available under &quot;Tools &gt; Collabborative tools&quot;&#xa;&#xa;Important : set the path to your vcs binary in &quot;Tools &gt; Preferences&quot;" ID="ID_329459946" CREATED="1371159094606" MODIFIED="1371198658995"/>
 </node>
 <node TEXT="changes" POSITION="left" ID="ID_268144721" CREATED="1371158990121" MODIFIED="1371158990126">
 <edge COLOR="#0000ff"/>
@@ -172,8 +172,11 @@
   </body>
 </html>
 </richcontent>
+<node TEXT="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#xa;&lt;preferences_structure&gt;&#xa;&lt;tabbed_pane&gt;&#xa;&lt;tab name=&quot;plugins&quot;&gt;&#xa;&lt;separator name=&quot;collaborativeTools&quot;&gt;&#xa;&lt;path name=&quot;vcsBin&quot; /&gt;&#xa;&lt;/separator&gt;&#xa;&lt;/tab&gt;&#xa;&lt;/tabbed_pane&gt;&#xa;&lt;/preferences_structure&gt;" ID="ID_873595672" CREATED="1358304692163" MODIFIED="1371197360944">
+<attribute_layout NAME_WIDTH="100" VALUE_WIDTH="100"/>
 </node>
-<node TEXT="default.properties" POSITION="left" ID="ID_808793413" CREATED="1371158990170" MODIFIED="1371191277183">
+</node>
+<node TEXT="default.properties" POSITION="left" ID="ID_808793413" CREATED="1371158990170" MODIFIED="1371197415422">
 <edge COLOR="#00ffff"/>
 <richcontent TYPE="NOTE">
 
@@ -188,6 +191,7 @@
   </body>
 </html>
 </richcontent>
+<attribute NAME="vcsBin" VALUE="C:/Program Files (x86)/CVSNT/cvs.exe"/>
 </node>
 <node TEXT="translations" POSITION="left" ID="ID_1644304879" CREATED="1371158990174" MODIFIED="1371158990178">
 <edge COLOR="#ffff00"/>
@@ -486,6 +490,12 @@
   </body>
 </html>
 </richcontent>
+<node TEXT="${name}.png" ID="ID_473909841" CREATED="1357854883609" MODIFIED="1357866785018">
+<attribute_layout NAME_WIDTH="100" VALUE_WIDTH="100"/>
+</node>
+<node TEXT="${name}-icon.png" ID="ID_1117040601" CREATED="1357853471253" MODIFIED="1357866788268">
+<attribute_layout NAME_WIDTH="100" VALUE_WIDTH="100"/>
+</node>
 </node>
 </node>
 </map>
