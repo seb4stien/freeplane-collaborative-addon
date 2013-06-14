@@ -208,7 +208,7 @@
   </body>
 </html>
 </richcontent>
-<node TEXT="en" ID="ID_1232293217" CREATED="1371158990178" MODIFIED="1371198954553">
+<node TEXT="en" ID="ID_1232293217" CREATED="1371158990178" MODIFIED="1371199113397">
 <attribute_layout NAME_WIDTH="104" VALUE_WIDTH="125"/>
 <attribute NAME="addons.${name}" VALUE="Collaborative Tools"/>
 <attribute NAME="addons.vcsUpdate" VALUE="Update map from VCS"/>
@@ -216,8 +216,9 @@
 <attribute NAME="addons.vcsCommit" VALUE="Commit map to VCS"/>
 <attribute NAME="main_menu_scripting/collaborativeTools" VALUE="Collaborative Tools"/>
 <attribute NAME="OptionPanel.separator.${name}" VALUE="Collaborative Tools"/>
+<attribute NAME="OptionPanel.vcsBin" VALUE="Path to your VCS (currently cvs)"/>
 </node>
-<node TEXT="fr" ID="ID_1204840493" CREATED="1371158990178" MODIFIED="1371198978319">
+<node TEXT="fr" ID="ID_1204840493" CREATED="1371158990178" MODIFIED="1371199109131">
 <attribute_layout NAME_WIDTH="104" VALUE_WIDTH="112"/>
 <attribute NAME="addons.${name}" VALUE="Outils collaboratifs"/>
 <attribute NAME="addons.vcsUpdate" VALUE="Maj depuis le VCS"/>
@@ -225,6 +226,7 @@
 <attribute NAME="addons.vcsCommit" VALUE="Commit dans le VCS"/>
 <attribute NAME="main_menu_scripting/collaborativeTools" VALUE="Outils collaboratifs"/>
 <attribute NAME="OptionPanel.separator.${name}" VALUE="Outils collaboratifs"/>
+<attribute NAME="OptionPanel.vcsBin" VALUE="Chemin vers votre VCS (seul cvs est support&#xe9; pour le moment)"/>
 </node>
 </node>
 <node TEXT="deinstall" POSITION="left" ID="ID_1936073781" CREATED="1371158990182" MODIFIED="1371190027327">
