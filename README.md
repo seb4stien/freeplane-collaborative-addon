@@ -39,6 +39,9 @@ v0.2 :
 - added add-on icon
 - moved cvs path as addon property
 
+v0.3 :
+- added an export menu to create a png from recently modified nodes
+
 Todo
 =============================
 
