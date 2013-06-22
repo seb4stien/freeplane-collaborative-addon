@@ -4,6 +4,8 @@ freeplane-collaborative-addon
 A [freeplane](http://freeplane.sourceforge.net/) add-on containing useful tools to work toghether on a single mindmap.
 Currently providing : diff/update/commit operations on a map via cvs
 
+The latest version of the addon can be download at https://sourceforge.net/projects/freeplanecollab/files/
+
 
 Usage
 =============================
