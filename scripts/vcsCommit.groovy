@@ -22,6 +22,8 @@
 
 import javax.swing.JDialog;
 import javax.swing.JOptionPane
+import groovy.io.GroovyPrintWriter 
+
 
 ///////////
 // Params
@@ -39,6 +41,8 @@ def vcsBin = config.getProperty('vcsBin', "note : set /path/to/vcs in preference
 
 // todo : create a .bak file in case something goes wrong
 
+
+
 def initialSize = 4096
 def outStream = new ByteArrayOutputStream(initialSize)
 def errStream = new ByteArrayOutputStream(initialSize)
@@ -48,6 +52,14 @@ def processBuilder = new ProcessBuilder(vcsCommandArray)
 	.redirectErrorStream(true)
 def vcsProcess = processBuilder.start() //[], new File(node.map.file.getParent()))
 vcsProcess.consumeProcessOutput(outStream, errStream)
+
+vcsProcess.withWriter { writer ->
+  // Writes the following commands to the spawned process
+  def gWriter = new GroovyPrintWriter(writer)
+  // Imagine that the user enters these lines
+  gWriter.println "a"
+} 
+
 vcsProcess.waitFor()
 
 def message = "Executed:\n" + vcsCommandArray.join(" ") 
