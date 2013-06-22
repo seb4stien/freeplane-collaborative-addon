@@ -58,3 +58,4 @@ v?.? :
 - user friendly diffs
 - support for other vcs ? (git)
 - better workaround for #1 ?
+- translate warning message to save map
