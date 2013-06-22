@@ -1,6 +1,6 @@
 <map version="freeplane 1.2.0">
 <!--To view this file, download free mind mapping software Freeplane from http://freeplane.sourceforge.net -->
-<node TEXT="collaborative tools" ID="ID_1723255651" CREATED="1283093380553" MODIFIED="1371209274332" BACKGROUND_COLOR="#97c7dc">
+<node TEXT="collaborative tools" ID="ID_1723255651" CREATED="1283093380553" MODIFIED="1371914176706" BACKGROUND_COLOR="#97c7dc">
 <font SIZE="16" BOLD="true" ITALIC="true"/>
 <hook NAME="MapStyle">
     <properties show_icon_for_attributes="true" show_note_icons="true"/>
@@ -55,7 +55,7 @@
 <hook NAME="AutomaticEdgeColor" COUNTER="11"/>
 <attribute_layout NAME_WIDTH="121" VALUE_WIDTH="137"/>
 <attribute NAME="name" VALUE="collaborativeTools"/>
-<attribute NAME="version" VALUE="v0.3" OBJECT="org.freeplane.features.format.FormattedObject|v0.3|number:decimal:#0.####"/>
+<attribute NAME="version" VALUE="v0.4" OBJECT="org.freeplane.features.format.FormattedObject|v0.4|number:decimal:#0.####"/>
 <attribute NAME="author" VALUE="seb4stien"/>
 <attribute NAME="freeplaneVersionFrom" VALUE="1.2.23"/>
 <attribute NAME="freeplaneVersionTo" VALUE=""/>
@@ -486,7 +486,7 @@
 </html>
 </richcontent>
 </node>
-<node TEXT="images" POSITION="right" ID="ID_1179966285" CREATED="1371158990211" MODIFIED="1371158990215">
+<node TEXT="images" POSITION="right" ID="ID_1179966285" CREATED="1371158990211" MODIFIED="1371921843123">
 <edge COLOR="#7c007c"/>
 <richcontent TYPE="NOTE">
 
@@ -520,6 +520,23 @@
     </p>
   </body>
 </html>
+</richcontent>
+<richcontent TYPE="DETAILS">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Icon based on http://www.iconfinder.com/icondetails/132550/24/bee_icon
+    </p>
+    <p>
+      by&#160;&#160;Aha-Soft - http://www.aha-soft.com/
+    </p>
+  </body>
+</html>
+
 </richcontent>
 <node TEXT="${name}.png" ID="ID_473909841" CREATED="1357854883609" MODIFIED="1357866785018">
 <attribute_layout NAME_WIDTH="100" VALUE_WIDTH="100"/>
