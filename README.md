@@ -42,12 +42,19 @@ v0.2 :
 v0.3 :
 - added an export menu to create a png from recently modified nodes
 
+v0.4 :
+- changed icon
+- fixed #1 : cvs commit aborted if log message is empty
+- require the map to be saved before action
+
 Todo
 =============================
 
 
 
 v?.? :
+- add commit/diff/update menus for map directory (instead of file)
 - user friendly messages
 - user friendly diffs
-- support for other vcs ?
+- support for other vcs ? (git)
+- better workaround for #1 ?
