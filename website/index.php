@@ -91,9 +91,98 @@ if ($l == "fr") {
 }
 ?>
 
+<?
+if ($l == "fr") {
+?>
 <h2>installation</h2>
 
+<ol>
+<li>Télécharger la dernière version ici : <a href="https://sourceforge.net/projects/freeplanecollab/files/">https://sourceforge.net/projects/freeplanecollab/files/</a></li>
+<li>Ouvrir le fichier avec freeplane <br/> <img src="doc/screenshots/addon-download.png" alt="addon download" /></li>
+<li>Choisir d'installer le addon <br /> <img src="doc/screenshots/addon-install.png" alt="addon installation" /></li>
+<li>Confirmer l'installation <br /> <img src="doc/screenshots/addon-install-2.png" alt="addon installation confirmation" /></li>
+<li>Accepter la licence <br /> <img src="doc/screenshots/addon-install-3.png" alt="accepter la license" /></li>
+<li>Redémarrer freeplane une fois l'installation terminée <br /> <img src="doc/screenshots/addon-install-4.png" alt="redémarrer freeplane" /></li>
+</ol>
+
+Après l'installation on retrouve le addon
+<ul>
+<li>dans la liste des addons installés <br/> <img src="doc/screenshots/addon-install-5.png" width="600px" alt="vérifier l'installation" /></li>
+<li>dans les menus <br /> <img src="doc/screenshots/addon-installed-menu.png" alt="menus installés" /></li>
+<li>dans les raccourcis <br /> <img src="doc/screenshots/addon-installed-shortcuts.png" alt="raccourcis" /></li>
+</ul>
+
+<?
+} else {
+?>
+<h2>installation</h2>
+
+<h2>installation</h2>
+
+<ol>
+<li>Donwload the latest version : <a href="https://sourceforge.net/projects/freeplanecollab/files/">https://sourceforge.net/projects/freeplanecollab/files/</a></li>
+<li>Open it with freeplane <br/> <img src="doc/screenshots/addon-download.png" alt="addon download" /></li>
+<li>Choose to install it <br /> <img src="doc/screenshots/addon-install.png" alt="addon installation" /></li>
+<li>Confirm installation <br /> <img src="doc/screenshots/addon-install-2.png" alt="addon installation confirmation" /></li>
+<li>Accept the license <br /> <img src="doc/screenshots/addon-install-3.png" alt="accepter la license" /></li>
+<li>Restart freeplane <br /> <img src="doc/screenshots/addon-install-4.png" alt="redémarrer freeplane" /></li>
+</ol>
+
+<?
+}
+?>
+
+
+<?
+if ($l == "fr"){
+?>
 <h2>utilisation</h2>
+
+<p>
+Une fois l'addon installé les commandes peuvent être utilisée via les menus :<br />
+<img src="doc/screenshots/addon-installed-menu.png" alt="menus installés" />
+</p>
+
+<p>
+Ou bien via les raccourcis :<br />
+<img src="doc/screenshots/addon-installed-shortcuts.png" alt="raccourcis" />
+</p>
+
+<? } else { ?>
+
+<h2>usage</h2>
+
+<p>
+Once installed, the script are available under the "tools" menu :<br />
+<img src="doc/screenshots/addon-installed-menu.png" alt="menus installés" />
+</p>
+
+<p>
+Or directrly through the hot keys :<br />
+<img src="doc/screenshots/addon-installed-shortcuts.png" alt="raccourcis" />
+</p>
+
+
+<? } ?>
+
+
+<?
+if ($l == "fr"){
+?>
+<h2>désinstallation</h2>
+
+Le addon peut être déinstallé via le menu "Outils > Addons" : <br />
+<img src="doc/screenshots/addon-install-5.png" width="600px" alt="vérifier l'installation" />
+
+
+<? } else { ?>
+<h2>uninstall</h2>
+
+The addon can be uninstalled under "Tools > addons" : <br />
+<img src="doc/screenshots/addon-install-5.png" width="600px" alt="vérifier l'installation" />
+
+<? } ?>
+
 
 
 </div>
@@ -101,6 +190,19 @@ if ($l == "fr") {
 <div class="footer">
 <? if ($l == "fr") { echo "auteur :"; } else {echo "author:";} ?> <a href="http://sebastien.georget.name/">Sébastien Georget</a>
 </div>
+
+<?
+/*
+<?
+if ($l == "fr"){
+?>
+
+<? } else { ?>
+
+<? } ?>
+*/
+?>
+
 
 </body>
 </html>
