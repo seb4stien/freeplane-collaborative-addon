@@ -97,7 +97,7 @@ if ($l == "fr") {
 <?
 } else {
 ?>
-<li>Latest relases can be found on <a href="https://sourceforge.net/projects/freeplanecollab/files/">sourceforge</a></li>
+<li>Latest release can be found on <a href="https://sourceforge.net/projects/freeplanecollab/files/">sourceforge</a></li>
 <li>Sources can be found on <a href="https://github.com/seb4stien/freeplane-collaborative-addon">github</a></li>
 <?
 }
