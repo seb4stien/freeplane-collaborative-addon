@@ -10,10 +10,6 @@ The latest version of the addon and the user documentation can be found at http:
 Content
 =============================
 
-Packages:
-- collaborativeTools-vX.Y.addon.mm : package providing the add-on
-
-Sources:
 - collaborativeTools.mm : mindmap used to build the add-on
 - scripts/* : scripts provided by the add-on
 
