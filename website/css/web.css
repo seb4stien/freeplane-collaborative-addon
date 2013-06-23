@@ -1,0 +1,47 @@
+body {
+	background : #ffffff;
+	color : #333333;
+	padding-left: 200px;
+	padding-right: 200px;
+	font-family : sans-serif;
+}
+
+body div.body{
+	border: 1px solid #099;
+	padding: 0px 20px 0px 20px;
+}
+
+div.header {
+	height: 60px;
+	line-height: 60px;
+	background : #009999;
+	color : #ffffff;
+	padding: 20px 20px 10px 20px;
+}
+
+div.header span.title {
+	font-size : 40px;
+}
+
+div.header span.lang {
+	padding-top: 10px;
+	float: right;
+}
+
+div.header a {
+	color: #fff;
+	font-style: italic;
+}
+
+h1 {
+	color: #099;
+	font-size: 25px;
+}
+
+div.footer {
+	float: right;
+}
+
+p {
+	margin-left: 20px;
+}
