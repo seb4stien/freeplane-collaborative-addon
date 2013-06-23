@@ -33,9 +33,22 @@ div.header a {
 	font-style: italic;
 }
 
+
+div.menu {
+	background : #009999;
+	color : #ffffff;
+	padding-left: 20px;
+}
+
+div.menu a {
+	color: #fff;
+	text-decoration: none;
+}
+
 h1 {
 	color: #099;
 	font-size: 25px;
+	margin-top: 20px;
 }
 
 div.footer {

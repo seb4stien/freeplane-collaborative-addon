@@ -11,55 +11,81 @@ if ($_GET['l'] == "fr") {
 <head>
 <title>
 <?
-if ($l == "fr") {
-echo "freeplane : outils collaboratifs";
-} else {
-echo "freeplane : collaborative tools";
-}
+if ($l == "fr"){
 ?>
+freeplane : outils collaboratifs";
+<? } else { ?>
+freeplane : collaborative tools
+<? } ?>
 </title>
 <meta name="description" content="freeplane mind mapping tool addon to support versionning and collaborative work">
 <meta name="robots" content="index,follow,noarchive">
 <link rel="stylesheet" href="css/web.css">
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-41956480-1', 'sourceforge.net');
+  ga('send', 'pageview');
+
+</script>
+
 </head>
 
 <body>
 <div class="header">
 <span class="title"><img src="img/icon.png" />
-<?
-if ($l == "fr") {
-echo "freeplanne : outils <strong>collaboratifs</strong>"; 
-} else {
-echo "freeplane <strong>collaborative</strong> tools</span>";
-}
-?>
+<? if ($l == "fr"){ ?>
+freeplanne : outils <strong>collaboratifs</strong>
+<? } else { ?>
+freeplane <strong>collaborative</strong> tools
+<? } ?>
 </span>
 <span class="lang"><a href="index.php?l=fr">français</a> | <a href="index.php?l=en">english</a></span>
 </div>
 
-<div class="body">
+<div class="menu">
+<? if ($l == "fr"){ ?>
+<a href="#intro">intro</a> | <a href="#download">téléchargement</a> | <a href="#documentation">documentation</a> | <a href="#contact">contact</a>
+<? } else { ?>
+<a href="#intro">home</a> | <a href="#download">download</a> | <a href="#documentation">documentation</a> | <a href="#contact">contact</a>
+<? } ?>
+</div>
+
+<div class="body" id="intro">
 
 <?
 if ($l == "fr"){
 ?>
 <p><a href="http://freeplane.sourceforge.net">Freeplane</a> est une application de mind mapping (carte heuristiques).</p>
-<p>Ce greffon apporte le support de gestion de versions permettant ainsi de travailler à plusieurs sur une seule carte.</p>
-<p>Il support actuellement les opérations de diff/update/commit de cvs.</p>
+<p>Ce greffon apporte le support de gestion de versions ce qui peut être utile:
+<ul>
+<li>pour versionner ses cartes heuristiques importantes</li>
+<li>travailler à plusieurs sur une seule carte</li>
+</ul></p>
+<p>Il supporte actuellement les opérations de diff/update/commit de cvs.</p>
 
 <? } else { ?>
 <p><a href="http://freeplane.sourceforge.net">Freeplane</a> in an application for mind mapping.</p>
-<p>This addon brings versionning control to freeplane enabling team working on a single mindmap.</p>
-<p>Currently supports diff/update/commit operations on a map via cvs.</p>
+<p>This addon brings versionning control to freeplane enabling:
+<ul>
+<li>versionning of mindmaps</li>
+<li>team working on a single mindmap</li>
+</ul>
+</p>
+
+<p>It currently supports diff/update/commit operations on a map via cvs.</p>
 <? } ?>
 
-<h1>
-<?
-if ($l == "fr") {
-echo "sources et téléchargement";
-} else {
-echo "sources and download";
-}
-?>
+<h1 id="download">
+<? if ($l == "fr"){ ?>
+sources et téléchargement
+<? } else { ?>
+sources and download
+<? } ?>
 </h1>
 
 <ul>
@@ -82,11 +108,11 @@ if ($l == "fr") {
 <?
 if ($l == "fr") {
 ?>
-<h1>documentation</h1>
+<h1 id="documentation">documentation</h1>
 <?
 } else {
 ?>
-<h1>documentation</h1>
+<h1 id="documentation">documentation</h1>
 <?
 }
 ?>
@@ -181,7 +207,22 @@ The addon can be uninstalled under "Tools > addons" : <br />
 
 <? } ?>
 
+<h1 id="contact">contact</h1>
+<script type="text/javascript">
+function displayMail(mail, domain)
+{
+  document.write('<a href="mailto:' + mail + '.2013@' + domain + '">' + mail+'.2013'+'@'+domain + '</a>');
+}
+</script>
 
+<? if ($l == "fr"){ ?>
+Les retours d'expérience sont les bienvenus, soit par l'intermédiaire du <a href="https://github.com/seb4stien/freeplane-collaborative-addon/issues?state=open">tracker</a>, soit par mail :
+<? } else { ?>
+Feedbacks are welcome either by the <a href="https://github.com/seb4stien/freeplane-collaborative-addon/issues?state=open">issue tracker</a> or by mail :
+<? } ?>
+<script type="text/javascript">displayMail('seb', 'georget.name');</script>
+
+<br />
 
 </div>
 
@@ -189,17 +230,17 @@ The addon can be uninstalled under "Tools > addons" : <br />
 <? if ($l == "fr") { echo "auteur :"; } else {echo "author:";} ?> <a href="http://sebastien.georget.name/">Sébastien Georget</a>
 </div>
 
+<!-- 
 <?
 /*
-<?
-if ($l == "fr"){
-?>
+<? if ($l == "fr"){ ?>
 
 <? } else { ?>
 
 <? } ?>
 */
 ?>
+-->
 
 
 </body>
