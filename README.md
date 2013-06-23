@@ -4,21 +4,8 @@ freeplane-collaborative-addon
 A [freeplane](http://freeplane.sourceforge.net/) add-on containing useful tools to work toghether on a single mindmap.
 Currently providing : diff/update/commit operations on a map via cvs
 
-The latest version of the addon can be download at https://sourceforge.net/projects/freeplanecollab/files/
+The latest version of the addon and the user documentation can be found at http://freeplanecollab.sourceforge.net/
 
-
-Usage
-=============================
-
-To lear more about freeplane add-on see : http://freeplane.sourceforge.net/wiki/index.php/Add-ons
-
-To install this add-on:
-* download last .addon.mm file
-* open it under freeplane
-* freeplane will ask if you want to install it
-* go to "Tools > Preferences > Scripts" to set the path to your VCS binary (currently only cvs is supported)
-
-Important : this add-on requires a command line cvs on your system.
 
 Content
 =============================
