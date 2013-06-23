@@ -117,8 +117,6 @@ Après l'installation on retrouve le addon
 ?>
 <h2>installation</h2>
 
-<h2>installation</h2>
-
 <ol>
 <li>Donwload the latest version : <a href="https://sourceforge.net/projects/freeplanecollab/files/">https://sourceforge.net/projects/freeplanecollab/files/</a></li>
 <li>Open it with freeplane <br/> <img src="doc/screenshots/addon-download.png" alt="addon download" /></li>
