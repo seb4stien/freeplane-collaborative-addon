@@ -58,7 +58,7 @@ def message = "Executed:\n" + vcsCommandArray.join(" ")
 if (outStream.size() > 0) {
 	message += "\n\nResult:\n" + outStream
 } else {
-	message += "\n\nResult:\n  nothing done" 
+	message += "\n\nResult:\n  your map is up to date" 
 }
 	
 if (errStream.size() > 0)
