@@ -55,7 +55,7 @@ vcsProcess.waitFor()
 def message = textUtils.getText("addons.collab.commandDetails") + "\n" + vcsCommandArray.join(" ")
 
 if (outStream.size() > 0) {
-	message += textUtils.getText("addons.collab.commandOutput") + "\n" + outStream
+	message += "\n\n" + textUtils.getText("addons.collab.commandOutput") + "\n" + outStream
 } else {
 	message += "\n\n" + textUtils.getText("addons.collab.commandOutput") + "\n" +  textUtils.getText("addons.collab.vcsReturnedNoDiff") 
 }
