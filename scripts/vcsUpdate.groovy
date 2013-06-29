@@ -22,6 +22,7 @@
 import javax.swing.JDialog
 import javax.swing.JOptionPane
 
+
 ///////////
 // Params
 ///////////
@@ -35,7 +36,7 @@ def vcsBin = config.getProperty('vcsBin', "note : set /path/to/vcs in preference
 //////////
 
 if (!node.map.isSaved()) {
-	ui.showMessage("Warning : save your map before commit", 0)
+	ui.showMessage(textUtils.getText("addons.collab.saveMapFirst"), 0)
     return
 }
 
@@ -50,24 +51,24 @@ def vcsProcess = processBuilder.start() //[], new File(node.map.file.getParent()
 vcsProcess.consumeProcessOutput(outStream, errStream)
 vcsProcess.waitFor()
 
-def message = "Executed:\n" + vcsCommandArray.join(" ")
+def message = textUtils.getText("addons.collab.commandDetails") + "\n" + vcsCommandArray.join(" ")
 
 def updated = 0
 if (outStream.size() > 0) {
-	message += "\n\nResult:\n" + outStream
- 	// there are some updates => close the map and reoppen it
-
+	message += textUtils.getText("addons.collab.commandOutput") + "\n" + outStream
+ 	
 	if (outStream =~ /^C /) {
-		message += "\n mapConflict"
+		message += "\n" +  textUtils.getText("addons.collab.mapConflict")
 		// close the file, open it, look for <<<< >>>>, original file under .bak
 	}
 	
 	if (outStream =~ /^M /) {
-		message += "\n mapNeedsCommit"
+		message += "\n" + textUtils.getText("addons.collab.mapNeedsCommit")
 	}
 	
+	// there are some updates => close the map and reoppen it
 	if ( (outStream =~ /^P /) || (outStream =~ /^U /) ) {
-		message += "\n mapUpdated"	
+		message += "\n" + textUtils.getText("addons.collab.mapUpdated")
 		def uri = node.map.file.toURI()
 		node.map.close(false, true)
 		loadUri(uri)
@@ -75,16 +76,16 @@ if (outStream.size() > 0) {
 	}
 	
 } else {
-	message += "\n\nResult:\n  your map is up to date" 
+	message += "\n\n" + textUtils.getText("addons.collab.commandOutput") + "\n  your map is up to date" 
 }
 	
 if (errStream.size() > 0)
-	message += "\n\nErrors: \n" + errStream
+	message += "\n\n" + textUtils.getText("addons.collab.commandErrors") + "\n" + errStream
 
 // todo : translation 
-JOptionPane.showMessageDialog(ui.frame, message, "vcs update", JOptionPane.INFORMATION_MESSAGE)
+JOptionPane.showMessageDialog(ui.frame, message, textUtils.getText("addons.vcsUpdate"), JOptionPane.INFORMATION_MESSAGE)
 
 if (updated == 1) {
-	JOptionPane.showMessageDialog(ui.frame, "The map has been reloaded.", "vcs update", JOptionPane.INFORMATION_MESSAGE)	 
+	JOptionPane.showMessageDialog(ui.frame, textUtils.getText("addons.collad.mapReloaded"), textUtils.getText("addons.vcsUpdate"), JOptionPane.INFORMATION_MESSAGE)	 
 }
 
