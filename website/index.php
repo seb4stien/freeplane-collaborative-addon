@@ -20,7 +20,7 @@ freeplane : collaborative tools
 </title>
 <meta name="description" content="freeplane mind mapping tool addon to support versionning and collaborative work">
 
-<meta name="keywords" content="mind map, mind mapping, collaborative, versionning, freeplane">
+<meta name="keywords" content="mind map, mind mapping, collaborative, versionning, freeplane, cvs, git">
 <link rel="stylesheet" href="css/web.css">
 
 <script>
