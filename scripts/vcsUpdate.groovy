@@ -19,7 +19,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import javax.swing.JDialog;
+import javax.swing.JDialog
 import javax.swing.JOptionPane
 
 ///////////
@@ -54,9 +54,29 @@ vcsProcess.consumeProcessOutput(outStream, errStream)
 vcsProcess.waitFor()
 
 def message = "Executed:\n" + vcsCommandArray.join(" ")
-	
+
+def updated = 0
 if (outStream.size() > 0) {
 	message += "\n\nResult:\n" + outStream
+ 	// there are some updates => close the map and reoppen it
+
+	if (outStream =~ /^C /) {
+		message += "\n mapConflict"
+		// close the file, open it, look for <<<< >>>>, original file under .bak
+	}
+	
+	if (outStream =~ /^M /) {
+		message += "\n mapNeedsCommit"
+	}
+	
+	if (outStream =~ /^P /) {
+		message += "\n mapUpdated"	
+		def uri = node.map.file.toURI()
+		node.map.close(false, true)
+		loadUri(uri)
+		updated = 1
+	}
+	
 } else {
 	message += "\n\nResult:\n  your map is up to date" 
 }
@@ -65,7 +85,9 @@ if (errStream.size() > 0)
 	message += "\n\nErrors: \n" + errStream
 
 // todo : translation 
-JOptionPane.showMessageDialog(ui.frame, 
-	message,
-	"vcs update", JOptionPane.INFORMATION_MESSAGE)
- 
+JOptionPane.showMessageDialog(ui.frame, message, "vcs update", JOptionPane.INFORMATION_MESSAGE)
+
+if (updated == 1) {
+	JOptionPane.showMessageDialog(ui.frame, "The map has been reloaded.", "vcs update", JOptionPane.INFORMATION_MESSAGE)	 
+}
+
