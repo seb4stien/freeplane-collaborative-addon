@@ -54,19 +54,17 @@ def vcsProcess = processBuilder.start() //[], new File(node.map.file.getParent()
 vcsProcess.consumeProcessOutput(outStream, errStream)
 vcsProcess.waitFor()
 
-def message = "Executed:\n" + vcsCommandArray.join(" ")
+def message = textUtils.getText("addons.collab.commandDetails") + "\n" + vcsCommandArray.join(" ")
 
 if (outStream.size() > 0) {
-	message += "\n\nResult:\n" + outStream
+	message += textUtils.getText("addons.collab.commandOutput") + "\n" + outStream
 } else {
-	message += "\n\nResult:\n  no diff" 
+	message += "\n\n" + textUtils.getText("addons.collab.commandOutput") + "\n" +  textUtils.getText("addons.collab.vcsReturnedNoDiff") 
 }
 	
 if (errStream.size() > 0)
-	message += "\n\nErrors: \n" + errStream
+	message += "\n\n" + textUtils.getText("addons.collab.commandErrors") + "\n" + errStream
 
 // todo : translation 
-JOptionPane.showMessageDialog(ui.frame, 
-	message,
-	"vcs diff", JOptionPane.INFORMATION_MESSAGE)
+JOptionPane.showMessageDialog(ui.frame, message, textUtils.getText("addons.vcsDiff"), JOptionPane.INFORMATION_MESSAGE)
  
