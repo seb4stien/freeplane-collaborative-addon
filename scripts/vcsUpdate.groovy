@@ -55,7 +55,7 @@ def message = textUtils.getText("addons.collab.commandDetails") + "\n" + vcsComm
 
 def updated = 0
 if (outStream.size() > 0) {
-	message += textUtils.getText("addons.collab.commandOutput") + "\n" + outStream
+	message += "\n\n" + textUtils.getText("addons.collab.commandOutput") + "\n" + outStream
  	
 	if (outStream =~ /^C /) {
 		message += "\n" +  textUtils.getText("addons.collab.mapConflict")
