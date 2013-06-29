@@ -39,7 +39,7 @@ def vcsBin = config.getProperty('vcsBin', "note : set /path/to/vcs in preference
 //////////
 
 if (!node.map.isSaved()) {
-	ui.showMessage("Warning : save your map before commit", 0)
+	ui.showMessage(textUtils.getText("addons.collab.saveMapFirst"), 0)
     return
 }
 
@@ -63,19 +63,18 @@ vcsProcess.withWriter { writer ->
 
 vcsProcess.waitFor()
 
-def message = "Executed:\n" + vcsCommandArray.join(" ") 
+def message = textUtils.getText("addons.collab.commandDetails") + "\n" + vcsCommandArray.join(" ") 
 
 if (outStream.size() > 0) {
-	message += "\n\nResult:\n" + outStream
+	message += "\n\n" + textUtils.getText("addons.collab.commandOutput") + "\n" + outStream
 } else {
-	message += "\n\nResult:\n  nothing done" 
+	message += "\n\n" + textUtils.getText("addons.collab.commandOutput") + "\n" + textUtils.getText("addons.collab.nothingDone") 
 }
 
 if (errStream.size() > 0)
-	message += "\n\nErrors: \n" + errStream
+	message += "\n\n" + textUtils.getText("addons.collab.commandErrors") + "\n" + errStream
 
-// todo : translation 
 JOptionPane.showMessageDialog(ui.frame, 
 	message,
-	"vcs commit", JOptionPane.INFORMATION_MESSAGE)
+	textUtils.getText("addons.vcsCommit"), JOptionPane.INFORMATION_MESSAGE)
  
