@@ -51,7 +51,7 @@ def vcsCommandArray = [vcsBin, "commit", node.map.file.name]
 def processBuilder = new ProcessBuilder(vcsCommandArray)
 	.directory(new File(node.map.file.getParent()))
 	.redirectErrorStream(true)
-def vcsProcess = processBuilder.start() //[], new File(node.map.file.getParent()))
+def vcsProcess = processBuilder.start()
 vcsProcess.consumeProcessOutput(outStream, errStream)
 
 vcsProcess.withWriter { writer ->
