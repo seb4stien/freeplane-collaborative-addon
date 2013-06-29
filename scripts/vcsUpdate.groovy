@@ -76,7 +76,7 @@ if (outStream.size() > 0) {
 	}
 	
 } else {
-	message += "\n\n" + textUtils.getText("addons.collab.commandOutput") + "\n  your map is up to date" 
+	message += "\n\n" + textUtils.getText("addons.collab.commandOutput") + "\n  " + textUtils.getText("addons.collab.mapIsUpToDate")
 }
 	
 if (errStream.size() > 0)
@@ -86,6 +86,6 @@ if (errStream.size() > 0)
 JOptionPane.showMessageDialog(ui.frame, message, textUtils.getText("addons.vcsUpdate"), JOptionPane.INFORMATION_MESSAGE)
 
 if (updated == 1) {
-	JOptionPane.showMessageDialog(ui.frame, textUtils.getText("addons.collad.mapReloaded"), textUtils.getText("addons.vcsUpdate"), JOptionPane.INFORMATION_MESSAGE)	 
+	JOptionPane.showMessageDialog(ui.frame, textUtils.getText("addons.collab.mapReloaded"), textUtils.getText("addons.vcsUpdate"), JOptionPane.INFORMATION_MESSAGE)	 
 }
 
