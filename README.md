@@ -32,15 +32,11 @@ v0.4 :
 - fixed #1 : cvs commit aborted if log message is empty
 - require the map to be saved before action
 
+v0.5 :
+- auto-reload map if it was updated
+- translated messages
+
 Todo
 =============================
 
-
-
-v?.? :
-- add commit/diff/update menus for map directory (instead of file)
-- user friendly messages
-- user friendly diffs
-- support for other vcs ? (git)
-- better workaround for #1 ?
-- translate warning message to save map
+see https://github.com/seb4stien/freeplane-collaborative-addon/issues 
