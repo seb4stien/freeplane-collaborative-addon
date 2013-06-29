@@ -1,6 +1,6 @@
 <map version="freeplane 1.2.0">
 <!--To view this file, download free mind mapping software Freeplane from http://freeplane.sourceforge.net -->
-<node TEXT="collaborative tools" ID="ID_1723255651" CREATED="1283093380553" MODIFIED="1371914176706" BACKGROUND_COLOR="#97c7dc">
+<node TEXT="collaborative tools" ID="ID_1723255651" CREATED="1283093380553" MODIFIED="1372500307953" BACKGROUND_COLOR="#97c7dc">
 <font SIZE="16" BOLD="true" ITALIC="true"/>
 <hook NAME="MapStyle">
     <properties show_icon_for_attributes="true" show_note_icons="true"/>
@@ -55,7 +55,7 @@
 <hook NAME="AutomaticEdgeColor" COUNTER="11"/>
 <attribute_layout NAME_WIDTH="121" VALUE_WIDTH="137"/>
 <attribute NAME="name" VALUE="collaborativeTools"/>
-<attribute NAME="version" VALUE="v0.4" OBJECT="org.freeplane.features.format.FormattedObject|v0.4|number:decimal:#0.####"/>
+<attribute NAME="version" VALUE="v0.5" OBJECT="org.freeplane.features.format.FormattedObject|v0.5|number:decimal:#0.####"/>
 <attribute NAME="author" VALUE="seb4stien"/>
 <attribute NAME="freeplaneVersionFrom" VALUE="1.2.23"/>
 <attribute NAME="freeplaneVersionTo" VALUE=""/>
@@ -136,6 +136,13 @@
 <node TEXT="v0.3" ID="ID_1525147987" CREATED="1371210981960" MODIFIED="1371210983487">
 <node TEXT="Support for export to png" ID="ID_1414369054" CREATED="1371210984645" MODIFIED="1371210993117"/>
 </node>
+<node TEXT="v0.4" ID="ID_1662251567" CREATED="1372499267534" MODIFIED="1372499269621">
+<node TEXT="handling empty commit message" ID="ID_1400146257" CREATED="1372499309465" MODIFIED="1372499314833"/>
+</node>
+<node TEXT="v0.5" ID="ID_407616167" CREATED="1372499270077" MODIFIED="1372499271843">
+<node TEXT="auto-reload map on update" ID="ID_1069991472" CREATED="1372499273323" MODIFIED="1372499278890"/>
+<node TEXT="added some translations" ID="ID_17649688" CREATED="1372499279217" MODIFIED="1372499292880"/>
+</node>
 </node>
 <node TEXT="license" POSITION="left" ID="ID_915883933" CREATED="1371158990126" MODIFIED="1371158990131">
 <edge COLOR="#00ff00"/>
@@ -215,7 +222,7 @@
   </body>
 </html>
 </richcontent>
-<node TEXT="en" ID="ID_1232293217" CREATED="1371158990178" MODIFIED="1371211254560">
+<node TEXT="en" ID="ID_1232293217" CREATED="1371158990178" MODIFIED="1372501634807">
 <attribute_layout NAME_WIDTH="219" VALUE_WIDTH="243"/>
 <attribute NAME="addons.${name}" VALUE="Collaborative Tools"/>
 <attribute NAME="addons.vcsUpdate" VALUE="Update map from VCS"/>
@@ -227,6 +234,15 @@
 <attribute NAME="OptionPanel.vcsBin" VALUE="Path to your VCS (currently cvs)"/>
 <attribute NAME="OptionPanel.ctReportIntervalInDays" VALUE="Days between two reports on modifications"/>
 <attribute NAME="OptionPanel.ctReportMaxDepth" VALUE="Max depth of modifications reports"/>
+<attribute NAME="addons.collab.commandDetails" VALUE="Command"/>
+<attribute NAME="addons.collab.commandOutput" VALUE="Output"/>
+<attribute NAME="addons.collab.saveMapFirst" VALUE="You should save your map first."/>
+<attribute NAME="addons.collab.mapConflict" VALUE="Warning : conflict during update. Close the map, open it with a text editor and look for &quot;&lt;&lt;&lt;&quot; / &quot;&gt;&gt;&gt;&quot; to fix it. Remember that your original map is available in your autosave directory."/>
+<attribute NAME="addons.collab.mapNeedsCommit" VALUE="Your map was locally modified. You should commit it."/>
+<attribute NAME="addons.collab.mapUpdated" VALUE="The map has been updated."/>
+<attribute NAME="addons.collab.mapReloaded" VALUE="The map has been reloaded."/>
+<attribute NAME="addons.collab.vcsReturnedNoDiff" VALUE="The VCS returned no diff."/>
+<attribute NAME="addons.collab.nothingDone" VALUE="Nothing done."/>
 </node>
 <node TEXT="fr" ID="ID_1204840493" CREATED="1371158990178" MODIFIED="1371211295359">
 <attribute_layout NAME_WIDTH="219" VALUE_WIDTH="350"/>
@@ -240,6 +256,15 @@
 <attribute NAME="OptionPanel.vcsBin" VALUE="Chemin vers votre VCS (seul cvs est support&#xe9; pour le moment)"/>
 <attribute NAME="OptionPanel.ctReportIntervalInDays" VALUE="Jours entre deux rapports de modifications"/>
 <attribute NAME="OptionPanel.ctReportMaxDepth" VALUE="Profondeur maximum pour les rapports de modifications"/>
+<attribute NAME="addons.collab.commandDetails" VALUE="Commande ex&#xe9;cut&#xe9;e"/>
+<attribute NAME="addons.collab.commandOutput" VALUE="R&#xe9;sultat"/>
+<attribute NAME="addons.collab.saveMapFirst" VALUE="Vous devez d'abord sauvegarder votre carte."/>
+<attribute NAME="addons.collab.mapConflict" VALUE="Attention : conflit durant la mise à jour. Fermer la carte, l'ouvrir avec un &#xe9;diteur de texte puis rechercher '<<<' et '>>>' afin de r&#xe9;gler le conflit. En cas de gros probl&#xe8;me, r&#xe9;cup&#xe9;rer la carte originale dans le r&#xe9;pertoire de sauvegarde automatique."/>
+<attribute NAME="addons.collab.mapNeedsCommit" VALUE="La carte a &#xe9;t&#xe9; modifi&#xe9;e localement, vous devriez la commiter."/>
+<attribute NAME="addons.collab.mapUpdated" VALUE="La carte a &#xe9;t&#xe9; mise &#xe0; jour."/>
+<attribute NAME="addons.collab.mapReloaded" VALUE="La carte a &#xe9;t&#xe9; recharg&#xe9;e."/>
+<attribute NAME="addons.collab.vcsReturnedNoDiff" VALUE="Le syst&#xe8;me de gestion de version n'a remont&#xe9; aucune diff&#xe9;rence."/>
+<attribute NAME="addons.collab.nothingDone" VALUE="Aucune action r&#xe9;alis&#xe9;e."/>
 </node>
 </node>
 <node TEXT="deinstall" POSITION="left" ID="ID_1936073781" CREATED="1371158990182" MODIFIED="1371209683326">
