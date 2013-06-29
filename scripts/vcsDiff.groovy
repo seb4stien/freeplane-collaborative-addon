@@ -39,7 +39,7 @@ def vcsBin = config.getProperty('vcsBin', "note : set /path/to/vcs in preference
 // todo : create a .bak file in case something goes wrong
 
 if (!node.map.isSaved()) {
-	ui.showMessage("Warning : save your map before commit", 0)
+	ui.showMessage(textUtils.getText("addons.collab.saveMapFirst"), 0)
     return
 }
 
