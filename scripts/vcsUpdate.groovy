@@ -69,7 +69,7 @@ if (outStream.size() > 0) {
 		message += "\n mapNeedsCommit"
 	}
 	
-	if (outStream =~ /^P /) {
+	if ( (outStream =~ /^P /) || (outStream =~ /^U /) ) {
 		message += "\n mapUpdated"	
 		def uri = node.map.file.toURI()
 		node.map.close(false, true)
