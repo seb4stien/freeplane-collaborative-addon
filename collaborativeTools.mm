@@ -52,7 +52,7 @@
 </stylenode>
 </map_styles>
 </hook>
-<hook NAME="AutomaticEdgeColor" COUNTER="11"/>
+<hook NAME="AutomaticEdgeColor" COUNTER="12"/>
 <attribute_layout NAME_WIDTH="121" VALUE_WIDTH="137"/>
 <attribute NAME="name" VALUE="collaborativeTools"/>
 <attribute NAME="version" VALUE="v0.5" OBJECT="org.freeplane.features.format.FormattedObject|v0.5|number:decimal:#0.####"/>
@@ -222,12 +222,12 @@
   </body>
 </html>
 </richcontent>
-<node TEXT="en" ID="ID_1232293217" CREATED="1371158990178" MODIFIED="1372501634807">
+<node TEXT="en" ID="ID_1232293217" CREATED="1371158990178" MODIFIED="1372504511373">
 <attribute_layout NAME_WIDTH="219" VALUE_WIDTH="243"/>
 <attribute NAME="addons.${name}" VALUE="Collaborative Tools"/>
-<attribute NAME="addons.vcsUpdate" VALUE="Update map from VCS"/>
-<attribute NAME="addons.vcsDiff" VALUE="Diff map against VCS"/>
-<attribute NAME="addons.vcsCommit" VALUE="Commit map to VCS"/>
+<attribute NAME="addons.vcsUpdate" VALUE="Update my map"/>
+<attribute NAME="addons.vcsDiff" VALUE="Compare my map"/>
+<attribute NAME="addons.vcsCommit" VALUE="Commit my map"/>
 <attribute NAME="addons.exportModificationsToPng" VALUE="Export recent modification to a png file"/>
 <attribute NAME="main_menu_scripting/collaborativeTools" VALUE="Collaborative Tools"/>
 <attribute NAME="OptionPanel.separator.${name}" VALUE="Collaborative Tools"/>
@@ -243,13 +243,14 @@
 <attribute NAME="addons.collab.mapReloaded" VALUE="The map has been reloaded."/>
 <attribute NAME="addons.collab.vcsReturnedNoDiff" VALUE="The VCS returned no diff."/>
 <attribute NAME="addons.collab.nothingDone" VALUE="Nothing done."/>
+<attribute NAME="addons.collab.mapIsUpToDate" VALUE="Your map is up to date."/>
 </node>
-<node TEXT="fr" ID="ID_1204840493" CREATED="1371158990178" MODIFIED="1371211295359">
+<node TEXT="fr" ID="ID_1204840493" CREATED="1371158990178" MODIFIED="1372504516787">
 <attribute_layout NAME_WIDTH="219" VALUE_WIDTH="350"/>
 <attribute NAME="addons.${name}" VALUE="Outils collaboratifs"/>
-<attribute NAME="addons.vcsUpdate" VALUE="Maj depuis le VCS"/>
-<attribute NAME="addons.vcsDiff" VALUE="Diff avec le VCS"/>
-<attribute NAME="addons.vcsCommit" VALUE="Commit dans le VCS"/>
+<attribute NAME="addons.vcsUpdate" VALUE="Mettre &#xe0; jour ma version"/>
+<attribute NAME="addons.vcsDiff" VALUE="Comparer ma version"/>
+<attribute NAME="addons.vcsCommit" VALUE="Publier ma version"/>
 <attribute NAME="addons.exportModificationsToPng" VALUE="Export des derni&#xe8;res modifications dans un png"/>
 <attribute NAME="main_menu_scripting/collaborativeTools" VALUE="Outils collaboratifs"/>
 <attribute NAME="OptionPanel.separator.${name}" VALUE="Outils collaboratifs"/>
@@ -257,14 +258,15 @@
 <attribute NAME="OptionPanel.ctReportIntervalInDays" VALUE="Jours entre deux rapports de modifications"/>
 <attribute NAME="OptionPanel.ctReportMaxDepth" VALUE="Profondeur maximum pour les rapports de modifications"/>
 <attribute NAME="addons.collab.commandDetails" VALUE="Commande ex&#xe9;cut&#xe9;e"/>
-<attribute NAME="addons.collab.commandOutput" VALUE="R&#xe9;sultat"/>
-<attribute NAME="addons.collab.saveMapFirst" VALUE="Vous devez d'abord sauvegarder votre carte."/>
-<attribute NAME="addons.collab.mapConflict" VALUE="Attention : conflit durant la mise à jour. Fermer la carte, l'ouvrir avec un &#xe9;diteur de texte puis rechercher '<<<' et '>>>' afin de r&#xe9;gler le conflit. En cas de gros probl&#xe8;me, r&#xe9;cup&#xe9;rer la carte originale dans le r&#xe9;pertoire de sauvegarde automatique."/>
+<attribute NAME="addons.collab.commandOutput" VALUE="R\u00E9sultat"/>
+<attribute NAME="addons.collab.saveMapFirst" VALUE="Vous devez d&apos;abord sauvegarder votre carte."/>
+<attribute NAME="addons.collab.mapConflict" VALUE="Attention : conflit durant la mise &#xe0; jour. Fermer la carte, l&apos;ouvrir avec un &#xe9;diteur de texte puis rechercher &apos;&lt;&lt;&lt;&apos; et &apos;&gt;&gt;&gt;&apos; afin de r&#xe9;gler le conflit. En cas de gros probl&#xe8;me, r&#xe9;cup&#xe9;rer la carte originale dans le r&#xe9;pertoire de sauvegarde automatique."/>
 <attribute NAME="addons.collab.mapNeedsCommit" VALUE="La carte a &#xe9;t&#xe9; modifi&#xe9;e localement, vous devriez la commiter."/>
 <attribute NAME="addons.collab.mapUpdated" VALUE="La carte a &#xe9;t&#xe9; mise &#xe0; jour."/>
 <attribute NAME="addons.collab.mapReloaded" VALUE="La carte a &#xe9;t&#xe9; recharg&#xe9;e."/>
-<attribute NAME="addons.collab.vcsReturnedNoDiff" VALUE="Le syst&#xe8;me de gestion de version n'a remont&#xe9; aucune diff&#xe9;rence."/>
+<attribute NAME="addons.collab.vcsReturnedNoDiff" VALUE="Le syst&#xe8;me de gestion de version n&apos;a remont&#xe9; aucune diff&#xe9;rence."/>
 <attribute NAME="addons.collab.nothingDone" VALUE="Aucune action r&#xe9;alis&#xe9;e."/>
+<attribute NAME="addons.collab.mapIsUpToDate" VALUE="La carte est d&#xe9;j&#xe0; &#xe0; jour."/>
 </node>
 </node>
 <node TEXT="deinstall" POSITION="left" ID="ID_1936073781" CREATED="1371158990182" MODIFIED="1371209683326">
@@ -448,7 +450,7 @@
 <attribute NAME="execute_scripts_without_exec_restriction" VALUE="true"/>
 <attribute NAME="execute_scripts_without_network_restriction" VALUE="false"/>
 </node>
-<node TEXT="exportModificationsToPng.groovy" ID="ID_656180329" CREATED="1323057833226" MODIFIED="1371209736687" HGAP="30">
+<node TEXT="exportModificationsToPng.groovy" ID="ID_656180329" CREATED="1323057833226" MODIFIED="1372505051601" HGAP="30">
 <attribute_layout NAME_WIDTH="275" VALUE_WIDTH="212"/>
 <attribute NAME="menuTitleKey" VALUE="addons.exportModificationsToPng"/>
 <attribute NAME="menuLocation" VALUE="main_menu_scripting/collaborativeTools"/>
@@ -564,6 +566,9 @@
 <node TEXT="${name}-icon.png" ID="ID_1117040601" CREATED="1357853471253" MODIFIED="1357866788268">
 <attribute_layout NAME_WIDTH="100" VALUE_WIDTH="100"/>
 </node>
+</node>
+<node TEXT="todo" POSITION="right" ID="ID_1731983217" CREATED="1372505011050" MODIFIED="1372505012945">
+<edge COLOR="#7c7c00"/>
 </node>
 </node>
 </map>
