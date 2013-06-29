@@ -26,7 +26,6 @@ import javax.swing.JOptionPane
 // Params
 ///////////
 
-// todo : move to add-on attributes
 // todo : check existence + alert
 def vcsBin = config.getProperty('vcsBin', "note : set /path/to/vcs in preferences")
 
