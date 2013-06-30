@@ -10,17 +10,21 @@ if ($_GET['l'] == "fr") {
 <html>
 <head>
 <title>
-<?
-if ($l == "fr"){
-?>
+<? if ($l == "fr"){ ?>
 freeplane : outils collaboratifs";
 <? } else { ?>
 freeplane : collaborative tools
 <? } ?>
 </title>
-<meta name="description" content="freeplane mind mapping tool addon to support versionning and collaborative work">
-
-<meta name="keywords" content="mind map, mind mapping, collaborative, versionning, freeplane, cvs, git">
+<meta name="description" xml:lang="fr-FR" content="extention à freeplane permettant la gestion de version et le travail collaboratif">
+<meta name="keywords" xml:lang="fr-FR" content="mindmap, mind mapping, carte heuristique, collaboratif, gestion de version, freeplane, cvs, git">
+<meta name="description" xml:lang="en-EN" content="freeplane mind mapping tool addon to support versionning and collaborative work">
+<meta name="keywords" xml:lang="en-EN" content="mind map, mind mapping, collaborative, versionning, freeplane, cvs, git">
+<? if ($l == "fr"){ ?>
+<meta http-equiv="content-language" content="fr-FR" />
+<? } else { ?>
+<meta http-equiv="content-language" content="en-EN" />
+<? } ?>
 <link rel="stylesheet" href="css/web.css">
 
 <script>
@@ -80,6 +84,38 @@ if ($l == "fr"){
 
 <p>It currently supports diff/update/commit operations on a map via cvs.</p>
 <? } ?>
+
+<h1 id="news">
+<? if ($l == "fr"){ ?>
+actualités
+<? } else { ?>
+news
+<? } ?>
+</h1>
+
+<ul>
+<?
+if ($l == "fr") {
+?>
+<li>29 juin 2013 : publication de la <a href="https://sourceforge.net/projects/freeplanecollab/files/">version 0.5</a>
+<ul>
+<li>ajout de messages utilisateur et de traductions</li>
+<li>rechargement automatique de la carte dans freeplane lorsqu'elle a été mise à jour</li>
+</ul>
+</li>
+<?
+} else {
+?>
+<li>29 june 2013 : release of <a href="https://sourceforge.net/projects/freeplanecollab/files/">version 0.5</a>
+<ul>
+<li>added user messages and translations</li>
+<li>automatic reload of the map in freeplane after update</li>
+</ul>
+</li><?
+}
+?>
+</ul>
+
 
 <h1 id="download">
 <? if ($l == "fr"){ ?>
@@ -235,7 +271,7 @@ The addon can be uninstalled under "Tools > addons" : <br />
 <script type="text/javascript">
 function displayMail(mail, domain)
 {
-  document.write('<a href="mailto:' + mail + '.2013@' + domain + '">' + mail+'.2013'+'@'+domain + '</a>');
+  document.write('<a href="mailto:' + mail + '4stien@' + domain + '">' + mail+'.2013'+'@'+domain + '</a>');
 }
 </script>
 
