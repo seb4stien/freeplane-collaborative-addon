@@ -31,7 +31,108 @@ import groovy.io.GroovyPrintWriter
 
 // todo : check existence + alert
 def vcsBin = config.getProperty('vcsBin', "note : set /path/to/vcs in preferences")
+def verbose = config.getBooleanProperty('vcsVerbose')
 
+
+//////////
+// Funcs
+//////////
+
+private String vcsDo(String vcsBin, String action, Boolean verbose) {
+
+	// preparing execution
+	def initialSize = 4096
+	def outStream = new ByteArrayOutputStream(initialSize)
+	def errStream = new ByteArrayOutputStream(initialSize)
+	def vcsCommandArray = [vcsBin, action, node.map.file.name]
+	def processBuilder = new ProcessBuilder(vcsCommandArray)
+		.directory(new File(node.map.file.getParent()))
+		.redirectErrorStream(false)
+		
+	// start process and consume output to prevent locking
+	def vcsProcess = processBuilder.start()
+	vcsProcess.consumeProcessOutput(outStream, errStream)
+
+	// feed the process with user input in case of empty commit log
+	vcsProcess.withWriter { writer ->
+		// Writes the following commands to the spawned process
+		def gWriter = new GroovyPrintWriter(writer)
+		// send "a" for "abort"
+		gWriter.println "a"
+	} 
+
+	// waiting process ending
+	vcsProcess.waitFor()
+	def exitStatus = vcsProcess.exitValue()
+
+
+	def message = ""	
+	// verbose mode : show command and results
+	if (verbose) {
+		message += textUtils.getText("addons.collab.commandDetails") + "\n" + vcsCommandArray.join(" ") + "\n\n"
+		message += textUtils.getText("addons.collab.commandOutput") + "\n" + outStream + "\n\n"
+		message += textUtils.getText("addons.collab.commandErrors") + "\n" + errStream + "\n\n"
+	}
+	
+	
+
+	// handling errors first
+	if (exitStatus > 0) {
+	
+		// catching unversionned files
+		if ( errStream =~ /No CVSROOT/ ) {
+		
+			message = textUtils.getText("addons.collab.folderIsNotVersionned") + "\n"
+			
+			JOptionPane.showMessageDialog(ui.frame, 
+				message,
+				textUtils.getText("addons.vcsCommit"), JOptionPane.ERROR_MESSAGE)
+		
+		} else if ( (action == "commit") && (errStream =~ /.cvs add/) ) {
+	
+			// ask user to add it
+			final int addFile = JOptionPane.showConfirmDialog(ui.frame, 
+				textUtils.getText("addons.collab.fileIsNotVersionned") + "\n" + textUtils.getText("addons.collab.doYouWantToAddFile") ,
+				textUtils.getText("addons.vcsCommit"),
+				JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+			
+			if (addFile == JOptionPane.YES_OPTION) {
+				vcsDo(vcsBin, "add", verbose)
+				vcsDo(vcsBin, "commit", verbose)
+			} else {
+				message += textUtils.getText("addons.collab.fileIsNotVersionned") + "\n"
+				JOptionPane.showMessageDialog(ui.frame, 
+					message,
+					textUtils.getText("addons.vcsCommit"), JOptionPane.ERROR_MESSAGE)
+			}
+		} else {
+			// unknwon error
+			if (! verbose) {
+				message = textUtils.getText("addons.collab.unknownErrorActivateVerboseMode")
+			}
+			JOptionPane.showMessageDialog(ui.frame, 
+				message,
+				textUtils.getText("addons.vcsCommit"), JOptionPane.ERROR_MESSAGE)
+		}
+		
+	} else {
+		// errorstatus = 0 = ok
+		if (outStream.size() > 0) {
+			message += textUtils.getText("addons.collab.mapCommitted")
+		} else {
+			if (action == "add") {
+				message += textUtils.getText("addons.collab.mapAdded")
+			} else if (action == "commit") {
+				message += textUtils.getText("addons.collab.mapDoesntNeedCommit")
+			}
+		}
+
+		JOptionPane.showMessageDialog(ui.frame, 
+			message,
+			textUtils.getText("addons.vcsCommit"), JOptionPane.INFORMATION_MESSAGE)
+
+	}	
+}
 
 
 //////////
@@ -39,42 +140,12 @@ def vcsBin = config.getProperty('vcsBin', "note : set /path/to/vcs in preference
 //////////
 
 if (!node.map.isSaved()) {
-	ui.showMessage(textUtils.getText("addons.collab.saveMapFirst"), 0)
+	JOptionPane.showMessageDialog(ui.frame, 
+				textUtils.getText("addons.collab.saveMapFirst"),
+				textUtils.getText("addons.vcsCommit"), JOptionPane.ERROR_MESSAGE)
     return
 }
 
 
-def initialSize = 4096
-def outStream = new ByteArrayOutputStream(initialSize)
-def errStream = new ByteArrayOutputStream(initialSize)
-def vcsCommandArray = [vcsBin, "commit", node.map.file.name]
-def processBuilder = new ProcessBuilder(vcsCommandArray)
-	.directory(new File(node.map.file.getParent()))
-	.redirectErrorStream(true)
-def vcsProcess = processBuilder.start()
-vcsProcess.consumeProcessOutput(outStream, errStream)
+vcsDo(vcsBin, "commit", verbose)
 
-vcsProcess.withWriter { writer ->
-  // Writes the following commands to the spawned process
-  def gWriter = new GroovyPrintWriter(writer)
-  // Imagine that the user enters these lines
-  gWriter.println "a"
-} 
-
-vcsProcess.waitFor()
-
-def message = textUtils.getText("addons.collab.commandDetails") + "\n" + vcsCommandArray.join(" ") 
-
-if (outStream.size() > 0) {
-	message += "\n\n" + textUtils.getText("addons.collab.commandOutput") + "\n" + outStream
-} else {
-	message += "\n\n" + textUtils.getText("addons.collab.commandOutput") + "\n" + textUtils.getText("addons.collab.nothingDone") 
-}
-
-if (errStream.size() > 0)
-	message += "\n\n" + textUtils.getText("addons.collab.commandErrors") + "\n" + errStream
-
-JOptionPane.showMessageDialog(ui.frame, 
-	message,
-	textUtils.getText("addons.vcsCommit"), JOptionPane.INFORMATION_MESSAGE)
- 
