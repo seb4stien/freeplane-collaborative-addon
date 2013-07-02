@@ -29,6 +29,7 @@ import javax.swing.JOptionPane
 
 // todo : check existence + alert
 def vcsBin = config.getProperty('vcsBin', "note : set /path/to/vcs in preferences")
+def verbose = config.getBooleanProperty('vcsVerbose')
 
 
 //////////
@@ -51,41 +52,61 @@ def vcsProcess = processBuilder.start() //[], new File(node.map.file.getParent()
 vcsProcess.consumeProcessOutput(outStream, errStream)
 vcsProcess.waitFor()
 
-def message = textUtils.getText("addons.collab.commandDetails") + "\n" + vcsCommandArray.join(" ")
+def message = ""
+
+if (verbose) {
+	message = textUtils.getText("addons.collab.commandDetails") + "\n" + vcsCommandArray.join(" ")
+}
 
 def updated = 0
 if (outStream.size() > 0) {
-	message += "\n\n" + textUtils.getText("addons.collab.commandOutput") + "\n" + outStream
+	if (verbose) {
+		message += "\n\n" + textUtils.getText("addons.collab.commandOutput") + "\n" + outStream + "\n"
+	}
  	
 	if (outStream =~ /^C /) {
-		message += "\n" +  textUtils.getText("addons.collab.mapConflict")
-		// close the file, open it, look for <<<< >>>>, original file under .bak
+		message += textUtils.getText("addons.collab.mapConflict")
 	}
 	
 	if (outStream =~ /^M /) {
-		message += "\n" + textUtils.getText("addons.collab.mapNeedsCommit")
+		message += textUtils.getText("addons.collab.mapNeedsCommit")
 	}
 	
 	// there are some updates => close the map and reoppen it
 	if ( (outStream =~ /^P /) || (outStream =~ /^U /) ) {
-		message += "\n" + textUtils.getText("addons.collab.mapUpdated")
+		if (verbose) {
+			message += textUtils.getText("addons.collab.mapUpdated")
+		}
 		def uri = node.map.file.toURI()
 		node.map.close(false, true)
 		loadUri(uri)
 		updated = 1
 	}
 	
-} else {
-	message += "\n\n" + textUtils.getText("addons.collab.commandOutput") + "\n  " + textUtils.getText("addons.collab.mapIsUpToDate")
-}
+	if ( (outStream =~ /No CVSROOT/) ) {
+		message += textUtils.getText("addons.collab.theFileIsNotVersionned")
+	}
 	
-if (errStream.size() > 0)
-	message += "\n\n" + textUtils.getText("addons.collab.commandErrors") + "\n" + errStream
+} else {
+	if (verbose) {
+		message += "\n\n" + textUtils.getText("addons.collab.commandOutput") + "\n  "
+	}
+	message += textUtils.getText("addons.collab.mapIsUpToDate")
+}
 
-// todo : translation 
-JOptionPane.showMessageDialog(ui.frame, message, textUtils.getText("addons.vcsUpdate"), JOptionPane.INFORMATION_MESSAGE)
+// catch errors
+if (errStream.size() > 0) {
+	if (verbose) {
+		message += "\n\n" + textUtils.getText("addons.collab.commandErrors") + "\n" + errStream
+	} else {
+		message += "Unknown error"
+	}
+}
 
+// message display
 if (updated == 1) {
 	JOptionPane.showMessageDialog(ui.frame, textUtils.getText("addons.collab.mapReloaded"), textUtils.getText("addons.vcsUpdate"), JOptionPane.INFORMATION_MESSAGE)	 
+} else {
+	JOptionPane.showMessageDialog(ui.frame, message, textUtils.getText("addons.vcsUpdate"), JOptionPane.INFORMATION_MESSAGE)
 }
 
