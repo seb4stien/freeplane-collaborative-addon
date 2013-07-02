@@ -1,6 +1,6 @@
 <map version="freeplane 1.2.0">
 <!--To view this file, download free mind mapping software Freeplane from http://freeplane.sourceforge.net -->
-<node TEXT="collaborative tools" ID="ID_1723255651" CREATED="1283093380553" MODIFIED="1372500307953" BACKGROUND_COLOR="#97c7dc">
+<node TEXT="collaborative tools" ID="ID_1723255651" CREATED="1283093380553" MODIFIED="1372709104174" BACKGROUND_COLOR="#97c7dc">
 <font SIZE="16" BOLD="true" ITALIC="true"/>
 <hook NAME="MapStyle">
     <properties show_icon_for_attributes="true" show_note_icons="true"/>
@@ -55,7 +55,7 @@
 <hook NAME="AutomaticEdgeColor" COUNTER="12"/>
 <attribute_layout NAME_WIDTH="121" VALUE_WIDTH="137"/>
 <attribute NAME="name" VALUE="collaborativeTools"/>
-<attribute NAME="version" VALUE="v0.5" OBJECT="org.freeplane.features.format.FormattedObject|v0.5|number:decimal:#0.####"/>
+<attribute NAME="version" VALUE="v0.6" OBJECT="org.freeplane.features.format.FormattedObject|v0.6|number:decimal:#0.####"/>
 <attribute NAME="author" VALUE="seb4stien"/>
 <attribute NAME="freeplaneVersionFrom" VALUE="1.2.23"/>
 <attribute NAME="freeplaneVersionTo" VALUE=""/>
@@ -143,6 +143,9 @@
 <node TEXT="auto-reload map on update" ID="ID_1069991472" CREATED="1372499273323" MODIFIED="1372499278890"/>
 <node TEXT="added some translations" ID="ID_17649688" CREATED="1372499279217" MODIFIED="1372499292880"/>
 </node>
+<node TEXT="v0.6" ID="ID_1211727843" CREATED="1372708948109" MODIFIED="1372708950120">
+<node TEXT="add verbose/quiet mode" ID="ID_1340749297" CREATED="1372708952849" MODIFIED="1372708958292"/>
+</node>
 </node>
 <node TEXT="license" POSITION="left" ID="ID_915883933" CREATED="1371158990126" MODIFIED="1371158990131">
 <edge COLOR="#00ff00"/>
@@ -185,11 +188,11 @@
   </body>
 </html>
 </richcontent>
-<node TEXT="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#xa;&lt;preferences_structure&gt;&#xa;&lt;tabbed_pane&gt;&#xa;&lt;tab name=&quot;plugins&quot;&gt;&#xa;&lt;separator name=&quot;collaborativeTools&quot;&gt;&#xa;&lt;path name=&quot;vcsBin&quot; /&gt;&#xa;&lt;number name=&quot;ctReportIntervalInDays&quot; min=&quot;1&quot; max=&quot;100&quot; /&gt;&#xa;&lt;number name=&quot;ctReportMaxDepth&quot; min=&quot;1&quot; /&gt;&#xa;&lt;/separator&gt;&#xa;&lt;/tab&gt;&#xa;&lt;/tabbed_pane&gt;&#xa;&lt;/preferences_structure&gt;" ID="ID_873595672" CREATED="1358304692163" MODIFIED="1371211631594">
+<node TEXT="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#xa;&lt;preferences_structure&gt;&#xa;&lt;tabbed_pane&gt;&#xa;&lt;tab name=&quot;plugins&quot;&gt;&#xa;&lt;separator name=&quot;collaborativeTools&quot;&gt;&#xa;&lt;path name=&quot;vcsBin&quot; /&gt;&#xa;&lt;boolean name=&quot;vcsVerbose&quot; /&gt;&#xa;&lt;number name=&quot;ctReportIntervalInDays&quot; min=&quot;1&quot; max=&quot;100&quot; /&gt;&#xa;&lt;number name=&quot;ctReportMaxDepth&quot; min=&quot;1&quot; /&gt;&#xa;&lt;/separator&gt;&#xa;&lt;/tab&gt;&#xa;&lt;/tabbed_pane&gt;&#xa;&lt;/preferences_structure&gt;" ID="ID_873595672" CREATED="1358304692163" MODIFIED="1372709042155">
 <attribute_layout NAME_WIDTH="100" VALUE_WIDTH="100"/>
 </node>
 </node>
-<node TEXT="default.properties" POSITION="left" ID="ID_808793413" CREATED="1371158990170" MODIFIED="1371211695030">
+<node TEXT="default.properties" POSITION="left" ID="ID_808793413" CREATED="1371158990170" MODIFIED="1372709099024">
 <edge COLOR="#00ffff"/>
 <richcontent TYPE="NOTE">
 
@@ -206,6 +209,7 @@
 </richcontent>
 <attribute_layout NAME_WIDTH="128" VALUE_WIDTH="213"/>
 <attribute NAME="vcsBin" VALUE="C:/Program Files (x86)/CVSNT/cvs.exe"/>
+<attribute NAME="vcsVerbose" VALUE="false"/>
 </node>
 <node TEXT="translations" POSITION="left" ID="ID_1644304879" CREATED="1371158990174" MODIFIED="1371158990178">
 <edge COLOR="#ffff00"/>
@@ -222,7 +226,7 @@
   </body>
 </html>
 </richcontent>
-<node TEXT="en" ID="ID_1232293217" CREATED="1371158990178" MODIFIED="1372504511373">
+<node TEXT="en" ID="ID_1232293217" CREATED="1371158990178" MODIFIED="1372709592847">
 <attribute_layout NAME_WIDTH="219" VALUE_WIDTH="243"/>
 <attribute NAME="addons.${name}" VALUE="Collaborative Tools"/>
 <attribute NAME="addons.vcsUpdate" VALUE="Update my map"/>
@@ -232,6 +236,7 @@
 <attribute NAME="main_menu_scripting/collaborativeTools" VALUE="Collaborative Tools"/>
 <attribute NAME="OptionPanel.separator.${name}" VALUE="Collaborative Tools"/>
 <attribute NAME="OptionPanel.vcsBin" VALUE="Path to your VCS (currently cvs)"/>
+<attribute NAME="OptionPanel.vcsVerbose" VALUE="Verbose mode"/>
 <attribute NAME="OptionPanel.ctReportIntervalInDays" VALUE="Days between two reports on modifications"/>
 <attribute NAME="OptionPanel.ctReportMaxDepth" VALUE="Max depth of modifications reports"/>
 <attribute NAME="addons.collab.commandDetails" VALUE="Command"/>
@@ -245,7 +250,7 @@
 <attribute NAME="addons.collab.nothingDone" VALUE="Nothing done."/>
 <attribute NAME="addons.collab.mapIsUpToDate" VALUE="Your map is up to date."/>
 </node>
-<node TEXT="fr" ID="ID_1204840493" CREATED="1371158990178" MODIFIED="1372504516787">
+<node TEXT="fr" ID="ID_1204840493" CREATED="1371158990178" MODIFIED="1372709637878">
 <attribute_layout NAME_WIDTH="219" VALUE_WIDTH="350"/>
 <attribute NAME="addons.${name}" VALUE="Outils collaboratifs"/>
 <attribute NAME="addons.vcsUpdate" VALUE="Mettre &#xe0; jour ma version"/>
@@ -255,6 +260,7 @@
 <attribute NAME="main_menu_scripting/collaborativeTools" VALUE="Outils collaboratifs"/>
 <attribute NAME="OptionPanel.separator.${name}" VALUE="Outils collaboratifs"/>
 <attribute NAME="OptionPanel.vcsBin" VALUE="Chemin vers votre VCS (seul cvs est support&#xe9; pour le moment)"/>
+<attribute NAME="OptionPanel.vcsVerbose" VALUE="Mode verbeux"/>
 <attribute NAME="OptionPanel.ctReportIntervalInDays" VALUE="Jours entre deux rapports de modifications"/>
 <attribute NAME="OptionPanel.ctReportMaxDepth" VALUE="Profondeur maximum pour les rapports de modifications"/>
 <attribute NAME="addons.collab.commandDetails" VALUE="Commande ex&#xe9;cut&#xe9;e"/>
