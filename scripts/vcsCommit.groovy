@@ -44,7 +44,7 @@ def verbose = config.getBooleanProperty('vcsVerbose')
 // Funcs
 //////////
 
-private String vcsDo(String vcsBin, String action, Boolean verbose) {
+private String vcsDo(String vcsBin, String context, String action, Boolean verbose) {
 
 	// preparing execution
 	def initialSize = 4096
@@ -85,21 +85,31 @@ private String vcsDo(String vcsBin, String action, Boolean verbose) {
 	// handling errors first
 	if (exitStatus > 0) {
 	
-		// catching unversionned files
+		// parsing errStream to handle errors
 		if ( errStream =~ /No CVSROOT/ ) {
+			// No CVSROOT
+			// Patterns
+			// - linux (cvs) : "No CVSROOT"
+			// - windows (cvsnt) : "No CVSROOT"
 		
+			// import is not supported
 			message = textUtils.getText("addons.collab.folderIsNotVersionned") + "\n"
 			
 			JOptionPane.showMessageDialog(ui.frame, 
 				message,
-				textUtils.getText("addons.vcsCommit"), JOptionPane.ERROR_MESSAGE)
+				context, JOptionPane.ERROR_MESSAGE)
 		
-		} else if ( (action == "commit") && (errStream =~ /.cvs add/) ) {
+		} else if ( (errStream =~ "nothing known about") || (errStream =~ /use..cvs add/) ) {
+			// Unversionned file
+			// Patterns
+			// - linux (cvs) : on commit "nothing known about"
+			// - linux (cvs) : on update/status "use `cvs add`"
+			// - windows (cvsnt) : idem
 	
 			// ask user to add it
 			final int addFile = JOptionPane.showConfirmDialog(ui.frame, 
 				textUtils.getText("addons.collab.fileIsNotVersionned") + "\n" + textUtils.getText("addons.collab.doYouWantToAddFile") ,
-				textUtils.getText("addons.vcsCommit"),
+				context,
 				JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 			
 			if (addFile == JOptionPane.YES_OPTION) {
@@ -109,7 +119,7 @@ private String vcsDo(String vcsBin, String action, Boolean verbose) {
 				message += textUtils.getText("addons.collab.fileIsNotVersionned") + "\n"
 				JOptionPane.showMessageDialog(ui.frame, 
 					message,
-					textUtils.getText("addons.vcsCommit"), JOptionPane.ERROR_MESSAGE)
+					context, JOptionPane.ERROR_MESSAGE)
 			}
 		} else {
 			// unknwon error
@@ -118,7 +128,7 @@ private String vcsDo(String vcsBin, String action, Boolean verbose) {
 			}
 			JOptionPane.showMessageDialog(ui.frame, 
 				message,
-				textUtils.getText("addons.vcsCommit"), JOptionPane.ERROR_MESSAGE)
+				context, JOptionPane.ERROR_MESSAGE)
 		}
 		
 	} else {
@@ -135,7 +145,7 @@ private String vcsDo(String vcsBin, String action, Boolean verbose) {
 
 		JOptionPane.showMessageDialog(ui.frame, 
 			message,
-			textUtils.getText("addons.vcsCommit"), JOptionPane.INFORMATION_MESSAGE)
+			context, JOptionPane.INFORMATION_MESSAGE)
 
 	}	
 }
@@ -151,5 +161,5 @@ if (!node.map.isSaved()) {
     return
 }
 
-vcsDo(vcsBin, "commit", verbose)
+vcsDo(vcsBin, textUtils.getText("addons.vcsCommit"), "commit", verbose)
 
