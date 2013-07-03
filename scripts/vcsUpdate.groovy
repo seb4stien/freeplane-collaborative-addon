@@ -105,8 +105,8 @@ private String vcsDo(String vcsBin, String context, String action, Boolean verbo
 				JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 			
 			if (addFile == JOptionPane.YES_OPTION) {
-				vcsDo(vcsBin, "add", verbose)
-				vcsDo(vcsBin, "commit", verbose)
+				vcsDo(vcsBin, context, "add", verbose)
+				vcsDo(vcsBin, context, "commit", verbose)
 			} else {
 				message += textUtils.getText("addons.collab.fileIsNotVersionned") + "\n"
 				JOptionPane.showMessageDialog(ui.frame, 
