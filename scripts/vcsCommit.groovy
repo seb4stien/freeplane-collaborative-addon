@@ -121,6 +121,14 @@ private String vcsDo(String vcsBin, String context, String action, Boolean verbo
 					message,
 					context, JOptionPane.ERROR_MESSAGE)
 			}
+		} else if (action == "update") {
+				if (outStream =~ /C /) {
+					node.map.close(true, false)
+					message += textUtils.getText("addons.collab.mapConflict")
+				}
+				JOptionPane.showMessageDialog(ui.frame, 
+					message,
+					context, JOptionPane.ERROR_MESSAGE)
 		} else {
 			// unknwon error
 			if (! verbose) {
@@ -134,12 +142,29 @@ private String vcsDo(String vcsBin, String context, String action, Boolean verbo
 	} else {
 		// errorstatus = 0 = ok
 		if (outStream.size() > 0) {
-			message += textUtils.getText("addons.collab.mapCommitted")
+			if (action == "commit") {
+				message += textUtils.getText("addons.collab.mapCommitted")
+			} else if (action == "update") {
+				if (outStream =~ /M /) {
+					message += textUtils.getText("addons.collab.mapNeedsCommit")
+				}
+	
+				// there are some updates => close the map and reoppen it
+				if ( (outStream =~ /P /) || (outStream =~ /U /) ) {
+					def uri = node.map.file.toURI()
+					node.map.close(false, true)
+					loadUri(uri)
+					message += textUtils.getText("addons.collab.mapUpdated")
+				}
+				
+			}
 		} else {
 			if (action == "add") {
 				message += textUtils.getText("addons.collab.mapAdded")
 			} else if (action == "commit") {
 				message += textUtils.getText("addons.collab.mapDoesntNeedCommit")
+			} else if (action == "update") {
+				message += textUtils.getText("addons.collab.mapIsUpToDate")
 			}
 		}
 
@@ -149,6 +174,7 @@ private String vcsDo(String vcsBin, String context, String action, Boolean verbo
 
 	}	
 }
+
 
 //////////
 // Main
