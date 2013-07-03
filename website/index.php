@@ -44,7 +44,7 @@ freeplane : collaborative tools
 <div class="header">
 <span class="title"><img src="img/icon.png" />
 <? if ($l == "fr"){ ?>
-freeplanne : outils <strong>collaboratifs</strong>
+freeplane : outils <strong>collaboratifs</strong>
 <? } else { ?>
 freeplane <strong>collaborative</strong> tools
 <? } ?>
