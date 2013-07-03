@@ -237,6 +237,11 @@ Ou bien via les raccourcis :<br />
 <h2 id="use">usage</h2>
 
 <p>
+Demo:<br />
+<iframe width="420" height="315" src="//www.youtube.com/embed/HIGS78lgeUk" frameborder="0" allowfullscreen></iframe>
+</p>
+
+<p>
 Once installed, the script are available under the "tools" menu :<br />
 <img src="doc/screenshots/addon-installed-menu.png" alt="menus installés" />
 </p>
