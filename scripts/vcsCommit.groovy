@@ -24,6 +24,12 @@ import javax.swing.JDialog;
 import javax.swing.JOptionPane
 import groovy.io.GroovyPrintWriter 
 
+///////////
+// Common
+///////////
+
+
+//evaluate(new File(config.getFreeplaneUserDirectory() + "/scripts/vcsLib.groovy"))
 
 ///////////
 // Params
@@ -134,7 +140,6 @@ private String vcsDo(String vcsBin, String action, Boolean verbose) {
 	}	
 }
 
-
 //////////
 // Main
 //////////
@@ -145,7 +150,6 @@ if (!node.map.isSaved()) {
 				textUtils.getText("addons.vcsCommit"), JOptionPane.ERROR_MESSAGE)
     return
 }
-
 
 vcsDo(vcsBin, "commit", verbose)
 
