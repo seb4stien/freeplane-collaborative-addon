@@ -24,12 +24,6 @@ import javax.swing.JDialog;
 import javax.swing.JOptionPane
 import groovy.io.GroovyPrintWriter 
 
-///////////
-// Common
-///////////
-
-
-//evaluate(new File(config.getFreeplaneUserDirectory() + "/scripts/vcsLib.groovy"))
 
 ///////////
 // Params
