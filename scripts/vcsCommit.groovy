@@ -115,11 +115,14 @@ private String vcsDo(String vcsBin, String context, String action, Boolean verbo
 					message,
 					context, JOptionPane.ERROR_MESSAGE)
 			}
-		} else if (action == "update") {
-				if (outStream =~ /C /) {
-					node.map.close(true, false)
-					message += textUtils.getText("addons.collab.mapConflict")
-				}
+		} else if ( (action == "commit") && (outStream =~ /Log message unchanged or not specified/) ) {
+				message += textUtils.getText("addons.collab.emptyCommitLog")
+				JOptionPane.showMessageDialog(ui.frame, 
+					message,
+					context, JOptionPane.ERROR_MESSAGE)
+		} else if ( (action == "update") && (outStream =~ /C /) ) {
+				node.map.close(true, false)
+				message += textUtils.getText("addons.collab.mapConflict")
 				JOptionPane.showMessageDialog(ui.frame, 
 					message,
 					context, JOptionPane.ERROR_MESSAGE)

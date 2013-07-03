@@ -229,7 +229,7 @@
   </body>
 </html>
 </richcontent>
-<node TEXT="en" ID="ID_1232293217" CREATED="1371158990178" MODIFIED="1372891693371">
+<node TEXT="en" ID="ID_1232293217" CREATED="1371158990178" MODIFIED="1372894984482">
 <attribute_layout NAME_WIDTH="219" VALUE_WIDTH="243"/>
 <attribute NAME="addons.${name}" VALUE="Collaborative Tools"/>
 <attribute NAME="addons.vcsUpdate" VALUE="Update my map"/>
@@ -261,8 +261,9 @@
 <attribute NAME="addons.collab.doYouWantToAddFile" VALUE="Do you want to add the file to versionning system control ?"/>
 <attribute NAME="addons.collab.unknownErrorActivateVerboseMode" VALUE="Unknown error. Activate verbose mode to get more information."/>
 <attribute NAME="addons.collab.mapDifferences" VALUE="Differences between your local file and the versionning system"/>
+<attribute NAME="addons.collab.emptyCommitLog" VALUE="Commit aborted. A small description of your modifications is mandatory."/>
 </node>
-<node TEXT="fr" ID="ID_1204840493" CREATED="1371158990178" MODIFIED="1372891721374" HGAP="39" VSHIFT="41">
+<node TEXT="fr" ID="ID_1204840493" CREATED="1371158990178" MODIFIED="1372894945245" HGAP="39" VSHIFT="41">
 <attribute_layout NAME_WIDTH="219" VALUE_WIDTH="350"/>
 <attribute NAME="addons.${name}" VALUE="Outils collaboratifs"/>
 <attribute NAME="addons.vcsUpdate" VALUE="Mettre &#xe0; jour ma version"/>
@@ -294,6 +295,7 @@
 <attribute NAME="addons.collab.doYouWantToAddFile" VALUE="Voulez-vous ajouer le fichier au syst&#xe8;me de gestion de version ?"/>
 <attribute NAME="addons.collab.unknownErrorActivateVerboseMode" VALUE="Erreur inconnue. Activer le mode verbeux pour avoir plus d&apos;informations."/>
 <attribute NAME="addons.collab.mapDifferences" VALUE="Diff&#xe9;rences entre votre carte locale et la version du syst&#xe8;me de gestion de versions"/>
+<attribute NAME="addons.collab.emptyCommitLog" VALUE="La carte n&apos;a pas &#xe9;t&#xe9; enregistr&#xe9;e dans le syst&#xe8;me de gestion de version. Une br&#xe8;ve description de vos modifications est obligatoire."/>
 </node>
 </node>
 <node TEXT="deinstall" POSITION="left" ID="ID_1936073781" CREATED="1371158990182" MODIFIED="1371209683326">
