@@ -36,6 +36,13 @@ v0.5 :
 - auto-reload map if it was updated
 - translated messages
 
+v0.6 : 
+- added verbose/quiet mode
+- added user friendly messages
+- better error handling
+- (internal) sharing same main function
+
+
 Todo
 =============================
 
