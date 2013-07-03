@@ -97,6 +97,13 @@ news
 <?
 if ($l == "fr") {
 ?>
+<li>4 juillet 2013 : publication de la <a href="https://sourceforge.net/projects/freeplanecollab/files/">version 0.6</a>
+<ul>
+<li>finalisation des messages utilisateur et des traductions</li>
+<li>revue de code pour améliorer la gestion des erreurs</li>
+<li>support de l'ajout de fichier au système de gestion de versions</li>
+</ul>
+</li>
 <li>29 juin 2013 : publication de la <a href="https://sourceforge.net/projects/freeplanecollab/files/">version 0.5</a>
 <ul>
 <li>ajout de messages utilisateur et de traductions</li>
@@ -106,6 +113,13 @@ if ($l == "fr") {
 <?
 } else {
 ?>
+<li>4 july 2013 : release of <a href="https://sourceforge.net/projects/freeplanecollab/files/">version 0.6</a>
+<ul>
+<li>added user-friendly messages</li>
+<li>code refactoring for better error handling</li>
+<li>support for adding file to versionning system</li>
+</ul>
+</li>
 <li>29 june 2013 : release of <a href="https://sourceforge.net/projects/freeplanecollab/files/">version 0.5</a>
 <ul>
 <li>added user messages and translations</li>
@@ -221,6 +235,10 @@ Important : this addon requires a working versionning control system. Currently 
 if ($l == "fr"){
 ?>
 <h2 id="use">utilisation</h2>
+<p>
+Demo:<br />
+<iframe width="420" height="315" src="//www.youtube.com/embed/HIGS78lgeUk" frameborder="0" allowfullscreen></iframe>
+</p>
 
 <p>
 Une fois l'addon installé les commandes peuvent être utilisée via les menus :<br />
