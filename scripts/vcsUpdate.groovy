@@ -84,7 +84,7 @@ if (outStream.size() > 0) {
 	}
 	
 	if ( (outStream =~ /No CVSROOT/) ) {
-		message += textUtils.getText("addons.collab.theFileIsNotVersionned")
+		message += textUtils.getText("addons.collab.fileIsNotVersionnedAddItFirst")
 	}
 	
 } else {
