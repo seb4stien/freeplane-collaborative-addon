@@ -121,6 +121,13 @@ private String vcsDo(String vcsBin, String context, String action, Boolean verbo
 				JOptionPane.showMessageDialog(ui.frame, 
 					message,
 					context, JOptionPane.ERROR_MESSAGE)
+		} else if (action == "diff") {
+				message += textUtils.getText("addons.collab.mapDifferences") + "\n"
+				message += outStream
+				
+				JOptionPane.showMessageDialog(ui.frame, 
+					message,
+					context, JOptionPane.WARNING_MESSAGE)
 		} else {
 			// unknwon error
 			if (! verbose) {
@@ -157,6 +164,8 @@ private String vcsDo(String vcsBin, String context, String action, Boolean verbo
 				message += textUtils.getText("addons.collab.mapDoesntNeedCommit")
 			} else if (action == "update") {
 				message += textUtils.getText("addons.collab.mapIsUpToDate")
+			} else if (action == "diff") {
+				message += textUtils.getText("addons.collab.vcsReturnedNoDiff")
 			}
 		}
 
@@ -166,6 +175,7 @@ private String vcsDo(String vcsBin, String context, String action, Boolean verbo
 
 	}	
 }
+
 
 //////////
 // Main
