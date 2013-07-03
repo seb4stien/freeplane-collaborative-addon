@@ -52,7 +52,7 @@
 </stylenode>
 </map_styles>
 </hook>
-<hook NAME="AutomaticEdgeColor" COUNTER="12"/>
+<hook NAME="AutomaticEdgeColor" COUNTER="1"/>
 <attribute_layout NAME_WIDTH="121" VALUE_WIDTH="137"/>
 <attribute NAME="name" VALUE="collaborativeTools"/>
 <attribute NAME="version" VALUE="v0.6" OBJECT="org.freeplane.features.format.FormattedObject|v0.6|number:decimal:#0.####"/>
@@ -145,6 +145,9 @@
 </node>
 <node TEXT="v0.6" ID="ID_1211727843" CREATED="1372708948109" MODIFIED="1372708950120">
 <node TEXT="add verbose/quiet mode" ID="ID_1340749297" CREATED="1372708952849" MODIFIED="1372708958292"/>
+<node TEXT="added user friendly messages" ID="ID_1605378630" CREATED="1372891297968" MODIFIED="1372891303610"/>
+<node TEXT="better error handling" ID="ID_1682080214" CREATED="1372891304131" MODIFIED="1372891319724"/>
+<node TEXT="(internal) sharing same main function" ID="ID_227520794" CREATED="1372891329821" MODIFIED="1372891341847"/>
 </node>
 </node>
 <node TEXT="license" POSITION="left" ID="ID_915883933" CREATED="1371158990126" MODIFIED="1371158990131">
@@ -226,7 +229,7 @@
   </body>
 </html>
 </richcontent>
-<node TEXT="en" ID="ID_1232293217" CREATED="1371158990178" MODIFIED="1372709592847">
+<node TEXT="en" ID="ID_1232293217" CREATED="1371158990178" MODIFIED="1372891693371">
 <attribute_layout NAME_WIDTH="219" VALUE_WIDTH="243"/>
 <attribute NAME="addons.${name}" VALUE="Collaborative Tools"/>
 <attribute NAME="addons.vcsUpdate" VALUE="Update my map"/>
@@ -241,16 +244,25 @@
 <attribute NAME="OptionPanel.ctReportMaxDepth" VALUE="Max depth of modifications reports"/>
 <attribute NAME="addons.collab.commandDetails" VALUE="Command"/>
 <attribute NAME="addons.collab.commandOutput" VALUE="Output"/>
+<attribute NAME="addons.collab.commandErrors" VALUE="Errors"/>
 <attribute NAME="addons.collab.saveMapFirst" VALUE="You should save your map first."/>
-<attribute NAME="addons.collab.mapConflict" VALUE="Warning : conflict during update. Close the map, open it with a text editor and look for &quot;&lt;&lt;&lt;&quot; / &quot;&gt;&gt;&gt;&quot; to fix it. Remember that your original map is available in your autosave directory."/>
+<attribute NAME="addons.collab.mapConflict" VALUE="Warning : conflict during update. You must resolve it before reopening the map. Start a text editor and look for &quot;&lt;&lt;&lt;&quot; / &quot;&gt;&gt;&gt;&quot; in your map file. Remember that your original map is available in your autosave directory."/>
 <attribute NAME="addons.collab.mapNeedsCommit" VALUE="Your map was locally modified. You should commit it."/>
+<attribute NAME="addons.collab.mapDoesntNeedCommit" VALUE="Your map is already the latest version on the versionning system."/>
+<attribute NAME="addons.collab.mapCommitted" VALUE="Your map has been committed into the versionning system."/>
+<attribute NAME="addons.collab.mapAdded" VALUE="Your map has been aded into the versionning system."/>
 <attribute NAME="addons.collab.mapUpdated" VALUE="The map has been updated."/>
 <attribute NAME="addons.collab.mapReloaded" VALUE="The map has been reloaded."/>
-<attribute NAME="addons.collab.vcsReturnedNoDiff" VALUE="The VCS returned no diff."/>
+<attribute NAME="addons.collab.vcsReturnedNoDiff" VALUE="The versionning system returned no differences."/>
 <attribute NAME="addons.collab.nothingDone" VALUE="Nothing done."/>
 <attribute NAME="addons.collab.mapIsUpToDate" VALUE="Your map is up to date."/>
+<attribute NAME="addons.collab.fileIsNotVersionned" VALUE="Your map is not under versionning system control."/>
+<attribute NAME="addons.collab.folderIsNotVersionned" VALUE="The folder containing the map is not under versionning system control. See documentation on how to add it."/>
+<attribute NAME="addons.collab.doYouWantToAddFile" VALUE="Do you want to add the file to versionning system control ?"/>
+<attribute NAME="addons.collab.unknownErrorActivateVerboseMode" VALUE="Unknown error. Activate verbose mode to get more information."/>
+<attribute NAME="addons.collab.mapDifferences" VALUE="Differences between your local file and the versionning system"/>
 </node>
-<node TEXT="fr" ID="ID_1204840493" CREATED="1371158990178" MODIFIED="1372709637878">
+<node TEXT="fr" ID="ID_1204840493" CREATED="1371158990178" MODIFIED="1372891721374" HGAP="39" VSHIFT="41">
 <attribute_layout NAME_WIDTH="219" VALUE_WIDTH="350"/>
 <attribute NAME="addons.${name}" VALUE="Outils collaboratifs"/>
 <attribute NAME="addons.vcsUpdate" VALUE="Mettre &#xe0; jour ma version"/>
@@ -265,14 +277,23 @@
 <attribute NAME="OptionPanel.ctReportMaxDepth" VALUE="Profondeur maximum pour les rapports de modifications"/>
 <attribute NAME="addons.collab.commandDetails" VALUE="Commande ex&#xe9;cut&#xe9;e"/>
 <attribute NAME="addons.collab.commandOutput" VALUE="R\u00E9sultat"/>
+<attribute NAME="addons.collab.commandErrors" VALUE="Erreurs"/>
 <attribute NAME="addons.collab.saveMapFirst" VALUE="Vous devez d&apos;abord sauvegarder votre carte."/>
-<attribute NAME="addons.collab.mapConflict" VALUE="Attention : conflit durant la mise &#xe0; jour. Fermer la carte, l&apos;ouvrir avec un &#xe9;diteur de texte puis rechercher &apos;&lt;&lt;&lt;&apos; et &apos;&gt;&gt;&gt;&apos; afin de r&#xe9;gler le conflit. En cas de gros probl&#xe8;me, r&#xe9;cup&#xe9;rer la carte originale dans le r&#xe9;pertoire de sauvegarde automatique."/>
+<attribute NAME="addons.collab.mapConflict" VALUE="Attention : conflit durant la mise &#xe0; jour. Vous devez le r&#xe9;soudre avant de r&#xe9;&#xe9;diter la carte. L&apos;ouvrir avec un &#xe9;diteur de texte puis rechercher &apos;&lt;&lt;&lt;&apos; et &apos;&gt;&gt;&gt;&apos; afin de r&#xe9;gler le conflit. En cas de gros probl&#xe8;me, r&#xe9;cup&#xe9;rer la carte originale dans le r&#xe9;pertoire de sauvegarde automatique."/>
 <attribute NAME="addons.collab.mapNeedsCommit" VALUE="La carte a &#xe9;t&#xe9; modifi&#xe9;e localement, vous devriez la commiter."/>
+<attribute NAME="addons.collab.mapDoesntNeedCommit" VALUE="Le syst&#xe8;me de gestion de version est d&#xe9;j&#xe0; &#xe0; jour."/>
+<attribute NAME="addons.collab.mapCommitted" VALUE="La carte a bien &#xe9;t&#xe9; enregistr&#xe9;e sur le syst&#xe8;me de gestion de version."/>
+<attribute NAME="addons.collab.mapAdded" VALUE="La carte a &#xe9;t&#xe9; ajout&#xe9;e au syst&#xe8;me de gestion de versions."/>
 <attribute NAME="addons.collab.mapUpdated" VALUE="La carte a &#xe9;t&#xe9; mise &#xe0; jour."/>
 <attribute NAME="addons.collab.mapReloaded" VALUE="La carte a &#xe9;t&#xe9; recharg&#xe9;e."/>
 <attribute NAME="addons.collab.vcsReturnedNoDiff" VALUE="Le syst&#xe8;me de gestion de version n&apos;a remont&#xe9; aucune diff&#xe9;rence."/>
 <attribute NAME="addons.collab.nothingDone" VALUE="Aucune action r&#xe9;alis&#xe9;e."/>
 <attribute NAME="addons.collab.mapIsUpToDate" VALUE="La carte est d&#xe9;j&#xe0; &#xe0; jour."/>
+<attribute NAME="addons.collab.fileIsNotVersionned" VALUE="La carte n&apos;est pas g&#xe9;r&#xe9;e par le syst&#xe8;me de gestion de version."/>
+<attribute NAME="addons.collab.folderIsNotVersionned" VALUE="Le r&#xe9;pertoire n&apos;est pas g&#xe9;r&#xe9; par le syst&#xe8;me de gestion de version. Consulter la documentation pourvoir comment le faire."/>
+<attribute NAME="addons.collab.doYouWantToAddFile" VALUE="Voulez-vous ajouer le fichier au syst&#xe8;me de gestion de version ?"/>
+<attribute NAME="addons.collab.unknownErrorActivateVerboseMode" VALUE="Erreur inconnue. Activer le mode verbeux pour avoir plus d&apos;informations."/>
+<attribute NAME="addons.collab.mapDifferences" VALUE="Diff&#xe9;rences entre votre carte locale et la version du syst&#xe8;me de gestion de versions"/>
 </node>
 </node>
 <node TEXT="deinstall" POSITION="left" ID="ID_1936073781" CREATED="1371158990182" MODIFIED="1371209683326">
@@ -456,10 +477,10 @@
 <attribute NAME="execute_scripts_without_exec_restriction" VALUE="true"/>
 <attribute NAME="execute_scripts_without_network_restriction" VALUE="false"/>
 </node>
-<node TEXT="exportModificationsToPng.groovy" ID="ID_656180329" CREATED="1323057833226" MODIFIED="1372505051601" HGAP="30">
+<node TEXT="exportModificationsToPng.groovy" ID="ID_656180329" CREATED="1323057833226" MODIFIED="1372802812897" HGAP="30">
 <attribute_layout NAME_WIDTH="275" VALUE_WIDTH="212"/>
 <attribute NAME="menuTitleKey" VALUE="addons.exportModificationsToPng"/>
-<attribute NAME="menuLocation" VALUE="main_menu_scripting/collaborativeTools"/>
+<attribute NAME="menuLocation" VALUE="main_menu_scripting/collaborativeTools/extra"/>
 <attribute NAME="executionMode" VALUE="on_single_node"/>
 <attribute NAME="keyboardShortcut" VALUE=""/>
 <attribute NAME="execute_scripts_without_asking" VALUE="true"/>
@@ -575,6 +596,15 @@
 </node>
 <node TEXT="todo" POSITION="right" ID="ID_1731983217" CREATED="1372505011050" MODIFIED="1372505012945">
 <edge COLOR="#7c7c00"/>
+</node>
+<node TEXT="use cases" POSITION="right" ID="ID_1381937559" CREATED="1372763636070" MODIFIED="1372763639178">
+<edge COLOR="#ff0000"/>
+<node TEXT="update" ID="ID_186507927" CREATED="1372763650126" MODIFIED="1372763655187"/>
+<node TEXT="compare" ID="ID_48729850" CREATED="1372763655462" MODIFIED="1372763656891"/>
+<node TEXT="commit" ID="ID_72776484" CREATED="1372763657150" MODIFIED="1372763658307">
+<node TEXT="folder is not under cvs control" ID="ID_1657164275" CREATED="1372763658854" MODIFIED="1372763671860"/>
+<node TEXT="file is not added" ID="ID_1628728639" CREATED="1372763674007" MODIFIED="1372763681316"/>
+</node>
 </node>
 </node>
 </map>
