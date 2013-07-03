@@ -91,11 +91,11 @@ private String vcsDo(String vcsBin, String context, String action, Boolean verbo
 				message,
 				context, JOptionPane.ERROR_MESSAGE)
 		
-		} else if ( (errStream =~ "nothing known about") || (errStream =~ /use..cvs add/) ) {
+		} else if ( (errStream =~ /nothing known about/) || (errStream =~ /to create an entry for/) || (errStream =~ /I know nothing about/)) {
 			// Unversionned file
 			// Patterns
 			// - linux (cvs) : on commit "nothing known about"
-			// - linux (cvs) : on update/status "use `cvs add`"
+			// - linux (cvs) : on update/status "use `cvs add` to create an entry for"
 			// - windows (cvsnt) : idem
 	
 			// ask user to add it
@@ -163,7 +163,11 @@ private String vcsDo(String vcsBin, String context, String action, Boolean verbo
 			} else if (action == "commit") {
 				message += textUtils.getText("addons.collab.mapDoesntNeedCommit")
 			} else if (action == "update") {
-				message += textUtils.getText("addons.collab.mapIsUpToDate")
+				if ((errStream =~ /nothing known about/) || (errStream =~ /to create an entry for/) || (errStream =~ /I know nothing about/)) {
+					message += textUtils.getText("addons.collab.fileIsNotVersionned")
+				} else {
+					message += textUtils.getText("addons.collab.mapIsUpToDate")
+				}
 			} else if (action == "diff") {
 				message += textUtils.getText("addons.collab.vcsReturnedNoDiff")
 			}
