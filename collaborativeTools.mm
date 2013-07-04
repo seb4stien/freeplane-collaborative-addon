@@ -1,6 +1,6 @@
 <map version="freeplane 1.2.0">
 <!--To view this file, download free mind mapping software Freeplane from http://freeplane.sourceforge.net -->
-<node TEXT="collaborative tools" ID="ID_1723255651" CREATED="1283093380553" MODIFIED="1372709104174" BACKGROUND_COLOR="#97c7dc">
+<node TEXT="collaborative tools" ID="ID_1723255651" CREATED="1283093380553" MODIFIED="1372970369686" BACKGROUND_COLOR="#97c7dc">
 <font SIZE="16" BOLD="true" ITALIC="true"/>
 <hook NAME="MapStyle">
     <properties show_icon_for_attributes="true" show_note_icons="true"/>
@@ -55,7 +55,7 @@
 <hook NAME="AutomaticEdgeColor" COUNTER="2"/>
 <attribute_layout NAME_WIDTH="121" VALUE_WIDTH="137"/>
 <attribute NAME="name" VALUE="collaborativeTools"/>
-<attribute NAME="version" VALUE="v0.6" OBJECT="org.freeplane.features.format.FormattedObject|v0.6|number:decimal:#0.####"/>
+<attribute NAME="version" VALUE="v0.7" OBJECT="org.freeplane.features.format.FormattedObject|v0.7|number:decimal:#0.####"/>
 <attribute NAME="author" VALUE="seb4stien"/>
 <attribute NAME="freeplaneVersionFrom" VALUE="1.2.23"/>
 <attribute NAME="freeplaneVersionTo" VALUE=""/>
@@ -149,6 +149,9 @@
 <node TEXT="better error handling" ID="ID_1682080214" CREATED="1372891304131" MODIFIED="1372891319724"/>
 <node TEXT="(internal) sharing same main function" ID="ID_227520794" CREATED="1372891329821" MODIFIED="1372891341847"/>
 </node>
+<node TEXT="v0.7" ID="ID_579824585" CREATED="1372927204091" MODIFIED="1372927207012">
+<node TEXT="added git support" ID="ID_1534346792" CREATED="1372969910679" MODIFIED="1372969921264"/>
+</node>
 </node>
 <node TEXT="license" POSITION="left" ID="ID_915883933" CREATED="1371158990126" MODIFIED="1371158990131">
 <edge COLOR="#00ff00"/>
@@ -191,11 +194,11 @@
   </body>
 </html>
 </richcontent>
-<node TEXT="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#xa;&lt;preferences_structure&gt;&#xa;&lt;tabbed_pane&gt;&#xa;&lt;tab name=&quot;plugins&quot;&gt;&#xa;&lt;separator name=&quot;collaborativeTools&quot;&gt;&#xa;&lt;path name=&quot;vcsBin&quot; /&gt;&#xa;&lt;boolean name=&quot;vcsVerbose&quot; /&gt;&#xa;&lt;number name=&quot;ctReportIntervalInDays&quot; min=&quot;1&quot; max=&quot;100&quot; /&gt;&#xa;&lt;number name=&quot;ctReportMaxDepth&quot; min=&quot;1&quot; /&gt;&#xa;&lt;/separator&gt;&#xa;&lt;/tab&gt;&#xa;&lt;/tabbed_pane&gt;&#xa;&lt;/preferences_structure&gt;" ID="ID_873595672" CREATED="1358304692163" MODIFIED="1372709042155">
+<node TEXT="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#xa;&lt;preferences_structure&gt;&#xa;&lt;tabbed_pane&gt;&#xa;&lt;tab name=&quot;plugins&quot;&gt;&#xa;&lt;separator name=&quot;collaborativeTools&quot;&gt;&#xa;&lt;path name=&quot;addons.collab.cvsBin&quot; /&gt;&#xa;&lt;path name=&quot;addons.collab.gitBin&quot; /&gt;&#xa;&lt;boolean name=&quot;addons.collab.verbose&quot; /&gt;&#xa;&lt;number name=&quot;ctReportIntervalInDays&quot; min=&quot;1&quot; max=&quot;100&quot; /&gt;&#xa;&lt;number name=&quot;ctReportMaxDepth&quot; min=&quot;1&quot; /&gt;&#xa;&lt;/separator&gt;&#xa;&lt;/tab&gt;&#xa;&lt;/tabbed_pane&gt;&#xa;&lt;/preferences_structure&gt;" ID="ID_873595672" CREATED="1358304692163" MODIFIED="1372970125812">
 <attribute_layout NAME_WIDTH="100" VALUE_WIDTH="100"/>
 </node>
 </node>
-<node TEXT="default.properties" POSITION="left" ID="ID_808793413" CREATED="1371158990170" MODIFIED="1372709099024">
+<node TEXT="default.properties" POSITION="left" ID="ID_808793413" CREATED="1371158990170" MODIFIED="1372970158728">
 <edge COLOR="#00ffff"/>
 <richcontent TYPE="NOTE">
 
@@ -211,8 +214,9 @@
 </html>
 </richcontent>
 <attribute_layout NAME_WIDTH="128" VALUE_WIDTH="213"/>
-<attribute NAME="vcsBin" VALUE="C:/Program Files (x86)/CVSNT/cvs.exe"/>
-<attribute NAME="vcsVerbose" VALUE="false"/>
+<attribute NAME="addons.collab.cvsBin" VALUE="C:/Program Files (x86)/CVSNT/cvs.exe"/>
+<attribute NAME="addons.collab.gitBin" VALUE="C:/Program Files (x86)/git/bin/git.exe"/>
+<attribute NAME="addons.collab.verbose" VALUE="false"/>
 </node>
 <node TEXT="translations" POSITION="left" ID="ID_1644304879" CREATED="1371158990174" MODIFIED="1371158990178">
 <edge COLOR="#ffff00"/>
