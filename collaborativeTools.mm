@@ -235,7 +235,7 @@
   </body>
 </html>
 </richcontent>
-<node TEXT="en" ID="ID_1232293217" CREATED="1371158990178" MODIFIED="1373053126722">
+<node TEXT="en" ID="ID_1232293217" CREATED="1371158990178" MODIFIED="1373056441400">
 <attribute_layout NAME_WIDTH="219" VALUE_WIDTH="243"/>
 <attribute NAME="addons.${name}" VALUE="Collaborative Tools"/>
 <attribute NAME="addons.vcsUpdate" VALUE="Update my map"/>
@@ -272,8 +272,9 @@
 <attribute NAME="addons.collab.vcsBinNotFound" VALUE="The versionning system binary was not found, check your preferences."/>
 <attribute NAME="addons.collab.vcsIs" VALUE="The versionning system is:"/>
 <attribute NAME="addons.collab.commitMessage" VALUE="Please enter a comment on your modifications"/>
+<attribute NAME="addons.collab.doYouWantToPush" VALUE="Do you want to push your change to the remote repository ?"/>
 </node>
-<node TEXT="fr" ID="ID_1204840493" CREATED="1371158990178" MODIFIED="1373053171118" HGAP="39" VSHIFT="41">
+<node TEXT="fr" ID="ID_1204840493" CREATED="1371158990178" MODIFIED="1373056469502" HGAP="39" VSHIFT="41">
 <attribute_layout NAME_WIDTH="219" VALUE_WIDTH="350"/>
 <attribute NAME="addons.${name}" VALUE="Outils collaboratifs"/>
 <attribute NAME="addons.vcsUpdate" VALUE="Mettre &#xe0; jour ma version"/>
@@ -310,6 +311,7 @@
 <attribute NAME="addons.collab.vcsBinNotFound" VALUE="L&apos;application de gestion de version n&apos;a pas &#xe9;t&#xe9; trouv&#xe9;e, corrigez le chemin dans les pr&#xe9;f&#xe9;rences."/>
 <attribute NAME="addons.collab.vcsIs" VALUE="Le syst&#xe8;me de gestion de version est :"/>
 <attribute NAME="addons.collab.commitMessage" VALUE="Saisir un message associ&#xe9; aux modifications r&#xe9;alis&#xe9;es"/>
+<attribute NAME="addons.collab.doYouWantToPush" VALUE="Voulez vous publier vos changements sur le serveur distant ?"/>
 </node>
 </node>
 <node TEXT="deinstall" POSITION="left" ID="ID_1936073781" CREATED="1371158990182" MODIFIED="1371209683326">
