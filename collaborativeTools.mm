@@ -194,11 +194,11 @@
   </body>
 </html>
 </richcontent>
-<node TEXT="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#xa;&lt;preferences_structure&gt;&#xa;&lt;tabbed_pane&gt;&#xa;&lt;tab name=&quot;plugins&quot;&gt;&#xa;&lt;separator name=&quot;collaborativeTools&quot;&gt;&#xa;&lt;path name=&quot;addons.collab.cvsBin&quot; /&gt;&#xa;&lt;path name=&quot;addons.collab.gitBin&quot; /&gt;&#xa;&lt;boolean name=&quot;addons.collab.verbose&quot; /&gt;&#xa;&lt;number name=&quot;ctReportIntervalInDays&quot; min=&quot;1&quot; max=&quot;100&quot; /&gt;&#xa;&lt;number name=&quot;ctReportMaxDepth&quot; min=&quot;1&quot; /&gt;&#xa;&lt;/separator&gt;&#xa;&lt;/tab&gt;&#xa;&lt;/tabbed_pane&gt;&#xa;&lt;/preferences_structure&gt;" ID="ID_873595672" CREATED="1358304692163" MODIFIED="1372970125812">
+<node TEXT="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#xa;&lt;preferences_structure&gt;&#xa;&lt;tabbed_pane&gt;&#xa;&lt;tab name=&quot;plugins&quot;&gt;&#xa;&lt;separator name=&quot;collaborativeTools&quot;&gt;&#xa;&lt;path name=&quot;addons.collab.cvs.bin&quot; /&gt;&#xa;&lt;path name=&quot;addons.collab.git.bin&quot; /&gt;&#xa;&lt;boolean name=&quot;addons.collab.verbose&quot; /&gt;&#xa;&lt;number name=&quot;addons.collab.reportIntervalInDays&quot; min=&quot;1&quot; max=&quot;100&quot; /&gt;&#xa;&lt;number name=&quot;addons.collab.reportMaxDepth&quot; min=&quot;1&quot; /&gt;&#xa;&lt;/separator&gt;&#xa;&lt;/tab&gt;&#xa;&lt;/tabbed_pane&gt;&#xa;&lt;/preferences_structure&gt;" ID="ID_873595672" CREATED="1358304692163" MODIFIED="1373047691162">
 <attribute_layout NAME_WIDTH="100" VALUE_WIDTH="100"/>
 </node>
 </node>
-<node TEXT="default.properties" POSITION="left" ID="ID_808793413" CREATED="1371158990170" MODIFIED="1372970158728">
+<node TEXT="default.properties" POSITION="left" ID="ID_808793413" CREATED="1371158990170" MODIFIED="1373047649956">
 <edge COLOR="#00ffff"/>
 <richcontent TYPE="NOTE">
 
@@ -214,8 +214,8 @@
 </html>
 </richcontent>
 <attribute_layout NAME_WIDTH="128" VALUE_WIDTH="213"/>
-<attribute NAME="addons.collab.cvsBin" VALUE="C:/Program Files (x86)/CVSNT/cvs.exe"/>
-<attribute NAME="addons.collab.gitBin" VALUE="C:/Program Files (x86)/git/bin/git.exe"/>
+<attribute NAME="addons.collab.cvs.bin" VALUE="C:/Program Files (x86)/CVSNT/cvs.exe"/>
+<attribute NAME="addons.collab.git.bin" VALUE="C:/Program Files (x86)/git/bin/git.exe"/>
 <attribute NAME="addons.collab.verbose" VALUE="false"/>
 </node>
 <node TEXT="translations" POSITION="left" ID="ID_1644304879" CREATED="1371158990174" MODIFIED="1371158990178">
@@ -233,7 +233,7 @@
   </body>
 </html>
 </richcontent>
-<node TEXT="en" ID="ID_1232293217" CREATED="1371158990178" MODIFIED="1372894984482">
+<node TEXT="en" ID="ID_1232293217" CREATED="1371158990178" MODIFIED="1373047591154">
 <attribute_layout NAME_WIDTH="219" VALUE_WIDTH="243"/>
 <attribute NAME="addons.${name}" VALUE="Collaborative Tools"/>
 <attribute NAME="addons.vcsUpdate" VALUE="Update my map"/>
@@ -266,8 +266,9 @@
 <attribute NAME="addons.collab.unknownErrorActivateVerboseMode" VALUE="Unknown error. Activate verbose mode to get more information."/>
 <attribute NAME="addons.collab.mapDifferences" VALUE="Differences between your local file and the versionning system"/>
 <attribute NAME="addons.collab.emptyCommitLog" VALUE="Commit aborted. A small description of your modifications is mandatory."/>
+<attribute NAME="addons.collab.vcsBinNotFound" VALUE="The versionning system binary was not found, check your preferences."/>
 </node>
-<node TEXT="fr" ID="ID_1204840493" CREATED="1371158990178" MODIFIED="1372894945245" HGAP="39" VSHIFT="41">
+<node TEXT="fr" ID="ID_1204840493" CREATED="1371158990178" MODIFIED="1373047629944" HGAP="39" VSHIFT="41">
 <attribute_layout NAME_WIDTH="219" VALUE_WIDTH="350"/>
 <attribute NAME="addons.${name}" VALUE="Outils collaboratifs"/>
 <attribute NAME="addons.vcsUpdate" VALUE="Mettre &#xe0; jour ma version"/>
@@ -300,6 +301,7 @@
 <attribute NAME="addons.collab.unknownErrorActivateVerboseMode" VALUE="Erreur inconnue. Activer le mode verbeux pour avoir plus d&apos;informations."/>
 <attribute NAME="addons.collab.mapDifferences" VALUE="Diff&#xe9;rences entre votre carte locale et la version du syst&#xe8;me de gestion de versions"/>
 <attribute NAME="addons.collab.emptyCommitLog" VALUE="La carte n&apos;a pas &#xe9;t&#xe9; enregistr&#xe9;e dans le syst&#xe8;me de gestion de version. Une br&#xe8;ve description de vos modifications est obligatoire."/>
+<attribute NAME="addons.collab.vcsBinNotFound" VALUE="L&apos;application de gestion de version n&apos;a pas &#xe9;t&#xe9; trouv&#xe9;e, corrigez le chemin dans les pr&#xe9;f&#xe9;rences."/>
 </node>
 </node>
 <node TEXT="deinstall" POSITION="left" ID="ID_1936073781" CREATED="1371158990182" MODIFIED="1371209683326">
