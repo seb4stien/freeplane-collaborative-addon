@@ -22,6 +22,7 @@
 
 import javax.swing.JDialog;
 import javax.swing.JOptionPane
+
 import groovy.io.GroovyPrintWriter 
 
 
@@ -29,26 +30,115 @@ import groovy.io.GroovyPrintWriter
 // Params
 ///////////
 
-// todo : check existence + alert
-def vcsBin = config.getProperty('vcsBin', "note : set /path/to/vcs in preferences")
-def verbose = config.getBooleanProperty('vcsVerbose')
 
 
 //////////
 // Funcs
 //////////
 
-private String vcsDo(String vcsBin, String context, String action, Boolean verbose) {
+private String guessVcs(String context, Boolean verbose) {
+	
+	// todo : filesystem separator
+	
+	def vcs = null
+	def vcsFolder = new File(node.map.file.path + "/CVS/")
+	if ((new File(node.map.file.getParent() + File.separator + 'CVS')).exists()) {
+		vcs = "cvs"
+	} else if ((new File(node.map.file.getParent() + File.separator + '.git')).exists()) {
+		vcs = "git"
+	}
+	
+	if (vcs) {
+		if (verbose) {
+			JOptionPane.showMessageDialog(ui.frame, 
+				textUtils.getText("addons.collab.vcsIs") + " " + vcs,
+				context, JOptionPane.INFORMATION_MESSAGE)
+		}
+	} else {
+		JOptionPane.showMessageDialog(ui.frame, 
+			textUtils.getText("addons.collab.folderIsNotVersionned"),
+			context, JOptionPane.ERROR_MESSAGE)
+	}
+
+	return vcs
+}
+
+
+private String vcsDo(String vcs, String context, String action, Boolean verbose) {
+
+	// Retrieve the path to the vcs binary
+	def vcsBin = config.getProperty('addons.collab.' + vcs + '.bin', "note : set /path/to/vcs in preferences")
+	if (!(new File(vcsBin)).exists()) {
+		JOptionPane.showMessageDialog(ui.frame, 
+			textUtils.getText("addons.collab.vcsBinNotFound") + "\n  " + vcsBin,
+			context, JOptionPane.ERROR_MESSAGE)
+			
+		return
+	}
+
+	def actionDone = 0
+	
+	// Get the file status to stop action if it make no sense
+	// - commit an up2date file
+	// - todo
+	def fileStatus = ""
+	if ( (action != "status") && (action != "add") && (action != "push")) {
+		fileStatus = vcsDo(vcs, context, "status", verbose)
+	}
+	
+	if (fileStatus == "up2date") {
+		if (action == "commit") {
+			JOptionPane.showMessageDialog(ui.frame,
+				textUtils.getText("addons.collab.mapDoesntNeedCommit"),
+				context,
+				JOptionPane.INFORMATION_MESSAGE)
+		}
+		
+		return
+	}
+	
+	// get commit message
+	def commitMessage = null
+	def commitFile = null
+	if (action == "commit") {
+		commitMessage = JOptionPane.showInputDialog(ui.frame,
+			textUtils.getText("addons.collab.commitMessage"),
+			"")
+		
+		if (!commitMessage) {
+			JOptionPane.showMessageDialog(ui.frame,
+				textUtils.getText("addons.collab.emptyCommitLog"),
+				context,
+				JOptionPane.ERROR_MESSAGE)
+			return
+		}
+		
+		commitFile = new File(node.map.file.path + ".commitMessage")
+		commitFile.write(commitMessage)
+	}
 
 	// preparing execution
 	def initialSize = 4096
 	def outStream = new ByteArrayOutputStream(initialSize)
 	def errStream = new ByteArrayOutputStream(initialSize)
-	def vcsCommandArray = [vcsBin, action, node.map.file.name]
+	def vcsCommandArray = null
+	if (action == "commit") {
+		vcsCommandArray = [vcsBin, action, "-F", commitFile.path, node.map.file.name]
+	} else if ( (action == "push") || (action == "pull") ) {
+		vcsCommandArray = [vcsBin, action]
+	} else {
+		vcsCommandArray = [vcsBin, action, node.map.file.name]
+	}
 	def processBuilder = new ProcessBuilder(vcsCommandArray)
 		.directory(new File(node.map.file.getParent()))
 		.redirectErrorStream(false)
 		
+	if (verbose) {
+		JOptionPane.showMessageDialog(ui.frame, 
+				textUtils.getText("addons.collab.commandDetails") + "\n" + vcsCommandArray.join(" ") + "\n\n",
+				context, JOptionPane.INFORMATION_MESSAGE)
+	}
+	
 	// start process and consume output to prevent locking
 	def vcsProcess = processBuilder.start()
 	vcsProcess.consumeProcessOutput(outStream, errStream)
@@ -58,18 +148,25 @@ private String vcsDo(String vcsBin, String context, String action, Boolean verbo
 		// Writes the following commands to the spawned process
 		def gWriter = new GroovyPrintWriter(writer)
 		// send "a" for "abort"
-		gWriter.println "a"
+		if (vcs == "cvs") {
+			gWriter.println "a"
+		} else if (vcs == "git") {
+			gWriter.println ":q"
+		}
 	} 
 
 	// waiting process ending
 	vcsProcess.waitFor()
 	def exitStatus = vcsProcess.exitValue()
+	
+	if (action == "commit") {
+		commitFile.delete()
+	}
 
 
 	def message = ""	
 	// verbose mode : show command and results
 	if (verbose) {
-		message += textUtils.getText("addons.collab.commandDetails") + "\n" + vcsCommandArray.join(" ") + "\n\n"
 		message += textUtils.getText("addons.collab.commandOutput") + "\n" + outStream + "\n\n"
 		message += textUtils.getText("addons.collab.commandErrors") + "\n" + errStream + "\n\n"
 	}
@@ -80,11 +177,17 @@ private String vcsDo(String vcsBin, String context, String action, Boolean verbo
 	if (exitStatus > 0) {
 	
 		// parsing errStream to handle errors
-		if ( errStream =~ /No CVSROOT/ ) {
-			// No CVSROOT
+		if ( (errStream =~ /No CVSROOT/ ) && (errStream =~ /Not a git repository/)) {
+			// Case description : the folder is not versionned
+			//
+			// Sub case : CVS (No CVSROOT)
 			// Patterns
 			// - linux (cvs) : "No CVSROOT"
 			// - windows (cvsnt) : "No CVSROOT"
+			//
+			// Sub case : Git
+			// Patterns
+			// - windows : "fatal: Not a git repository (or any of the parent directories): .git"
 		
 			// import is not supported
 			message = textUtils.getText("addons.collab.folderIsNotVersionned") + "\n"
@@ -93,12 +196,18 @@ private String vcsDo(String vcsBin, String context, String action, Boolean verbo
 				message,
 				context, JOptionPane.ERROR_MESSAGE)
 		
-		} else if ( (errStream =~ /nothing known about/) || (errStream =~ /to create an entry for/) || (errStream =~ /I know nothing about/)) {
-			// Unversionned file
+		} else if ( (errStream =~ /nothing known about/) || (errStream =~ /to create an entry for/) || (errStream =~ /I know nothing about/) || (errStream =~ /did not match any file/)) {
+			// Case description : the file is not versionned
+			//
+			// Sub case : CVS
 			// Patterns
 			// - linux (cvs) : on commit "nothing known about"
 			// - linux (cvs) : on update/status "use `cvs add` to create an entry for"
 			// - windows (cvsnt) : idem
+			//
+			// Sub case : Git
+			// Patterns
+			// - windows : "error: pathspec 'header.inc.php' did not match any file(s) known to git."
 	
 			// ask user to add it
 			final int addFile = JOptionPane.showConfirmDialog(ui.frame, 
@@ -107,8 +216,8 @@ private String vcsDo(String vcsBin, String context, String action, Boolean verbo
 				JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 			
 			if (addFile == JOptionPane.YES_OPTION) {
-				vcsDo(vcsBin, context, "add", verbose)
-				vcsDo(vcsBin, context, "commit", verbose)
+				vcsDo(vcs, context, "add", verbose)
+				vcsDo(vcs, context, "commit", verbose)
 			} else {
 				message += textUtils.getText("addons.collab.fileIsNotVersionned") + "\n"
 				JOptionPane.showMessageDialog(ui.frame, 
@@ -116,6 +225,7 @@ private String vcsDo(String vcsBin, String context, String action, Boolean verbo
 					context, JOptionPane.ERROR_MESSAGE)
 			}
 		} else if ( (action == "commit") && (outStream =~ /Log message unchanged or not specified/) ) {
+				// Case : empty log message
 				message += textUtils.getText("addons.collab.emptyCommitLog")
 				JOptionPane.showMessageDialog(ui.frame, 
 					message,
@@ -147,7 +257,32 @@ private String vcsDo(String vcsBin, String context, String action, Boolean verbo
 		// errorstatus = 0 = ok
 		if (outStream.size() > 0) {
 			if (action == "commit") {
-				message += textUtils.getText("addons.collab.mapCommitted")
+				if (outStream =~ /nothing added to commit/) {
+					// Git
+					message += textUtils.getText("addons.collab.mapDoesntNeedCommit")
+				} else {
+					message += textUtils.getText("addons.collab.mapCommitted")
+					actionDone = 1
+		
+					JOptionPane.showMessageDialog(ui.frame, 
+						message,
+						context, JOptionPane.INFORMATION_MESSAGE)
+		
+					// The file has been committed => prompt the user if he wants to push
+					if (vcs == "git") {
+						final int pushFile = JOptionPane.showConfirmDialog(ui.frame, 
+							textUtils.getText("addons.collab.doYouWantToPush"),
+							context,
+							JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+			
+						if (pushFile == JOptionPane.YES_OPTION) {
+							vcsDo(vcs, context, "push", verbose)
+						}
+					}
+					
+					return
+				}
+				
 			} else if (action == "update") {
 				if (outStream =~ /M /) {
 					message += textUtils.getText("addons.collab.mapNeedsCommit")
@@ -159,12 +294,21 @@ private String vcsDo(String vcsBin, String context, String action, Boolean verbo
 					node.map.close(false, true)
 					loadUri(uri)
 					message += textUtils.getText("addons.collab.mapUpdated")
+					actionDone = 1
 				}
 				
+			} else if (action == "status") {
+				// git
+				if (outStream =~ /nothing to commit/) {
+					return "up2date"
+				}
+			} else if (action == "pull") {
+				message += textUtils.getText("addons.collab.mapIsUpToDate")
 			}
 		} else {
 			if (action == "add") {
 				message += textUtils.getText("addons.collab.mapAdded")
+				actionDone = 1
 			} else if (action == "commit") {
 				message += textUtils.getText("addons.collab.mapDoesntNeedCommit")
 			} else if (action == "update") {
@@ -175,13 +319,16 @@ private String vcsDo(String vcsBin, String context, String action, Boolean verbo
 				}
 			} else if (action == "diff") {
 				message += textUtils.getText("addons.collab.vcsReturnedNoDiff")
+			} else if (action == "push") {
+				message += textUtils.getText("addons.collab.mapPushed")
 			}
 		}
 
-		JOptionPane.showMessageDialog(ui.frame, 
-			message,
-			context, JOptionPane.INFORMATION_MESSAGE)
-
+		if (action != "status") {
+			JOptionPane.showMessageDialog(ui.frame, 
+				message,
+				context, JOptionPane.INFORMATION_MESSAGE)
+		}
 	}	
 }
 
@@ -190,6 +337,15 @@ private String vcsDo(String vcsBin, String context, String action, Boolean verbo
 // Main
 //////////
 
+def verbose = config.getBooleanProperty('addons.collab.verbose')
+
+// Is the current folder under versionning system control ?
+def vcs = guessVcs(textUtils.getText("addons.vcsCommit"), verbose)
+if (!vcs) {
+	return
+}
+
+// It makes no sense to do versionning operations if the map has not been saved
 if (!node.map.isSaved()) {
 	JOptionPane.showMessageDialog(ui.frame, 
 				textUtils.getText("addons.collab.saveMapFirst"),
@@ -197,5 +353,22 @@ if (!node.map.isSaved()) {
     return
 }
 
-vcsDo(vcsBin, textUtils.getText("addons.vcsCommit"), "commit", verbose)
+// Let's work
+if (this =~ /Commit/) {
+	vcsDo(vcs, textUtils.getText("addons.vcsCommit"), "commit", verbose)
+} else if (this =~ /Diff/) {
+	if (vcs == "git") {
+		JOptionPane.showMessageDialog(ui.frame, 
+				textUtils.getText("addons.collab.notAvailableForThisVcs") + " (" + vcs + ")",
+				textUtils.getText("addons.vcsDiff"), JOptionPane.ERROR_MESSAGE)
+	} else {
+		vcsDo(vcs, textUtils.getText("addons.vcsDiff"), "diff", verbose)
+	}
+} else if (this =~ /Update/) {
+	if (vcs == "git") {
+		vcsDo(vcs, textUtils.getText("addons.vcsUpdate"), "pull", verbose)
+	} else {
+		vcsDo(vcs, textUtils.getText("addons.vcsUpdate"), "update", verbose)
+	}
+}
 
