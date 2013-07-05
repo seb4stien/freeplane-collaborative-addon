@@ -115,14 +115,14 @@ if ($l == "fr") {
 } else {
 ?>
 <li>6 july 2013 : experimental git support in <a href="https://sourceforge.net/projects/freeplanecollab/files/experimental/">version 0.7</a></li>
-<li>4 july 2013 : release of <a href="https://sourceforge.net/projects/freeplanecollab/files/">version 0.6</a>
+<li>4 july 2013 : release of <a href="https://sourceforge.net/projects/freeplanecollab/files/stable/">version 0.6</a>
 <ul>
 <li>added user-friendly messages</li>
 <li>code refactoring for better error handling</li>
 <li>support for adding file to versionning system</li>
 </ul>
 </li>
-<li>29 june 2013 : release of <a href="https://sourceforge.net/projects/freeplanecollab/files/">version 0.5</a>
+<li>29 june 2013 : release of <a href="https://sourceforge.net/projects/freeplanecollab/files/old/">version 0.5</a>
 <ul>
 <li>added user messages and translations</li>
 <li>automatic reload of the map in freeplane after update</li>
