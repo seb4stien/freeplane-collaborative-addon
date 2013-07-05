@@ -241,7 +241,7 @@
   </body>
 </html>
 </richcontent>
-<node TEXT="en" ID="ID_1232293217" CREATED="1371158990178" MODIFIED="1373056441400">
+<node TEXT="en" ID="ID_1232293217" CREATED="1371158990178" MODIFIED="1373057758201">
 <attribute_layout NAME_WIDTH="219" VALUE_WIDTH="243"/>
 <attribute NAME="addons.${name}" VALUE="Collaborative Tools"/>
 <attribute NAME="addons.vcsUpdate" VALUE="Update my map"/>
@@ -279,6 +279,7 @@
 <attribute NAME="addons.collab.vcsIs" VALUE="The versionning system is:"/>
 <attribute NAME="addons.collab.commitMessage" VALUE="Please enter a comment on your modifications"/>
 <attribute NAME="addons.collab.doYouWantToPush" VALUE="Do you want to push your change to the remote repository ?"/>
+<attribute NAME="addons.collab.mapPushed" VALUE="Your map has been pushed to the remote repository."/>
 </node>
 <node TEXT="fr" ID="ID_1204840493" CREATED="1371158990178" MODIFIED="1373056469502" HGAP="39" VSHIFT="41">
 <attribute_layout NAME_WIDTH="219" VALUE_WIDTH="350"/>
