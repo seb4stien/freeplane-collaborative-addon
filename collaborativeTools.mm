@@ -52,7 +52,7 @@
 </stylenode>
 </map_styles>
 </hook>
-<hook NAME="AutomaticEdgeColor" COUNTER="2"/>
+<hook NAME="AutomaticEdgeColor" COUNTER="3"/>
 <attribute_layout NAME_WIDTH="121" VALUE_WIDTH="137"/>
 <attribute NAME="name" VALUE="collaborativeTools"/>
 <attribute NAME="version" VALUE="v0.7" OBJECT="org.freeplane.features.format.FormattedObject|v0.7|number:decimal:#0.####"/>
@@ -177,6 +177,9 @@
 </html>
 </richcontent>
 <node TEXT="&#xa;This add-on is free software: you can redistribute it and/or modify&#xa;it under the terms of the GNU General Public License as published by&#xa;the Free Software Foundation, either version 2 of the License, or&#xa;(at your option) any later version.&#xa;&#xa;This program is distributed in the hope that it will be useful,&#xa;but WITHOUT ANY WARRANTY; without even the implied warranty of&#xa;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.&#xa0;&#xa0;See the&#xa;GNU General Public License for more details.&#xa;" ID="ID_1749584810" CREATED="1371158990132" MODIFIED="1371158990132"/>
+</node>
+<node TEXT="sources" POSITION="left" ID="ID_1846022363" CREATED="1373056658803" MODIFIED="1373056676751" LINK="https://github.com/seb4stien/freeplane-collaborative-addon">
+<edge COLOR="#00ff00"/>
 </node>
 <node TEXT="preferences.xml" POSITION="left" ID="ID_1334873957" CREATED="1371158990158" MODIFIED="1371158990169">
 <edge COLOR="#ff00ff"/>
