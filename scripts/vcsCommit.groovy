@@ -79,22 +79,46 @@ private String vcsDo(String vcs, String context, String action, Boolean verbose)
 	def actionDone = 0
 	
 	// Get the file status to stop action if it make no sense
-	// - commit an up2date file
-	// - todo
+	// - commit an upToDate file
+	// - diff an upToDate file
 	def fileStatus = ""
 	if ( (action != "status") && (action != "add") && (action != "push")) {
 		fileStatus = vcsDo(vcs, context, "status", verbose)
+		
+		/*
+		if (verbose) {
+			JOptionPane.showMessageDialog(ui.frame,
+				"File status: " + fileStatus,
+				context,
+				JOptionPane.INFORMATION_MESSAGE)
+		
+		}
+		*/
 	}
 	
-	if (fileStatus == "up2date") {
+	if (fileStatus == "upToDate") {
 		if (action == "commit") {
 			JOptionPane.showMessageDialog(ui.frame,
 				textUtils.getText("addons.collab.mapDoesntNeedCommit"),
 				context,
 				JOptionPane.INFORMATION_MESSAGE)
 		}
-		
+		if ( (action == "diff") || (action == "update") ) {
+			JOptionPane.showMessageDialog(ui.frame,
+				textUtils.getText("addons.collab.mapIsUpToDate"),
+				context,
+				JOptionPane.INFORMATION_MESSAGE)
+		}
 		return
+	} else if (fileStatus == "needsPatch") {
+		if (action == "diff") {
+			JOptionPane.showMessageDialog(ui.frame,
+				textUtils.getText("addons.collab.mapNeedsUpdate"),
+				context,
+				JOptionPane.INFORMATION_MESSAGE)
+				
+			return
+		}
 	}
 	
 	// get commit message
@@ -159,6 +183,7 @@ private String vcsDo(String vcs, String context, String action, Boolean verbose)
 	vcsProcess.waitFor()
 	def exitStatus = vcsProcess.exitValue()
 	
+	// delete commit message file
 	if (action == "commit") {
 		commitFile.delete()
 	}
@@ -299,8 +324,12 @@ private String vcsDo(String vcs, String context, String action, Boolean verbose)
 				
 			} else if (action == "status") {
 				// git
-				if (outStream =~ /nothing to commit/) {
-					return "up2date"
+				if ( (outStream =~ /nothing to commit/) || (outStream =~ /Up-to-date/) ) {
+					return "upToDate"
+				} else if ( outStream =~ /Needs Patch/) {
+					return "needsPatch"
+				} else if ( outStream =~ /Locally modified/) {
+					return "locallyModified"
 				}
 			} else if (action == "pull") {
 				message += textUtils.getText("addons.collab.mapIsUpToDate")
@@ -324,7 +353,7 @@ private String vcsDo(String vcs, String context, String action, Boolean verbose)
 			}
 		}
 
-		if (action != "status") {
+		if ( verbose || (action != "status") ) {
 			JOptionPane.showMessageDialog(ui.frame, 
 				message,
 				context, JOptionPane.INFORMATION_MESSAGE)
