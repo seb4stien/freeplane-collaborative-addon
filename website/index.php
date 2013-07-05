@@ -97,14 +97,15 @@ news
 <?
 if ($l == "fr") {
 ?>
-<li>4 juillet 2013 : publication de la <a href="https://sourceforge.net/projects/freeplanecollab/files/">version 0.6</a>
+<li>6 juillet 2013 : support experimental de git dans la <a href="https://sourceforge.net/projects/freeplanecollab/files/experimental/">version 0.7</a></li>
+<li>4 juillet 2013 : publication de la <a href="https://sourceforge.net/projects/freeplanecollab/files/stable/">version 0.6</a>
 <ul>
 <li>finalisation des messages utilisateur et des traductions</li>
 <li>revue de code pour améliorer la gestion des erreurs</li>
 <li>support de l'ajout de fichier au système de gestion de versions</li>
 </ul>
 </li>
-<li>29 juin 2013 : publication de la <a href="https://sourceforge.net/projects/freeplanecollab/files/">version 0.5</a>
+<li>29 juin 2013 : publication de la <a href="https://sourceforge.net/projects/freeplanecollab/files/old/">version 0.5</a>
 <ul>
 <li>ajout de messages utilisateur et de traductions</li>
 <li>rechargement automatique de la carte dans freeplane lorsqu'elle a été mise à jour</li>
@@ -113,6 +114,7 @@ if ($l == "fr") {
 <?
 } else {
 ?>
+<li>6 july 2013 : experimental git support in <a href="https://sourceforge.net/projects/freeplanecollab/files/experimental/">version 0.7</a></li>
 <li>4 july 2013 : release of <a href="https://sourceforge.net/projects/freeplanecollab/files/">version 0.6</a>
 <ul>
 <li>added user-friendly messages</li>
