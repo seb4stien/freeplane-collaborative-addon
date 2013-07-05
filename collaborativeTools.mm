@@ -1,6 +1,6 @@
 <map version="freeplane 1.2.0">
 <!--To view this file, download free mind mapping software Freeplane from http://freeplane.sourceforge.net -->
-<node TEXT="collaborative tools" ID="ID_1723255651" CREATED="1283093380553" MODIFIED="1372970369686" BACKGROUND_COLOR="#97c7dc">
+<node TEXT="collaborative tools" ID="ID_1723255651" CREATED="1283093380553" MODIFIED="1373057345188" BACKGROUND_COLOR="#97c7dc">
 <font SIZE="16" BOLD="true" ITALIC="true"/>
 <hook NAME="MapStyle">
     <properties show_icon_for_attributes="true" show_note_icons="true"/>
@@ -110,7 +110,7 @@
   </body>
 </html>
 </richcontent>
-<node TEXT="This add-on provides tools to ease team working on a single map.&#xa;&#xa;Important : set the path to your vcs binary in &quot;Tools &gt; Preferences&quot;" ID="ID_329459946" CREATED="1371159094606" MODIFIED="1371210770997"/>
+<node TEXT="This add-on provides tools to enable collaborative mind mapping." ID="ID_329459946" CREATED="1371159094606" MODIFIED="1373057454389"/>
 </node>
 <node TEXT="changes" POSITION="left" ID="ID_268144721" CREATED="1371158990121" MODIFIED="1371158990126">
 <edge COLOR="#0000ff"/>
