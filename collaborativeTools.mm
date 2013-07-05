@@ -52,7 +52,7 @@
 </stylenode>
 </map_styles>
 </hook>
-<hook NAME="AutomaticEdgeColor" COUNTER="3"/>
+<hook NAME="AutomaticEdgeColor" COUNTER="4"/>
 <attribute_layout NAME_WIDTH="121" VALUE_WIDTH="137"/>
 <attribute NAME="name" VALUE="collaborativeTools"/>
 <attribute NAME="version" VALUE="v0.7" OBJECT="org.freeplane.features.format.FormattedObject|v0.7|number:decimal:#0.####"/>
@@ -180,6 +180,9 @@
 </node>
 <node TEXT="sources" POSITION="left" ID="ID_1846022363" CREATED="1373056658803" MODIFIED="1373056676751" LINK="https://github.com/seb4stien/freeplane-collaborative-addon">
 <edge COLOR="#00ff00"/>
+</node>
+<node TEXT="issues" POSITION="left" ID="ID_571374077" CREATED="1373056821535" MODIFIED="1373056846275" LINK="https://github.com/seb4stien/freeplane-collaborative-addon/issues">
+<edge COLOR="#ff00ff"/>
 </node>
 <node TEXT="preferences.xml" POSITION="left" ID="ID_1334873957" CREATED="1371158990158" MODIFIED="1371158990169">
 <edge COLOR="#ff00ff"/>
