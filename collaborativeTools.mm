@@ -233,7 +233,7 @@
   </body>
 </html>
 </richcontent>
-<node TEXT="en" ID="ID_1232293217" CREATED="1371158990178" MODIFIED="1373047591154">
+<node TEXT="en" ID="ID_1232293217" CREATED="1371158990178" MODIFIED="1373053126722">
 <attribute_layout NAME_WIDTH="219" VALUE_WIDTH="243"/>
 <attribute NAME="addons.${name}" VALUE="Collaborative Tools"/>
 <attribute NAME="addons.vcsUpdate" VALUE="Update my map"/>
@@ -242,10 +242,11 @@
 <attribute NAME="addons.exportModificationsToPng" VALUE="Export recent modification to a png file"/>
 <attribute NAME="main_menu_scripting/collaborativeTools" VALUE="Collaborative Tools"/>
 <attribute NAME="OptionPanel.separator.${name}" VALUE="Collaborative Tools"/>
-<attribute NAME="OptionPanel.vcsBin" VALUE="Path to your VCS (currently cvs)"/>
-<attribute NAME="OptionPanel.vcsVerbose" VALUE="Verbose mode"/>
-<attribute NAME="OptionPanel.ctReportIntervalInDays" VALUE="Days between two reports on modifications"/>
-<attribute NAME="OptionPanel.ctReportMaxDepth" VALUE="Max depth of modifications reports"/>
+<attribute NAME="OptionPanel.addons.collab.cvs.bin" VALUE="Path to CVS"/>
+<attribute NAME="OptionPanel.addons.collab.git.bin" VALUE="Path to GIT"/>
+<attribute NAME="OptionPanel.addons.collab.verbose" VALUE="Verbose mode"/>
+<attribute NAME="OptionPanel.addons.collab.reportIntervalInDays" VALUE="Days between two reports on modifications"/>
+<attribute NAME="OptionPanel.addons.collab.reportMaxDepth" VALUE="Max depth of modifications reports"/>
 <attribute NAME="addons.collab.commandDetails" VALUE="Command"/>
 <attribute NAME="addons.collab.commandOutput" VALUE="Output"/>
 <attribute NAME="addons.collab.commandErrors" VALUE="Errors"/>
@@ -267,8 +268,10 @@
 <attribute NAME="addons.collab.mapDifferences" VALUE="Differences between your local file and the versionning system"/>
 <attribute NAME="addons.collab.emptyCommitLog" VALUE="Commit aborted. A small description of your modifications is mandatory."/>
 <attribute NAME="addons.collab.vcsBinNotFound" VALUE="The versionning system binary was not found, check your preferences."/>
+<attribute NAME="addons.collab.vcsIs" VALUE="The versionning system is:"/>
+<attribute NAME="addons.collab.commitMessage" VALUE="Please enter a comment on your modifications"/>
 </node>
-<node TEXT="fr" ID="ID_1204840493" CREATED="1371158990178" MODIFIED="1373047629944" HGAP="39" VSHIFT="41">
+<node TEXT="fr" ID="ID_1204840493" CREATED="1371158990178" MODIFIED="1373053171118" HGAP="39" VSHIFT="41">
 <attribute_layout NAME_WIDTH="219" VALUE_WIDTH="350"/>
 <attribute NAME="addons.${name}" VALUE="Outils collaboratifs"/>
 <attribute NAME="addons.vcsUpdate" VALUE="Mettre &#xe0; jour ma version"/>
@@ -277,10 +280,11 @@
 <attribute NAME="addons.exportModificationsToPng" VALUE="Export des derni&#xe8;res modifications dans un png"/>
 <attribute NAME="main_menu_scripting/collaborativeTools" VALUE="Outils collaboratifs"/>
 <attribute NAME="OptionPanel.separator.${name}" VALUE="Outils collaboratifs"/>
-<attribute NAME="OptionPanel.vcsBin" VALUE="Chemin vers votre VCS (seul cvs est support&#xe9; pour le moment)"/>
-<attribute NAME="OptionPanel.vcsVerbose" VALUE="Mode verbeux"/>
-<attribute NAME="OptionPanel.ctReportIntervalInDays" VALUE="Jours entre deux rapports de modifications"/>
-<attribute NAME="OptionPanel.ctReportMaxDepth" VALUE="Profondeur maximum pour les rapports de modifications"/>
+<attribute NAME="OptionPanel.addons.collab.cvs.bin" VALUE="Chemin vers l&apos;ex&#xe9;cutable CVS"/>
+<attribute NAME="OptionPanel.addons.collab.git.bin" VALUE="Chemin vers l&apos;ex&#xe9;cutable GIT"/>
+<attribute NAME="OptionPanel.addons.collab.verbose" VALUE="Verbose mode"/>
+<attribute NAME="OptionPanel.addons.collab.reportIntervalInDays" VALUE="Jours entre deux rapports de modifications"/>
+<attribute NAME="OptionPanel.addons.collab.reportMaxDepth" VALUE="Profondeur maximum pour les rapports de modifications"/>
 <attribute NAME="addons.collab.commandDetails" VALUE="Commande ex&#xe9;cut&#xe9;e"/>
 <attribute NAME="addons.collab.commandOutput" VALUE="R\u00E9sultat"/>
 <attribute NAME="addons.collab.commandErrors" VALUE="Erreurs"/>
@@ -302,6 +306,8 @@
 <attribute NAME="addons.collab.mapDifferences" VALUE="Diff&#xe9;rences entre votre carte locale et la version du syst&#xe8;me de gestion de versions"/>
 <attribute NAME="addons.collab.emptyCommitLog" VALUE="La carte n&apos;a pas &#xe9;t&#xe9; enregistr&#xe9;e dans le syst&#xe8;me de gestion de version. Une br&#xe8;ve description de vos modifications est obligatoire."/>
 <attribute NAME="addons.collab.vcsBinNotFound" VALUE="L&apos;application de gestion de version n&apos;a pas &#xe9;t&#xe9; trouv&#xe9;e, corrigez le chemin dans les pr&#xe9;f&#xe9;rences."/>
+<attribute NAME="addons.collab.vcsIs" VALUE="Le syst&#xe8;me de gestion de version est :"/>
+<attribute NAME="addons.collab.commitMessage" VALUE="Saisir un message associ&#xe9; aux modifications r&#xe9;alis&#xe9;es"/>
 </node>
 </node>
 <node TEXT="deinstall" POSITION="left" ID="ID_1936073781" CREATED="1371158990182" MODIFIED="1371209683326">
