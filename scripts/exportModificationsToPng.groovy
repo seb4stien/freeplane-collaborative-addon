@@ -19,7 +19,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // set filter
-def maxDepth = config.getIntProperty('ctReportMaxDepth')
+def maxDepth = config.getIntProperty('addons.collab.reportMaxDepth')
 def matches = c.find{ true}
 matches.each{ node ->
     if (node.getNodeLevel(true) > maxDepth) {
@@ -30,7 +30,7 @@ matches.each{ node ->
 	
 }
 
-def maxAge = config.getIntProperty('ctReportIntervalInDays', 7)
+def maxAge = config.getIntProperty('addons.collab.reportIntervalInDays', 7)
 node.map.setFilter( true, false, {  it.lastModifiedAt >= new Date() - maxAge } )
 
 
