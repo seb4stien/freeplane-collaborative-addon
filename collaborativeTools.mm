@@ -52,7 +52,7 @@
 </stylenode>
 </map_styles>
 </hook>
-<hook NAME="AutomaticEdgeColor" COUNTER="4"/>
+<hook NAME="AutomaticEdgeColor" COUNTER="5"/>
 <attribute_layout NAME_WIDTH="121" VALUE_WIDTH="137"/>
 <attribute NAME="name" VALUE="collaborativeTools"/>
 <attribute NAME="version" VALUE="v0.7" OBJECT="org.freeplane.features.format.FormattedObject|v0.7|number:decimal:#0.####"/>
@@ -241,7 +241,7 @@
   </body>
 </html>
 </richcontent>
-<node TEXT="en" ID="ID_1232293217" CREATED="1371158990178" MODIFIED="1373059587412">
+<node TEXT="en" ID="ID_1232293217" CREATED="1371158990178" MODIFIED="1373061423011">
 <attribute_layout NAME_WIDTH="219" VALUE_WIDTH="243"/>
 <attribute NAME="addons.${name}" VALUE="Collaborative Tools"/>
 <attribute NAME="addons.vcsUpdate" VALUE="Update my map"/>
@@ -264,6 +264,7 @@
 <attribute NAME="addons.collab.mapDoesntNeedCommit" VALUE="Your map is already the latest version on the versionning system."/>
 <attribute NAME="addons.collab.mapCommitted" VALUE="Your map has been committed into the versionning system."/>
 <attribute NAME="addons.collab.mapAdded" VALUE="Your map has been aded into the versionning system."/>
+<attribute NAME="addons.collab.mapNeedsUpdate" VALUE="The map has been remotely modified, you should update it locally."/>
 <attribute NAME="addons.collab.mapUpdated" VALUE="The map has been updated."/>
 <attribute NAME="addons.collab.mapReloaded" VALUE="The map has been reloaded."/>
 <attribute NAME="addons.collab.vcsReturnedNoDiff" VALUE="The versionning system returned no differences."/>
@@ -282,7 +283,7 @@
 <attribute NAME="addons.collab.mapPushed" VALUE="Your map has been pushed to the remote repository."/>
 <attribute NAME="addons.collab.notAvailableForThisVcs" VALUE="Not available for this versionning system"/>
 </node>
-<node TEXT="fr" ID="ID_1204840493" CREATED="1371158990178" MODIFIED="1373059278723" HGAP="39" VSHIFT="41">
+<node TEXT="fr" ID="ID_1204840493" CREATED="1371158990178" MODIFIED="1373061458745" HGAP="39" VSHIFT="41">
 <attribute_layout NAME_WIDTH="219" VALUE_WIDTH="350"/>
 <attribute NAME="addons.${name}" VALUE="Outils collaboratifs"/>
 <attribute NAME="addons.vcsUpdate" VALUE="Mettre &#xe0; jour ma version"/>
@@ -305,6 +306,7 @@
 <attribute NAME="addons.collab.mapDoesntNeedCommit" VALUE="Le syst&#xe8;me de gestion de version est d&#xe9;j&#xe0; &#xe0; jour."/>
 <attribute NAME="addons.collab.mapCommitted" VALUE="La carte a bien &#xe9;t&#xe9; enregistr&#xe9;e sur le syst&#xe8;me de gestion de version."/>
 <attribute NAME="addons.collab.mapAdded" VALUE="La carte a &#xe9;t&#xe9; ajout&#xe9;e au syst&#xe8;me de gestion de versions."/>
+<attribute NAME="addons.collab.mapNeedsUpdate" VALUE="La carte a &#xe9;t&#xe9; modifi&#xe9;e sur le syst&#xe8;me de gestion de versions, vous devriez lancer une mise &#xe0; jour."/>
 <attribute NAME="addons.collab.mapUpdated" VALUE="La carte a &#xe9;t&#xe9; mise &#xe0; jour."/>
 <attribute NAME="addons.collab.mapReloaded" VALUE="La carte a &#xe9;t&#xe9; recharg&#xe9;e."/>
 <attribute NAME="addons.collab.vcsReturnedNoDiff" VALUE="Le syst&#xe8;me de gestion de version n&apos;a remont&#xe9; aucune diff&#xe9;rence."/>
@@ -505,6 +507,9 @@
 <attribute NAME="execute_scripts_without_exec_restriction" VALUE="true"/>
 <attribute NAME="execute_scripts_without_network_restriction" VALUE="false"/>
 </node>
+</node>
+<node TEXT="oldscripts" POSITION="right" ID="ID_467301098" CREATED="1373100238624" MODIFIED="1373100244290">
+<edge COLOR="#00ffff"/>
 <node TEXT="exportModificationsToPng.groovy" ID="ID_656180329" CREATED="1323057833226" MODIFIED="1372802812897" HGAP="30">
 <attribute_layout NAME_WIDTH="275" VALUE_WIDTH="212"/>
 <attribute NAME="menuTitleKey" VALUE="addons.exportModificationsToPng"/>
