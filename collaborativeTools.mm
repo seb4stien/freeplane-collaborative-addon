@@ -202,7 +202,7 @@
   </body>
 </html>
 </richcontent>
-<node TEXT="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#xa;&lt;preferences_structure&gt;&#xa;&lt;tabbed_pane&gt;&#xa;&lt;tab name=&quot;plugins&quot;&gt;&#xa;&lt;separator name=&quot;collaborativeTools&quot;&gt;&#xa;&lt;path name=&quot;addons.collab.cvs.bin&quot; /&gt;&#xa;&lt;path name=&quot;addons.collab.git.bin&quot; /&gt;&#xa;&lt;boolean name=&quot;addons.collab.verbose&quot; /&gt;&#xa;&lt;number name=&quot;addons.collab.reportIntervalInDays&quot; min=&quot;1&quot; max=&quot;100&quot; /&gt;&#xa;&lt;number name=&quot;addons.collab.reportMaxDepth&quot; min=&quot;1&quot; /&gt;&#xa;&lt;/separator&gt;&#xa;&lt;/tab&gt;&#xa;&lt;/tabbed_pane&gt;&#xa;&lt;/preferences_structure&gt;" ID="ID_873595672" CREATED="1358304692163" MODIFIED="1373047691162">
+<node TEXT="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#xa;&lt;preferences_structure&gt;&#xa;&lt;tabbed_pane&gt;&#xa;&lt;tab name=&quot;plugins&quot;&gt;&#xa;&lt;separator name=&quot;collaborativeTools&quot;&gt;&#xa;&lt;path name=&quot;addons.collab.cvs.bin&quot; /&gt;&#xa;&lt;path name=&quot;addons.collab.git.bin&quot; /&gt;&#xa;&lt;boolean name=&quot;addons.collab.verbose&quot; /&gt;&#xa;&lt;!--&#xa;&lt;number name=&quot;addons.collab.reportIntervalInDays&quot; min=&quot;1&quot; max=&quot;100&quot; /&gt;&#xa;&lt;number name=&quot;addons.collab.reportMaxDepth&quot; min=&quot;1&quot; /&gt;&#xa;--&gt;&#xa;&lt;/separator&gt;&#xa;&lt;/tab&gt;&#xa;&lt;/tabbed_pane&gt;&#xa;&lt;/preferences_structure&gt;" ID="ID_873595672" CREATED="1358304692163" MODIFIED="1373100449029">
 <attribute_layout NAME_WIDTH="100" VALUE_WIDTH="100"/>
 </node>
 </node>
@@ -241,7 +241,7 @@
   </body>
 </html>
 </richcontent>
-<node TEXT="en" ID="ID_1232293217" CREATED="1371158990178" MODIFIED="1373061423011">
+<node TEXT="en" ID="ID_1232293217" CREATED="1371158990178" MODIFIED="1373301923047">
 <attribute_layout NAME_WIDTH="219" VALUE_WIDTH="243"/>
 <attribute NAME="addons.${name}" VALUE="Collaborative Tools"/>
 <attribute NAME="addons.vcsUpdate" VALUE="Update my map"/>
@@ -282,8 +282,9 @@
 <attribute NAME="addons.collab.doYouWantToPush" VALUE="Do you want to push your change to the remote repository ?"/>
 <attribute NAME="addons.collab.mapPushed" VALUE="Your map has been pushed to the remote repository."/>
 <attribute NAME="addons.collab.notAvailableForThisVcs" VALUE="Not available for this versionning system"/>
+<attribute NAME="addons.collab.vcsReturnedAnError" VALUE="Le syst&#xe8;me de gestion de versions a retourn&#xe9; l&apos;erreur suivante :"/>
 </node>
-<node TEXT="fr" ID="ID_1204840493" CREATED="1371158990178" MODIFIED="1373061458745" HGAP="39" VSHIFT="41">
+<node TEXT="fr" ID="ID_1204840493" CREATED="1371158990178" MODIFIED="1373301848186" HGAP="39" VSHIFT="41">
 <attribute_layout NAME_WIDTH="219" VALUE_WIDTH="350"/>
 <attribute NAME="addons.${name}" VALUE="Outils collaboratifs"/>
 <attribute NAME="addons.vcsUpdate" VALUE="Mettre &#xe0; jour ma version"/>
@@ -324,6 +325,7 @@
 <attribute NAME="addons.collab.doYouWantToPush" VALUE="Voulez vous publier vos changements sur le serveur distant ?"/>
 <attribute NAME="addons.collab.mapPushed" VALUE="La carte a &#xe9;t&#xe9; publi&#xe9;e sur le serveur distant."/>
 <attribute NAME="addons.collab.notAvailableForThisVcs" VALUE="Non disponible pour ce syst&#xe8;me de gestion de versions"/>
+<attribute NAME="addons.collab.vcsReturnedAnError" VALUE="Le syst&#xe8;me de gestion de versions a retourn&#xe9; l&apos;erreur suivante :"/>
 </node>
 </node>
 <node TEXT="deinstall" POSITION="left" ID="ID_1936073781" CREATED="1371158990182" MODIFIED="1371209683326">
