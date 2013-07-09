@@ -85,7 +85,6 @@ private String vcsDo(String vcs, String context, String action, Boolean verbose)
 	if ( (action != "status") && (action != "add") && (action != "push")) {
 		fileStatus = vcsDo(vcs, context, "status", verbose)
 		
-		/*
 		if (verbose) {
 			JOptionPane.showMessageDialog(ui.frame,
 				"File status: " + fileStatus,
@@ -93,24 +92,33 @@ private String vcsDo(String vcs, String context, String action, Boolean verbose)
 				JOptionPane.INFORMATION_MESSAGE)
 		
 		}
-		*/
-	}
+		
 	
-	if (fileStatus == "upToDate") {
-		if (action == "commit") {
-			JOptionPane.showMessageDialog(ui.frame,
-				textUtils.getText("addons.collab.mapDoesntNeedCommit"),
-				context,
-				JOptionPane.INFORMATION_MESSAGE)
-		}
-		if ( (action == "diff") || (action == "update") ) {
-			JOptionPane.showMessageDialog(ui.frame,
-				textUtils.getText("addons.collab.mapIsUpToDate"),
-				context,
-				JOptionPane.INFORMATION_MESSAGE)
-		}
-		return
-	} else if (fileStatus == "needsPatch") {
+		if (fileStatus == "fatalError") {
+			// the error has been shown in the vcsDo function just quit
+			return
+		} else if (fileStatus == "folderIsNotVersionned") {
+			message = textUtils.getText("addons.collab.folderIsNotVersionned") + "\n"
+			
+			JOptionPane.showMessageDialog(ui.frame, 
+				message,
+				context, JOptionPane.ERROR_MESSAGE)
+				
+			return
+		} else if (fileStatus == "upToDate") {
+			if (action == "commit") {
+				JOptionPane.showMessageDialog(ui.frame,
+					textUtils.getText("addons.collab.mapDoesntNeedCommit"),
+					context,
+					JOptionPane.INFORMATION_MESSAGE)
+			} else if ( (action == "diff") || (action == "update") || (action == "pull" ) ) {
+				JOptionPane.showMessageDialog(ui.frame,
+					textUtils.getText("addons.collab.mapIsUpToDate"),
+					context,
+					JOptionPane.INFORMATION_MESSAGE)
+			}
+			return
+		}  else if (fileStatus == "needsPatch") {
 		if (action == "diff") {
 			JOptionPane.showMessageDialog(ui.frame,
 				textUtils.getText("addons.collab.mapNeedsUpdate"),
@@ -119,7 +127,35 @@ private String vcsDo(String vcs, String context, String action, Boolean verbose)
 				
 			return
 		}
+	} else if (fileStatus == "needsMerge") {
+		if (action == "commit") {
+			JOptionPane.showMessageDialog(ui.frame,
+				textUtils.getText("addons.collab.mapNeedsUpdate"),
+				context,
+				JOptionPane.ERROR_MESSAGE)
+				
+			return
+		}
+	} else if (fileStatus == "unknown") {
+		final int addFile = JOptionPane.showConfirmDialog(ui.frame, 
+				textUtils.getText("addons.collab.fileIsNotVersionned") + "\n" + textUtils.getText("addons.collab.doYouWantToAddFile") ,
+				context,
+				JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+				
+		if (addFile == JOptionPane.YES_OPTION) {
+				vcsDo(vcs, context, "add", verbose)
+				vcsDo(vcs, context, "commit", verbose)
+			} else {
+				message += textUtils.getText("addons.collab.fileIsNotVersionned") + "\n"
+				JOptionPane.showMessageDialog(ui.frame, 
+					message,
+					context, JOptionPane.ERROR_MESSAGE)
+			}
+		
+		return
 	}
+	}
+
 	
 	// get commit message
 	def commitMessage = null
@@ -127,7 +163,8 @@ private String vcsDo(String vcs, String context, String action, Boolean verbose)
 	if (action == "commit") {
 		commitMessage = JOptionPane.showInputDialog(ui.frame,
 			textUtils.getText("addons.collab.commitMessage"),
-			"")
+			context,
+			JOptionPane.QUESTION_MESSAGE)
 		
 		if (!commitMessage) {
 			JOptionPane.showMessageDialog(ui.frame,
@@ -192,17 +229,28 @@ private String vcsDo(String vcs, String context, String action, Boolean verbose)
 	def message = ""	
 	// verbose mode : show command and results
 	if (verbose) {
-		message += textUtils.getText("addons.collab.commandOutput") + "\n" + outStream + "\n\n"
+		message = textUtils.getText("addons.collab.commandOutput") + "\n" + outStream + "\n\n"
 		message += textUtils.getText("addons.collab.commandErrors") + "\n" + errStream + "\n\n"
+		
+		def messageType = null
+		if (exitStatus > 0) {
+			messageType = JOptionPane.ERROR_MESSAGE
+		} else {
+			messageType = JOptionPane.INFORMATION_MESSAGE
+		}
+		
+		JOptionPane.showMessageDialog(ui.frame, 
+				message,
+				context, messageType)
 	}
 	
 	
 
 	// handling errors first
 	if (exitStatus > 0) {
-	
+		
 		// parsing errStream to handle errors
-		if ( (errStream =~ /No CVSROOT/ ) && (errStream =~ /Not a git repository/)) {
+		if ( (errStream =~ /No CVSROOT/ ) || (errStream =~ /Not a git repository/)) {
 			// Case description : the folder is not versionned
 			//
 			// Sub case : CVS (No CVSROOT)
@@ -220,6 +268,8 @@ private String vcsDo(String vcs, String context, String action, Boolean verbose)
 			JOptionPane.showMessageDialog(ui.frame, 
 				message,
 				context, JOptionPane.ERROR_MESSAGE)
+				
+			return "folderIsNotVersionned"
 		
 		} else if ( (errStream =~ /nothing known about/) || (errStream =~ /to create an entry for/) || (errStream =~ /I know nothing about/) || (errStream =~ /did not match any file/)) {
 			// Case description : the file is not versionned
@@ -270,12 +320,17 @@ private String vcsDo(String vcs, String context, String action, Boolean verbose)
 					context, JOptionPane.WARNING_MESSAGE)
 		} else {
 			// unknwon error
+			/*
 			if (! verbose) {
 				message = textUtils.getText("addons.collab.unknownErrorActivateVerboseMode")
 			}
+			*/
+			
 			JOptionPane.showMessageDialog(ui.frame, 
-				message,
+				textUtils.getText("addons.collab.vcsReturnedAnError") + "\n" + errStream,
 				context, JOptionPane.ERROR_MESSAGE)
+			
+			return "fatalError"
 		}
 		
 	} else {
@@ -323,13 +378,16 @@ private String vcsDo(String vcs, String context, String action, Boolean verbose)
 				}
 				
 			} else if (action == "status") {
-				// git
-				if ( (outStream =~ /nothing to commit/) || (outStream =~ /Up-to-date/) ) {
+				if ( (outStream =~ /nothing to commit/) || (outStream =~ /Status: Up-to-date/) ) {
 					return "upToDate"
-				} else if ( outStream =~ /Needs Patch/) {
+				} else if ( outStream =~ /Status: Needs Patch/) {
 					return "needsPatch"
-				} else if ( outStream =~ /Locally modified/) {
+				} else if ( outStream =~ /Status: Locally modified/) {
 					return "locallyModified"
+				} else if ( outStream =~ /Status: Needs Merge/) {
+					return "needsMerge"
+				} else if ( outStream =~ /Status: Unknown/) {
+					return "unknown"
 				}
 			} else if (action == "pull") {
 				message += textUtils.getText("addons.collab.mapIsUpToDate")
