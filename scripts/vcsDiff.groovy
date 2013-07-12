@@ -38,10 +38,7 @@ import groovy.io.GroovyPrintWriter
 
 private String guessVcs(String context, Boolean verbose) {
 	
-	// todo : filesystem separator
-	
 	def vcs = null
-	def vcsFolder = new File(node.map.file.path + "/CVS/")
 	if ((new File(node.map.file.getParent() + File.separator + 'CVS')).exists()) {
 		vcs = "cvs"
 	} else if ((new File(node.map.file.getParent() + File.separator + '.git')).exists()) {
@@ -143,12 +140,14 @@ private String vcsDo(String vcs, String context, String action, Boolean verbose)
 					JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 				
 			if (addFile == JOptionPane.YES_OPTION) {
-					vcsDo(vcs, context, "add", verbose)
-					vcsDo(vcs, context, "commit", verbose)
+					if (vcsDo(vcs, context, "add", verbose) == "fileAdded") {
+						vcsDo(vcs, context, "commit", verbose)
+					} else {
+						// error message has been shown in "add" operation
+					}
 				} else {
-					message += textUtils.getText("addons.collab.fileIsNotVersionned") + "\n"
 					JOptionPane.showMessageDialog(ui.frame, 
-						message,
+						textUtils.getText("addons.collab.fileIsNotVersionned"),
 						context, JOptionPane.ERROR_MESSAGE)
 				}
 		
@@ -302,9 +301,9 @@ private String vcsDo(String vcs, String context, String action, Boolean verbose)
 				JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 			
 			if (addFile == JOptionPane.YES_OPTION) {
-				// todo : handle errors
 				vcsDo(vcs, context, "add", verbose)
 				vcsDo(vcs, context, "commit", verbose)
+				return
 			} else {
 				JOptionPane.showMessageDialog(ui.frame, 
 					textUtils.getText("addons.collab.fileIsNotVersionned") + "\n",
@@ -421,7 +420,7 @@ private String vcsDo(String vcs, String context, String action, Boolean verbose)
 				JOptionPane.showMessageDialog(ui.frame, 
 						textUtils.getText("addons.collab.mapAdded"),
 						context, JOptionPane.INFORMATION_MESSAGE)
-				return
+				return "fileAddded"
 			} else if (action == "diff") {
 				JOptionPane.showMessageDialog(ui.frame, 
 						textUtils.getText("addons.collab.vcsReturnedNoDiff"),
