@@ -52,7 +52,7 @@
 </stylenode>
 </map_styles>
 </hook>
-<hook NAME="AutomaticEdgeColor" COUNTER="5"/>
+<hook NAME="AutomaticEdgeColor" COUNTER="6"/>
 <attribute_layout NAME_WIDTH="121" VALUE_WIDTH="137"/>
 <attribute NAME="name" VALUE="collaborativeTools"/>
 <attribute NAME="version" VALUE="v0.8" OBJECT="org.freeplane.features.format.FormattedObject|v0.8|number:decimal:#0.####"/>
@@ -245,7 +245,7 @@
   </body>
 </html>
 </richcontent>
-<node TEXT="en" ID="ID_1232293217" CREATED="1371158990178" MODIFIED="1373402956124">
+<node TEXT="en" ID="ID_1232293217" CREATED="1371158990178" MODIFIED="1373644991362">
 <attribute_layout NAME_WIDTH="219" VALUE_WIDTH="243"/>
 <attribute NAME="addons.${name}" VALUE="Collaborative Tools"/>
 <attribute NAME="addons.vcsUpdate" VALUE="Update my map"/>
@@ -268,7 +268,7 @@
 <attribute NAME="addons.collab.mapNeedsCommit" VALUE="Your map was locally modified. You should commit it."/>
 <attribute NAME="addons.collab.mapDoesntNeedCommit" VALUE="Your map is already the latest version on the versionning system."/>
 <attribute NAME="addons.collab.mapCommitted" VALUE="Your map has been committed into the versionning system."/>
-<attribute NAME="addons.collab.mapAdded" VALUE="Your map has been aded into the versionning system."/>
+<attribute NAME="addons.collab.mapAdded" VALUE="Your map has been added into the versionning system."/>
 <attribute NAME="addons.collab.mapNeedsUpdate" VALUE="The map has been remotely modified, you should update it locally."/>
 <attribute NAME="addons.collab.mapUpdated" VALUE="The map has been updated."/>
 <attribute NAME="addons.collab.mapReloaded" VALUE="The map has been reloaded."/>
@@ -287,9 +287,11 @@
 <attribute NAME="addons.collab.doYouWantToPush" VALUE="Do you want to push your change to the remote repository ?"/>
 <attribute NAME="addons.collab.mapPushed" VALUE="Your map has been pushed to the remote repository."/>
 <attribute NAME="addons.collab.notAvailableForThisVcs" VALUE="Not available for this versionning system"/>
-<attribute NAME="addons.collab.vcsReturnedAnError" VALUE="Le syst&#xe8;me de gestion de versions a retourn&#xe9; l&apos;erreur suivante :"/>
+<attribute NAME="addons.collab.vcsReturnedAnError" VALUE="The versionning system returned the following error:"/>
+<attribute NAME="addons.collab.unknownFileStatus" VALUE="Unknown file status"/>
+<attribute NAME="addons.collab.vcsAddFailed" VALUE="Could not add file to the versionning system."/>
 </node>
-<node TEXT="fr" ID="ID_1204840493" CREATED="1371158990178" MODIFIED="1373402978937" HGAP="39" VSHIFT="41">
+<node TEXT="fr" ID="ID_1204840493" CREATED="1371158990178" MODIFIED="1373644754230" HGAP="39" VSHIFT="41">
 <attribute_layout NAME_WIDTH="219" VALUE_WIDTH="350"/>
 <attribute NAME="addons.${name}" VALUE="Outils collaboratifs"/>
 <attribute NAME="addons.vcsUpdate" VALUE="Mettre &#xe0; jour ma version"/>
@@ -332,6 +334,8 @@
 <attribute NAME="addons.collab.mapPushed" VALUE="La carte a &#xe9;t&#xe9; publi&#xe9;e sur le serveur distant."/>
 <attribute NAME="addons.collab.notAvailableForThisVcs" VALUE="Non disponible pour ce syst&#xe8;me de gestion de versions"/>
 <attribute NAME="addons.collab.vcsReturnedAnError" VALUE="Le syst&#xe8;me de gestion de versions a retourn&#xe9; l&apos;erreur suivante :"/>
+<attribute NAME="addons.collab.unknownFileStatus" VALUE="Statut de fichier inconnu"/>
+<attribute NAME="addons.collab.vcsAddFailed" VALUE="L&apos;ajoutdu fichier au syst&#xe8;me de gestion de version a &#xe9;chou&#xe9;."/>
 </node>
 </node>
 <node TEXT="deinstall" POSITION="left" ID="ID_1936073781" CREATED="1371158990182" MODIFIED="1371209683326">
@@ -651,6 +655,51 @@
 <node TEXT="commit" ID="ID_72776484" CREATED="1372763657150" MODIFIED="1372763658307">
 <node TEXT="folder is not under cvs control" ID="ID_1657164275" CREATED="1372763658854" MODIFIED="1372763671860"/>
 <node TEXT="file is not added" ID="ID_1628728639" CREATED="1372763674007" MODIFIED="1372763681316"/>
+</node>
+</node>
+<node TEXT="development guidelines" POSITION="right" ID="ID_1445578454" CREATED="1373404569334" MODIFIED="1373404578893">
+<edge COLOR="#ffff00"/>
+<node TEXT="architecture" ID="ID_1967794215" CREATED="1373404581226" MODIFIED="1373404584023">
+<node TEXT="svn" ID="ID_1724755892" CREATED="1373404585002" MODIFIED="1373404586678">
+<node TEXT="status" ID="ID_112455668" CREATED="1373404659665" MODIFIED="1373404661076">
+<node TEXT="exit 0" ID="ID_96700127" CREATED="1373404676487" MODIFIED="1373404678284"/>
+<node TEXT="exit 1" ID="ID_363088385" CREATED="1373404678521" MODIFIED="1373404680037"/>
+</node>
+<node TEXT="update" ID="ID_1344366366" CREATED="1373404594507" MODIFIED="1373404596425">
+<node TEXT="status" ID="ID_131366302" CREATED="1373404694018" MODIFIED="1373404699655">
+<node TEXT="modified" ID="ID_575997751" CREATED="1373404700758" MODIFIED="1373404702646"/>
+<node TEXT="needsPatch" ID="ID_244691856" CREATED="1373404703213" MODIFIED="1373404724015"/>
+<node TEXT="upToDate" ID="ID_1531144457" CREATED="1373404707698" MODIFIED="1373404714069"/>
+<node TEXT="unkown" ID="ID_1450433353" CREATED="1373404731460" MODIFIED="1373404734435"/>
+</node>
+<node TEXT="exit 0" ID="ID_1178524905" CREATED="1373404621594" MODIFIED="1373404624667"/>
+<node TEXT="exit 1" ID="ID_1404770303" CREATED="1373404625053" MODIFIED="1373404626920"/>
+</node>
+<node TEXT="diff" ID="ID_1265313586" CREATED="1373404596661" MODIFIED="1373404597839">
+<node TEXT="exit 0" ID="ID_628362289" CREATED="1373404628594" MODIFIED="1373404630551"/>
+<node TEXT="exit 1" ID="ID_604826466" CREATED="1373404630798" MODIFIED="1373404632240"/>
+</node>
+<node TEXT="commit" ID="ID_796283311" CREATED="1373404599588" MODIFIED="1373404600816">
+<node TEXT="exit 0" ID="ID_470031494" CREATED="1373404633728" MODIFIED="1373404635354"/>
+<node TEXT="exit 1" ID="ID_1342303313" CREATED="1373404635633" MODIFIED="1373404637125"/>
+</node>
+</node>
+<node TEXT="git" ID="ID_1827537638" CREATED="1373404586952" MODIFIED="1373404587684">
+<node TEXT="update" ID="ID_1132473995" CREATED="1373404607159" MODIFIED="1373404609332"/>
+<node TEXT="diff" ID="ID_963205873" CREATED="1373404609554" MODIFIED="1373404610625"/>
+<node TEXT="commit" ID="ID_105212705" CREATED="1373404610872" MODIFIED="1373404612259"/>
+</node>
+<node TEXT="cvs" ID="ID_548079664" CREATED="1373404587981" MODIFIED="1373404588899">
+<node TEXT="update" ID="ID_1454720538" CREATED="1373404614337" MODIFIED="1373404616280"/>
+<node TEXT="diff" ID="ID_1205225717" CREATED="1373404616552" MODIFIED="1373404617379"/>
+<node TEXT="commit" ID="ID_1877529582" CREATED="1373404617740" MODIFIED="1373404618997"/>
+</node>
+<node TEXT="class vcs" ID="ID_1529892284" CREATED="1373404753848" MODIFIED="1373404758542">
+<node TEXT="status" ID="ID_1108807476" CREATED="1373404760046" MODIFIED="1373404761699"/>
+<node TEXT="update" ID="ID_1260297533" CREATED="1373404762006" MODIFIED="1373404763693"/>
+<node TEXT="diff" ID="ID_1230055334" CREATED="1373404763955" MODIFIED="1373404765006"/>
+<node TEXT="commit" ID="ID_181033268" CREATED="1373404765368" MODIFIED="1373404766934"/>
+</node>
 </node>
 </node>
 <node TEXT="test stories" POSITION="right" ID="ID_212617199" CREATED="1372893294383" MODIFIED="1372893312618">
