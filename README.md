@@ -42,6 +42,11 @@ v0.6 :
 - better error handling
 - (internal) sharing same main function
 
+v0.7 :
+- added git support
+
+v0.8 :
+- added svn support
 
 Todo
 =============================
