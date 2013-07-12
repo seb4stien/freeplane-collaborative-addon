@@ -46,6 +46,8 @@ private String guessVcs(String context, Boolean verbose) {
 		vcs = "cvs"
 	} else if ((new File(node.map.file.getParent() + File.separator + '.git')).exists()) {
 		vcs = "git"
+	} else if ((new File(node.map.file.getParent() + File.separator + '.svn')).exists()) {
+		vcs = "svn"
 	}
 	
 	if (vcs) {
@@ -75,8 +77,6 @@ private String vcsDo(String vcs, String context, String action, Boolean verbose)
 			
 		return
 	}
-
-	def actionDone = 0
 	
 	// Get the file status to stop action if it make no sense
 	// - commit an upToDate file
@@ -118,42 +118,54 @@ private String vcsDo(String vcs, String context, String action, Boolean verbose)
 					JOptionPane.INFORMATION_MESSAGE)
 			}
 			return
-		}  else if (fileStatus == "needsPatch") {
-		if (action == "diff") {
-			JOptionPane.showMessageDialog(ui.frame,
-				textUtils.getText("addons.collab.mapNeedsUpdate"),
-				context,
-				JOptionPane.INFORMATION_MESSAGE)
+		}  else if ((fileStatus == "needsPatch") || (fileStatus == "needsUpdate")) {
+			if (action == "diff") {
+				JOptionPane.showMessageDialog(ui.frame,
+					textUtils.getText("addons.collab.mapNeedsUpdate"),
+					context,
+					JOptionPane.INFORMATION_MESSAGE)
 				
-			return
-		}
-	} else if (fileStatus == "needsMerge") {
-		if (action == "commit") {
-			JOptionPane.showMessageDialog(ui.frame,
-				textUtils.getText("addons.collab.mapNeedsUpdate"),
-				context,
-				JOptionPane.ERROR_MESSAGE)
-				
-			return
-		}
-	} else if (fileStatus == "unknown") {
-		final int addFile = JOptionPane.showConfirmDialog(ui.frame, 
-				textUtils.getText("addons.collab.fileIsNotVersionned") + "\n" + textUtils.getText("addons.collab.doYouWantToAddFile") ,
-				context,
-				JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-				
-		if (addFile == JOptionPane.YES_OPTION) {
-				vcsDo(vcs, context, "add", verbose)
-				vcsDo(vcs, context, "commit", verbose)
-			} else {
-				message += textUtils.getText("addons.collab.fileIsNotVersionned") + "\n"
-				JOptionPane.showMessageDialog(ui.frame, 
-					message,
-					context, JOptionPane.ERROR_MESSAGE)
+				return
 			}
+		} else if (fileStatus == "needsMerge") {
+			if (action == "commit") {
+				JOptionPane.showMessageDialog(ui.frame,
+					textUtils.getText("addons.collab.mapNeedsUpdate"),
+					context,
+					JOptionPane.ERROR_MESSAGE)
+				
+				return
+			}
+		} else if (fileStatus == "unknown") {
+			final int addFile = JOptionPane.showConfirmDialog(ui.frame, 
+					textUtils.getText("addons.collab.fileIsNotVersionned") + "\n" + textUtils.getText("addons.collab.doYouWantToAddFile") ,
+					context,
+					JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+				
+			if (addFile == JOptionPane.YES_OPTION) {
+					vcsDo(vcs, context, "add", verbose)
+					vcsDo(vcs, context, "commit", verbose)
+				} else {
+					message += textUtils.getText("addons.collab.fileIsNotVersionned") + "\n"
+					JOptionPane.showMessageDialog(ui.frame, 
+						message,
+						context, JOptionPane.ERROR_MESSAGE)
+				}
 		
-		return
-	}
+			return
+		} else if (fileStatus == "locallyModified") {
+				if (action == "update") {
+					JOptionPane.showMessageDialog(ui.frame, 
+						textUtils.getText("addons.collab.mapNeedsCommit"),
+						context, JOptionPane.WARNING_MESSAGE)
+					return
+				}
+		} else {
+				JOptionPane.showMessageDialog(ui.frame, 
+					textUtils.getText("addons.collab.unknownFileStatus") + "\n  " + fileStatus,
+					context, JOptionPane.ERROR_MESSAGE)
+				return
+		}
 	}
 
 	
@@ -187,6 +199,8 @@ private String vcsDo(String vcs, String context, String action, Boolean verbose)
 		vcsCommandArray = [vcsBin, action, "-F", commitFile.path, node.map.file.name]
 	} else if ( (action == "push") || (action == "pull") ) {
 		vcsCommandArray = [vcsBin, action]
+	} else if ( (action == "status") && (vcs == "svn") ) {
+		vcsCommandArray = [vcsBin, action, "-u", node.map.file.name]
 	} else {
 		vcsCommandArray = [vcsBin, action, node.map.file.name]
 	}
@@ -226,10 +240,9 @@ private String vcsDo(String vcs, String context, String action, Boolean verbose)
 	}
 
 
-	def message = ""	
 	// verbose mode : show command and results
 	if (verbose) {
-		message = textUtils.getText("addons.collab.commandOutput") + "\n" + outStream + "\n\n"
+		def message = textUtils.getText("addons.collab.commandOutput") + "\n" + outStream + "\n\n"
 		message += textUtils.getText("addons.collab.commandErrors") + "\n" + errStream + "\n\n"
 		
 		def messageType = null
@@ -262,11 +275,9 @@ private String vcsDo(String vcs, String context, String action, Boolean verbose)
 			// Patterns
 			// - windows : "fatal: Not a git repository (or any of the parent directories): .git"
 		
-			// import is not supported
-			message = textUtils.getText("addons.collab.folderIsNotVersionned") + "\n"
-			
+			// import is not supported			
 			JOptionPane.showMessageDialog(ui.frame, 
-				message,
+				textUtils.getText("addons.collab.folderIsNotVersionned") + "\n",
 				context, JOptionPane.ERROR_MESSAGE)
 				
 			return "folderIsNotVersionned"
@@ -291,41 +302,33 @@ private String vcsDo(String vcs, String context, String action, Boolean verbose)
 				JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 			
 			if (addFile == JOptionPane.YES_OPTION) {
+				// todo : handle errors
 				vcsDo(vcs, context, "add", verbose)
 				vcsDo(vcs, context, "commit", verbose)
 			} else {
-				message += textUtils.getText("addons.collab.fileIsNotVersionned") + "\n"
 				JOptionPane.showMessageDialog(ui.frame, 
-					message,
-					context, JOptionPane.ERROR_MESSAGE)
+					textUtils.getText("addons.collab.fileIsNotVersionned") + "\n",
+					context, JOptionPane.ERROR_MESSAGE)					
+				return
 			}
 		} else if ( (action == "commit") && (outStream =~ /Log message unchanged or not specified/) ) {
 				// Case : empty log message
-				message += textUtils.getText("addons.collab.emptyCommitLog")
 				JOptionPane.showMessageDialog(ui.frame, 
-					message,
+					textUtils.getText("addons.collab.emptyCommitLog"),
 					context, JOptionPane.ERROR_MESSAGE)
+				return
 		} else if ( (action == "update") && (outStream =~ /C /) ) {
 				node.map.close(true, false)
-				message += textUtils.getText("addons.collab.mapConflict")
 				JOptionPane.showMessageDialog(ui.frame, 
-					message,
+					textUtils.getText("addons.collab.mapConflict"),
 					context, JOptionPane.ERROR_MESSAGE)
+				return
 		} else if (action == "diff") {
-				message += textUtils.getText("addons.collab.mapDifferences") + "\n"
-				message += outStream
-				
 				JOptionPane.showMessageDialog(ui.frame, 
-					message,
+					textUtils.getText("addons.collab.mapDifferences") + "\n" + outStream,
 					context, JOptionPane.WARNING_MESSAGE)
+				return
 		} else {
-			// unknwon error
-			/*
-			if (! verbose) {
-				message = textUtils.getText("addons.collab.unknownErrorActivateVerboseMode")
-			}
-			*/
-			
 			JOptionPane.showMessageDialog(ui.frame, 
 				textUtils.getText("addons.collab.vcsReturnedAnError") + "\n" + errStream,
 				context, JOptionPane.ERROR_MESSAGE)
@@ -335,17 +338,20 @@ private String vcsDo(String vcs, String context, String action, Boolean verbose)
 		
 	} else {
 		// errorstatus = 0 = ok
+		
+		patternModifiedByGit = "modified: " + node.map.file.name
+		
 		if (outStream.size() > 0) {
 			if (action == "commit") {
 				if (outStream =~ /nothing added to commit/) {
 					// Git
-					message += textUtils.getText("addons.collab.mapDoesntNeedCommit")
-				} else {
-					message += textUtils.getText("addons.collab.mapCommitted")
-					actionDone = 1
-		
 					JOptionPane.showMessageDialog(ui.frame, 
-						message,
+						textUtils.getText("addons.collab.mapDoesntNeedCommit"),
+						context, JOptionPane.INFORMATION_MESSAGE)
+					return
+				} else {					
+					JOptionPane.showMessageDialog(ui.frame, 
+						textUtils.getText("addons.collab.mapCommitted"),
 						context, JOptionPane.INFORMATION_MESSAGE)
 		
 					// The file has been committed => prompt the user if he wants to push
@@ -365,7 +371,11 @@ private String vcsDo(String vcs, String context, String action, Boolean verbose)
 				
 			} else if (action == "update") {
 				if (outStream =~ /M /) {
-					message += textUtils.getText("addons.collab.mapNeedsCommit")
+					textUtils.getText("addons.collab.mapNeedsCommit")
+					JOptionPane.showMessageDialog(ui.frame, 
+						textUtils.getText("addons.collab.mapCommitted"),
+						context, JOptionPane.INFORMATION_MESSAGE)
+					return
 				}
 	
 				// there are some updates => close the map and reoppen it
@@ -373,8 +383,10 @@ private String vcsDo(String vcs, String context, String action, Boolean verbose)
 					def uri = node.map.file.toURI()
 					node.map.close(false, true)
 					loadUri(uri)
-					message += textUtils.getText("addons.collab.mapUpdated")
-					actionDone = 1
+					JOptionPane.showMessageDialog(ui.frame, 
+						textUtils.getText("addons.collab.mapUpdated"),
+						context, JOptionPane.INFORMATION_MESSAGE)
+					return
 				}
 				
 			} else if (action == "status") {
@@ -382,39 +394,47 @@ private String vcsDo(String vcs, String context, String action, Boolean verbose)
 					return "upToDate"
 				} else if ( outStream =~ /Status: Needs Patch/) {
 					return "needsPatch"
-				} else if ( outStream =~ /Status: Locally modified/) {
+				} else if ( (outStream =~ /Status: Locally modified/) || (outStream =~ /^M /)) { // CVS || SVN
 					return "locallyModified"
 				} else if ( outStream =~ /Status: Needs Merge/) {
 					return "needsMerge"
 				} else if ( outStream =~ /Status: Unknown/) {
 					return "unknown"
-				}
-			} else if (action == "pull") {
-				message += textUtils.getText("addons.collab.mapIsUpToDate")
-			}
-		} else {
-			if (action == "add") {
-				message += textUtils.getText("addons.collab.mapAdded")
-				actionDone = 1
-			} else if (action == "commit") {
-				message += textUtils.getText("addons.collab.mapDoesntNeedCommit")
-			} else if (action == "update") {
-				if ((errStream =~ /nothing known about/) || (errStream =~ /to create an entry for/) || (errStream =~ /I know nothing about/)) {
-					message += textUtils.getText("addons.collab.fileIsNotVersionned")
-				} else {
-					message += textUtils.getText("addons.collab.mapIsUpToDate")
+				} else if ( outStream =~ /todo patternModifiedByGit/) { // git
+					return "locallyModified"
+				} else if ( outStream =~ /        */ ) { // svn status -u
+					return "needsUpdate"
 				}
 			} else if (action == "diff") {
-				message += textUtils.getText("addons.collab.vcsReturnedNoDiff")
-			} else if (action == "push") {
-				message += textUtils.getText("addons.collab.mapPushed")
+				JOptionPane.showMessageDialog(ui.frame, 
+						textUtils.getText("addons.collab.mapDifferences") + "\n\n" + outStream,
+						context, JOptionPane.INFORMATION_MESSAGE)
+				return
+			} else if (action == "pull") {
+				JOptionPane.showMessageDialog(ui.frame, 
+						textUtils.getText("addons.collab.mapIsUpToDate"),
+						context, JOptionPane.INFORMATION_MESSAGE)
+				return
 			}
-		}
-
-		if ( verbose || (action != "status") ) {
-			JOptionPane.showMessageDialog(ui.frame, 
-				message,
-				context, JOptionPane.INFORMATION_MESSAGE)
+		} else { // empty outputstream
+			if (action == "add") {
+				JOptionPane.showMessageDialog(ui.frame, 
+						textUtils.getText("addons.collab.mapAdded"),
+						context, JOptionPane.INFORMATION_MESSAGE)
+				return
+			} else if (action == "diff") {
+				JOptionPane.showMessageDialog(ui.frame, 
+						textUtils.getText("addons.collab.vcsReturnedNoDiff"),
+						context, JOptionPane.INFORMATION_MESSAGE)
+				return
+			} else if (action == "push") {
+				JOptionPane.showMessageDialog(ui.frame, 
+						textUtils.getText("addons.collab.mapPushed"),
+						context, JOptionPane.INFORMATION_MESSAGE)
+				return
+			} else if (action == "status") { // svn
+				return "upToDate" 
+			}
 		}
 	}	
 }
