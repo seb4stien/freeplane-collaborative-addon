@@ -143,7 +143,9 @@ private String vcsDo(String vcs, String context, String action, Boolean verbose)
 					if (vcsDo(vcs, context, "add", verbose) == "fileAdded") {
 						vcsDo(vcs, context, "commit", verbose)
 					} else {
-						// error message has been shown in "add" operation
+						JOptionPane.showMessageDialog(ui.frame, 
+							textUtils.getText("addons.collab.vcsAddFailed"),
+							context, JOptionPane.ERROR_MESSAGE)
 					}
 				} else {
 					JOptionPane.showMessageDialog(ui.frame, 
@@ -389,11 +391,11 @@ private String vcsDo(String vcs, String context, String action, Boolean verbose)
 				}
 				
 			} else if (action == "status") {
-				if ( (outStream =~ /nothing to commit/) || (outStream =~ /Status: Up-to-date/) ) {
+				if ( (outStream =~ /nothing to commit/) || (outStream =~ /Status: Up-to-date/) || (outStream =~ /^Status against/)) { // ? || cvs status || svn status -u
 					return "upToDate"
 				} else if ( outStream =~ /Status: Needs Patch/) {
 					return "needsPatch"
-				} else if ( (outStream =~ /Status: Locally modified/) || (outStream =~ /^M /)) { // CVS || SVN
+				} else if ( (outStream =~ /Status: Locally modified/) || (outStream =~ /^M /) || (outStream =~ /^A /)) { // CVS || SVN
 					return "locallyModified"
 				} else if ( outStream =~ /Status: Needs Merge/) {
 					return "needsMerge"
@@ -401,8 +403,10 @@ private String vcsDo(String vcs, String context, String action, Boolean verbose)
 					return "unknown"
 				} else if ( outStream =~ /todo patternModifiedByGit/) { // git
 					return "locallyModified"
-				} else if ( outStream =~ /        */ ) { // svn status -u
+				} else if ( outStream =~ /^        \*/ ) { // svn status -u
 					return "needsUpdate"
+				} else if ( outStream =~ /^\?/ ) { // svn unknown
+					return "unknown"
 				}
 			} else if (action == "diff") {
 				JOptionPane.showMessageDialog(ui.frame, 
@@ -414,13 +418,18 @@ private String vcsDo(String vcs, String context, String action, Boolean verbose)
 						textUtils.getText("addons.collab.mapIsUpToDate"),
 						context, JOptionPane.INFORMATION_MESSAGE)
 				return
+			} else if (action == "add") { // svn
+				JOptionPane.showMessageDialog(ui.frame, 
+						textUtils.getText("addons.collab.mapAdded"),
+						context, JOptionPane.INFORMATION_MESSAGE)
+				return "fileAdded"
 			}
 		} else { // empty outputstream
 			if (action == "add") {
 				JOptionPane.showMessageDialog(ui.frame, 
 						textUtils.getText("addons.collab.mapAdded"),
 						context, JOptionPane.INFORMATION_MESSAGE)
-				return "fileAddded"
+				return "fileAdded"
 			} else if (action == "diff") {
 				JOptionPane.showMessageDialog(ui.frame, 
 						textUtils.getText("addons.collab.vcsReturnedNoDiff"),
