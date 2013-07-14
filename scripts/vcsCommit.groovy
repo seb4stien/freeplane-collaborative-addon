@@ -276,10 +276,12 @@ private String vcsDo(String vcs, String context, String action, Boolean verbose)
 			// Patterns
 			// - windows : "fatal: Not a git repository (or any of the parent directories): .git"
 		
-			// import is not supported			
-			JOptionPane.showMessageDialog(ui.frame, 
-				textUtils.getText("addons.collab.folderIsNotVersionned") + "\n",
-				context, JOptionPane.ERROR_MESSAGE)
+			// do not display error message during status, the caller will do it
+			if (action != "status") {
+				JOptionPane.showMessageDialog(ui.frame, 
+					textUtils.getText("addons.collab.folderIsNotVersionned") + "\n",
+					context, JOptionPane.ERROR_MESSAGE)
+			}
 				
 			return "folderIsNotVersionned"
 		
