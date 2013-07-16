@@ -79,7 +79,7 @@ private String vcsDo(String vcs, String context, String action, Boolean verbose)
 	// - commit an upToDate file
 	// - diff an upToDate file
 	def fileStatus = ""
-	if ( (action != "status") && (action != "add") && (action != "push")) {
+	if ( (action != "status") && (action != "add") && (action != "push") && (action != "fetch")) {
 		fileStatus = vcsDo(vcs, context, "status", verbose)
 		
 		if (verbose) {
@@ -93,6 +93,11 @@ private String vcsDo(String vcs, String context, String action, Boolean verbose)
 	
 		if (fileStatus == "fatalError") {
 			// the error has been shown in the vcsDo function just quit
+			return
+		} else if (fileStatus == "conflict") {
+			JOptionPane.showMessageDialog(ui.frame, 
+				textUtils.getText("addons.collab.mapConflict"),
+				context, JOptionPane.ERROR_MESSAGE)
 			return
 		} else if (fileStatus == "folderIsNotVersionned") {
 			message = textUtils.getText("addons.collab.folderIsNotVersionned") + "\n"
@@ -155,17 +160,23 @@ private String vcsDo(String vcs, String context, String action, Boolean verbose)
 		
 			return
 		} else if (fileStatus == "locallyModified") {
-				if (action == "update") {
+				if ( (action == "update") || (action == "pull") ) {
 					JOptionPane.showMessageDialog(ui.frame, 
 						textUtils.getText("addons.collab.mapNeedsCommit"),
 						context, JOptionPane.WARNING_MESSAGE)
 					return
 				}
+		} else if (fileStatus == "iDontKnow") {
+				//todo
 		} else {
 				JOptionPane.showMessageDialog(ui.frame, 
 					textUtils.getText("addons.collab.unknownFileStatus") + "\n  " + fileStatus,
 					context, JOptionPane.ERROR_MESSAGE)
 				return
+		}
+	} else if (action == "status") {
+		if (vcs == "git") {
+			vcsDo(vcs, context, "fetch", verbose)
 		}
 	}
 
@@ -202,6 +213,12 @@ private String vcsDo(String vcs, String context, String action, Boolean verbose)
 		vcsCommandArray = [vcsBin, action]
 	} else if ( (action == "status") && (vcs == "svn") ) {
 		vcsCommandArray = [vcsBin, action, "-u", node.map.file.name]
+	} else if ( (action == "status") && (vcs == "git") ) {
+		vcsCommandArray = [vcsBin, action, "--porcelain", node.map.file.name]	
+	} else if ( (action == "diff") && (vcs == "git") ) {
+		vcsCommandArray = [vcsBin, action, "master", "origin/master", node.map.file.name]	
+	} else if ( (action == "fetch") && (vcs == "git") ) {
+		vcsCommandArray = [vcsBin, action, "origin"]
 	} else {
 		vcsCommandArray = [vcsBin, action, node.map.file.name]
 	}
@@ -277,7 +294,7 @@ private String vcsDo(String vcs, String context, String action, Boolean verbose)
 			// - windows : "fatal: Not a git repository (or any of the parent directories): .git"
 		
 			// do not display error message during status, the caller will do it
-			if (action != "status") {
+			if ((action != "status") && (action != "fetch")) {
 				JOptionPane.showMessageDialog(ui.frame, 
 					textUtils.getText("addons.collab.folderIsNotVersionned") + "\n",
 					context, JOptionPane.ERROR_MESSAGE)
@@ -320,8 +337,17 @@ private String vcsDo(String vcs, String context, String action, Boolean verbose)
 					textUtils.getText("addons.collab.emptyCommitLog"),
 					context, JOptionPane.ERROR_MESSAGE)
 				return
+		} else if ( (action == "commit") && (outStream =~ /nothing added to commit/) ) {
+				JOptionPane.showMessageDialog(ui.frame, 
+					textUtils.getText("addons.collab.mapDoesntNeedCommit"),
+					context, JOptionPane.INFORMATION_MESSAGE)
+				return
 		} else if ( (action == "update") && (outStream =~ /C /) ) {
-				node.map.close(true, false)
+				JOptionPane.showMessageDialog(ui.frame, 
+					textUtils.getText("addons.collab.mapConflict"),
+					context, JOptionPane.ERROR_MESSAGE)
+				return
+		} else if ( (action == "pull") && (outStream =~ /CONFLICT/) ) {
 				JOptionPane.showMessageDialog(ui.frame, 
 					textUtils.getText("addons.collab.mapConflict"),
 					context, JOptionPane.ERROR_MESSAGE)
@@ -372,17 +398,16 @@ private String vcsDo(String vcs, String context, String action, Boolean verbose)
 					return
 				}
 				
-			} else if (action == "update") {
-				if (outStream =~ /M /) {
-					textUtils.getText("addons.collab.mapNeedsCommit")
+			} else if ((action == "update") || (action == "pull")) {
+				if (outStream =~ /Already up-to-date/) {
 					JOptionPane.showMessageDialog(ui.frame, 
-						textUtils.getText("addons.collab.mapCommitted"),
+						textUtils.getText("addons.collab.mapIsUpToDate"),
 						context, JOptionPane.INFORMATION_MESSAGE)
 					return
 				}
-	
+
 				// there are some updates => close the map and reoppen it
-				if ( (outStream =~ /P /) || (outStream =~ /U /) ) {
+				if ( (outStream =~ /P /) || (outStream =~ /U /) || (outStream =~ /Updating/) || (outStream =~ /M /) ) {
 					def uri = node.map.file.toURI()
 					node.map.close(false, true)
 					loadUri(uri)
@@ -391,29 +416,51 @@ private String vcsDo(String vcs, String context, String action, Boolean verbose)
 						context, JOptionPane.INFORMATION_MESSAGE)
 					return
 				}
+
+				if ( outStream =~ /C /) {
+					//node.map.close(true, false) // let user do a backup
+					JOptionPane.showMessageDialog(ui.frame, 
+						textUtils.getText("addons.collab.mapConflict"),
+						context, JOptionPane.ERROR_MESSAGE)
+					return
+				}
 				
 			} else if (action == "status") {
 				if ( (outStream =~ /nothing to commit/) || (outStream =~ /Status: Up-to-date/) || (outStream =~ /^Status against/)) { // ? || cvs status || svn status -u
 					return "upToDate"
+				} else if ( outStream =~ /Status: File had conflicts on merge/ ) {
+					return "conflict"
 				} else if ( outStream =~ /Status: Needs Patch/) {
 					return "needsPatch"
-				} else if ( (outStream =~ /Status: Locally modified/) || (outStream =~ /^M /) || (outStream =~ /^A /)) { // CVS || SVN
+				} else if ( outStream =~ /^C / ) {
+					return "conflict"
+				} else if ( outStream =~ /^UU/ ) { // git
+					return "conflict"
+				} else if ( outStream =~ /Status: Locally Added/) {
+					return "needsPatch"
+				} else if ( outStream =~ /^........\*/ ) { // svn status -u // to check before ^M
+					return "needsUpdate"
+				} else if ( (outStream =~ /Status: Locally modified/) ||
+							(outStream =~ /Status: Locally Modified/)) {
+					return "iDontKnow" // because it can be remotely modified too (under cvs at least)
+				} else if ( (outStream =~ /^M /) ||
+							(outStream =~ /^A /)) { // CVS || SVN
 					return "locallyModified"
 				} else if ( outStream =~ /Status: Needs Merge/) {
 					return "needsMerge"
 				} else if ( outStream =~ /Status: Unknown/) {
 					return "unknown"
-				} else if ( outStream =~ /todo patternModifiedByGit/) { // git
+				} else if ( outStream =~ /^ M /) { // git
 					return "locallyModified"
-				} else if ( outStream =~ /^        \*/ ) { // svn status -u
-					return "needsUpdate"
 				} else if ( outStream =~ /^\?/ ) { // svn unknown
 					return "unknown"
 				}
+				
+				return "fatalError"
 			} else if (action == "diff") {
 				JOptionPane.showMessageDialog(ui.frame, 
 						textUtils.getText("addons.collab.mapDifferences") + "\n\n" + outStream,
-						context, JOptionPane.INFORMATION_MESSAGE)
+						context, JOptionPane.WARNING_MESSAGE)
 				return
 			} else if (action == "pull") {
 				JOptionPane.showMessageDialog(ui.frame, 
@@ -442,8 +489,16 @@ private String vcsDo(String vcs, String context, String action, Boolean verbose)
 						textUtils.getText("addons.collab.mapPushed"),
 						context, JOptionPane.INFORMATION_MESSAGE)
 				return
-			} else if (action == "status") { // svn
-				return "upToDate" 
+			} else if (action == "status") {
+				if (vcs == "svn") {
+					if  ( errStream =~ /is not a working copy/) { // unversionned svn
+						return "folderIsNotVersionned"
+					} else {
+						return "upToDate" 
+					}
+				} else if (vcs == "git") {
+					return "iDontKnow"
+				}
 			}
 		}
 	}	
@@ -474,7 +529,7 @@ if (!node.map.isSaved()) {
 if (this =~ /Commit/) {
 	vcsDo(vcs, textUtils.getText("addons.vcsCommit"), "commit", verbose)
 } else if (this =~ /Diff/) {
-	if (vcs == "git") {
+	if (vcs == "todogit") {
 		JOptionPane.showMessageDialog(ui.frame, 
 				textUtils.getText("addons.collab.notAvailableForThisVcs") + " (" + vcs + ")",
 				textUtils.getText("addons.vcsDiff"), JOptionPane.ERROR_MESSAGE)
