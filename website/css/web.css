@@ -1,8 +1,11 @@
 body {
 	background : #ffffff;
 	color : #333333;
-	padding-left: 200px;
-	padding-right: 200px;
+//	padding-left: 5%;
+//	padding-right: 5%;
+	width: 800px;
+	margin-left: auto;
+	margin-right: auto;
 	font-family : sans-serif;
 }
 

@@ -1,6 +1,6 @@
 <map version="freeplane 1.2.0">
 <!--To view this file, download free mind mapping software Freeplane from http://freeplane.sourceforge.net -->
-<node TEXT="collaborative tools" ID="ID_1723255651" CREATED="1283093380553" MODIFIED="1373403051376" BACKGROUND_COLOR="#97c7dc">
+<node TEXT="collaborative tools" ID="ID_1723255651" CREATED="1283093380553" MODIFIED="1374174888746" BACKGROUND_COLOR="#97c7dc">
 <font SIZE="16" BOLD="true" ITALIC="true"/>
 <hook NAME="MapStyle">
     <properties show_icon_for_attributes="true" show_note_icons="true"/>
@@ -52,10 +52,10 @@
 </stylenode>
 </map_styles>
 </hook>
-<hook NAME="AutomaticEdgeColor" COUNTER="6"/>
+<hook NAME="AutomaticEdgeColor" COUNTER="9"/>
 <attribute_layout NAME_WIDTH="121" VALUE_WIDTH="137"/>
 <attribute NAME="name" VALUE="collaborativeTools"/>
-<attribute NAME="version" VALUE="v0.8" OBJECT="org.freeplane.features.format.FormattedObject|v0.8|number:decimal:#0.####"/>
+<attribute NAME="version" VALUE="v0.9" OBJECT="org.freeplane.features.format.FormattedObject|v0.9|number:decimal:#0.####"/>
 <attribute NAME="author" VALUE="seb4stien"/>
 <attribute NAME="freeplaneVersionFrom" VALUE="1.2.23"/>
 <attribute NAME="freeplaneVersionTo" VALUE=""/>
@@ -157,6 +157,11 @@
 <node TEXT="v0.8" ID="ID_1466445545" CREATED="1373403063331" MODIFIED="1373403065362">
 <node TEXT="added svn support" ID="ID_704366621" CREATED="1373403065992" MODIFIED="1373403072202"/>
 </node>
+<node TEXT="v0.9" ID="ID_212844978" CREATED="1374174892969" MODIFIED="1374174894733">
+<node TEXT="complete refactoring" ID="ID_1916020756" CREATED="1374174896132" MODIFIED="1374174904183"/>
+<node TEXT="non regression tests" ID="ID_1295959458" CREATED="1374174904730" MODIFIED="1374174912171"/>
+<node TEXT="full cvs/svn/git support" ID="ID_89964569" CREATED="1374174914828" MODIFIED="1374174921301"/>
+</node>
 </node>
 <node TEXT="license" POSITION="left" ID="ID_915883933" CREATED="1371158990126" MODIFIED="1371158990131">
 <edge COLOR="#00ff00"/>
@@ -245,7 +250,7 @@
   </body>
 </html>
 </richcontent>
-<node TEXT="en" ID="ID_1232293217" CREATED="1371158990178" MODIFIED="1373644991362">
+<node TEXT="en" ID="ID_1232293217" CREATED="1371158990178" MODIFIED="1373888033337">
 <attribute_layout NAME_WIDTH="219" VALUE_WIDTH="243"/>
 <attribute NAME="addons.${name}" VALUE="Collaborative Tools"/>
 <attribute NAME="addons.vcsUpdate" VALUE="Update my map"/>
@@ -264,7 +269,7 @@
 <attribute NAME="addons.collab.commandOutput" VALUE="Output"/>
 <attribute NAME="addons.collab.commandErrors" VALUE="Errors"/>
 <attribute NAME="addons.collab.saveMapFirst" VALUE="You should save your map first."/>
-<attribute NAME="addons.collab.mapConflict" VALUE="Warning : conflict during update. You must resolve it before reopening the map. Start a text editor and look for &quot;&lt;&lt;&lt;&quot; / &quot;&gt;&gt;&gt;&quot; in your map file. Remember that your original map is available in your autosave directory."/>
+<attribute NAME="addons.collab.mapConflict" VALUE="Warning : conflict during update.\nYou must resolve it before reopening the map.\n1. Save the current map with a new name.\n2. Start a text editor and look for &quot;&lt;&lt;&lt;&quot; / &quot;&gt;&gt;&gt;&quot; in your original map file.\n3. Fix the conflict.\n\nRemember that your original map is available in your autosave directory if needed."/>
 <attribute NAME="addons.collab.mapNeedsCommit" VALUE="Your map was locally modified. You should commit it."/>
 <attribute NAME="addons.collab.mapDoesntNeedCommit" VALUE="Your map is already the latest version on the versionning system."/>
 <attribute NAME="addons.collab.mapCommitted" VALUE="Your map has been committed into the versionning system."/>
@@ -291,7 +296,7 @@
 <attribute NAME="addons.collab.unknownFileStatus" VALUE="Unknown file status"/>
 <attribute NAME="addons.collab.vcsAddFailed" VALUE="Could not add file to the versionning system."/>
 </node>
-<node TEXT="fr" ID="ID_1204840493" CREATED="1371158990178" MODIFIED="1373644754230" HGAP="39" VSHIFT="41">
+<node TEXT="fr" ID="ID_1204840493" CREATED="1371158990178" MODIFIED="1373888114153" HGAP="39" VSHIFT="41">
 <attribute_layout NAME_WIDTH="219" VALUE_WIDTH="350"/>
 <attribute NAME="addons.${name}" VALUE="Outils collaboratifs"/>
 <attribute NAME="addons.vcsUpdate" VALUE="Mettre &#xe0; jour ma version"/>
@@ -310,7 +315,7 @@
 <attribute NAME="addons.collab.commandOutput" VALUE="R\u00E9sultat"/>
 <attribute NAME="addons.collab.commandErrors" VALUE="Erreurs"/>
 <attribute NAME="addons.collab.saveMapFirst" VALUE="Vous devez d&apos;abord sauvegarder votre carte."/>
-<attribute NAME="addons.collab.mapConflict" VALUE="Attention : conflit durant la mise &#xe0; jour. Vous devez le r&#xe9;soudre avant de r&#xe9;&#xe9;diter la carte. L&apos;ouvrir avec un &#xe9;diteur de texte puis rechercher &apos;&lt;&lt;&lt;&apos; et &apos;&gt;&gt;&gt;&apos; afin de r&#xe9;gler le conflit. En cas de gros probl&#xe8;me, r&#xe9;cup&#xe9;rer la carte originale dans le r&#xe9;pertoire de sauvegarde automatique."/>
+<attribute NAME="addons.collab.mapConflict" VALUE="Attention : conflit durant la mise &#xe0; jour.\nVous devez le r&#xe9;soudre avant de r&#xe9;&#xe9;diter la carte.\n1. Sauvegarder la carte actuelle sous un nouveau nom.\n2. Ouvrir la carte originale avec un &#xe9;diteur de texte puis rechercher &apos;&lt;&lt;&lt;&apos; et &apos;&gt;&gt;&gt;&apos; afin de r&#xe9;gler le conflit.\n\nEn cas de gros probl&#xe8;me, la carte originale est disponible dans le r&#xe9;pertoire de sauvegarde automatique."/>
 <attribute NAME="addons.collab.mapNeedsCommit" VALUE="La carte a &#xe9;t&#xe9; modifi&#xe9;e localement, vous devriez la commiter."/>
 <attribute NAME="addons.collab.mapDoesntNeedCommit" VALUE="Le syst&#xe8;me de gestion de version est d&#xe9;j&#xe0; &#xe0; jour."/>
 <attribute NAME="addons.collab.mapCommitted" VALUE="La carte a bien &#xe9;t&#xe9; enregistr&#xe9;e sur le syst&#xe8;me de gestion de version."/>
@@ -707,6 +712,23 @@
 <node TEXT="all stories" ID="ID_1612308925" CREATED="1373058630310" MODIFIED="1373058633160">
 <node TEXT="test without verbose mode" ID="ID_1414687082" CREATED="1373058635114" MODIFIED="1373058640850"/>
 </node>
+<node TEXT="cvs" ID="ID_153083210" CREATED="1373646126581" MODIFIED="1373646152411">
+<node TEXT="copy /test cvs/" ID="ID_1822485255" CREATED="1373646227790" MODIFIED="1373646238594">
+<node TEXT="no check" ID="ID_630199941" CREATED="1373646282764" MODIFIED="1373646286542"/>
+</node>
+<node TEXT="open cvs/test" ID="ID_1273396501" CREATED="1373646243669" MODIFIED="1373646256372">
+<node TEXT="no check" ID="ID_1307516298" CREATED="1373646287886" MODIFIED="1373646289872"/>
+</node>
+<node TEXT="click on &quot;Compare&quot;" ID="ID_267920834" CREATED="1373646258045" MODIFIED="1373646267632">
+<node TEXT="check prompt" ID="ID_649252386" CREATED="1373646298807" MODIFIED="1373646302717"/>
+</node>
+<node TEXT="prompt to add" ID="ID_1946210649" CREATED="1373646209914" MODIFIED="1373646213120"/>
+<node TEXT="click no" ID="ID_6108145" CREATED="1373646215963" MODIFIED="1373646311440"/>
+<node TEXT="check error" ID="ID_51526491" CREATED="1373646323179" MODIFIED="1373646328464"/>
+<node TEXT="click ok" ID="ID_801499395" CREATED="1373646329679" MODIFIED="1373646331345"/>
+<node TEXT="check back to map" ID="ID_1088028290" CREATED="1373646331667" MODIFIED="1373646337367"/>
+<node TEXT="check file" ID="ID_105425515" CREATED="1373646388216" MODIFIED="1373646390395"/>
+</node>
 <node TEXT="story 1" ID="ID_399257598" CREATED="1372893370416" MODIFIED="1372893397235">
 <node TEXT="open a map in a non versionned folder" ID="ID_1676687015" CREATED="1372893339000" MODIFIED="1372893346334"/>
 <node TEXT="try F10/F11/F2" ID="ID_554720570" CREATED="1372893346871" MODIFIED="1372893352533"/>
@@ -756,6 +778,16 @@
 <node TEXT="story 7" ID="ID_1663344379" CREATED="1373058473641" MODIFIED="1373058475847">
 <node TEXT="story 3 with git with push" ID="ID_575776107" CREATED="1373058476782" MODIFIED="1373058483982"/>
 </node>
+</node>
+<node TEXT="todo" POSITION="right" ID="ID_332791607" CREATED="1373646062559" MODIFIED="1373646064080">
+<edge COLOR="#7c0000"/>
+<node TEXT="automate tests" ID="ID_1391118394" CREATED="1373646065059" MODIFIED="1373646071834">
+<node TEXT="automate interactive tests under windows" ID="ID_1494461386" CREATED="1373646413510" MODIFIED="1373646421381"/>
+<node TEXT="execute command line actions" ID="ID_1478875447" CREATED="1373646349540" MODIFIED="1373646355618"/>
+<node TEXT="check popup message" ID="ID_975945300" CREATED="1373646357133" MODIFIED="1373646366578"/>
+<node TEXT="check files" ID="ID_823769011" CREATED="1373646378353" MODIFIED="1373646380383"/>
+</node>
+<node TEXT="generate html" ID="ID_1072585566" CREATED="1373646072116" MODIFIED="1373646079495"/>
 </node>
 </node>
 </map>

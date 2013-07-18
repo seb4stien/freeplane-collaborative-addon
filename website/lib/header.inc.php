@@ -5,6 +5,12 @@ $l = "";
 if ($_GET['l'] == "fr") {
 	$l = "fr";
 }
+
+
+function t() {
+	
+}
+
 ?>
 
 <html>
@@ -25,7 +31,7 @@ freeplane : collaborative tools
 <? } else { ?>
 <meta http-equiv="content-language" content="en-EN" />
 <? } ?>
-<link rel="stylesheet" href="css/web.css">
+<link rel="stylesheet" href="/css/web.css">
 
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -42,21 +48,29 @@ freeplane : collaborative tools
 
 <body>
 <div class="header">
-<span class="title"><img src="img/icon.png" />
+<span class="title"><img src="/img/icon.png" />
 <? if ($l == "fr"){ ?>
 freeplane : outils <strong>collaboratifs</strong>
 <? } else { ?>
 freeplane <strong>collaborative</strong> tools
 <? } ?>
 </span>
-<span class="lang"><a href="index.php?l=fr">français</a> | <a href="index.php?l=en">english</a></span>
+<span class="lang"><a href="/fr/index.html">français</a> | <a href="/en/index.html">english</a></span>
 </div>
 
 <div class="menu">
 <? if ($l == "fr"){ ?>
-<a href="#intro">intro</a> | <a href="#download">téléchargement</a> | <a href="#documentation">documentation</a> | <a href="#contact">contact</a>
+<a href="/fr/index.html#intro">intro</a> |
+<a href="/fr/index.html#download">téléchargement</a> |
+<a href="/fr/news.html">actualités</a> |
+<a href="/fr/documentation.html">documentation</a> |
+<a href="/fr/contact.html">contact</a>
 <? } else { ?>
-<a href="#intro">home</a> | <a href="#download">download</a> | <a href="#documentation">documentation</a> | <a href="#contact">contact</a>
+<a href="/en/index.html#intro">home</a> |
+<a href="/en/index.html#download">download</a> |
+<a href="/en/news.html">news</a> |
+<a href="/en/documentation.html">documentation</a> |
+<a href="/en/contact.html">contact</a>
 <? } ?>
 </div>
 

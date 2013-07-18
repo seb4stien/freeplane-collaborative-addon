@@ -1,0 +1,409 @@
+
+<html>
+   <head>
+      <style type="text/css">
+         .sikuli-code {
+            font-size: 20px;
+            font-family: "Osaka-mono", Monospace;
+            line-height: 1.5em;
+            display:table-cell;
+            white-space: pre-wrap;       /* css-3 */
+            white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+            white-space: -pre-wrap;      /* Opera 4-6 */
+            white-space: -o-pre-wrap;    /* Opera 7 */
+            word-wrap: break-word;       /* Internet Explorer 5.5+ */
+            width: 99%;   /* remove horizontal scroll-bar when viewing in IE7 */
+         }
+         .sikuli-code img {
+            vertical-align: middle;
+            margin: 2px;
+            border: 1px solid #ccc;
+            padding: 2px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -moz-box-shadow: 1px 1px 1px gray;
+            -webkit-box-shadow: 1px 1px 2px gray;
+         }
+         .kw {
+            color: blue;
+         }
+         .skw {
+            color: rgb(63, 127, 127);
+         }
+
+         .str {
+            color: rgb(128, 0, 0);
+         }
+
+         .dig {
+            color: rgb(128, 64, 0);
+         }
+
+         .cmt {
+            color: rgb(200, 0, 200);
+         }
+
+         h2 {
+            display: inline;
+            font-weight: normal;
+         }
+
+         .info {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+            display: none;
+         }
+
+         a {
+            color: #9D2900;
+         }
+
+         body {
+            font-family: "Trebuchet MS", Arial, Sans-Serif;
+         }
+
+      </style>
+   </head>
+<body>
+<div class="info">
+<h2>freeplane-collaborative-addon.sikuli\freeplane-collaborative-addon.sikuli</h2> <a href="freeplane-collaborative-addon.sikuli\freeplane-collaborative-addon.zip">(Download this script)</a>
+</div>
+<pre class="sikuli-code">
+<span class="cmt">############################
+</span><span class="cmt"># common
+</span><span class="cmt">############################
+</span><span class="kw">def</span> doAction(action):
+    <span class="cmt"># compare : wait("compare-button.png")
+</span>    <span class="cmt"># update : wait("update-button.png")
+</span>    <span class="cmt"># commit : wait("commit-button.png")
+</span>    <span class="cmt">#click(action + "-button.png")
+</span>    <span class="cmt">#return
+</span>    <span class="kw">if</span> action == <span class="str">"compare"</span>:
+        <span class="skw">type</span>(Key.F10)
+    <span class="kw">elif</span> action == <span class="str">"update"</span>:
+        <span class="skw">type</span>(Key.F11)
+    <span class="kw">elif</span> action == <span class="str">"commit"</span>:
+        <span class="skw">type</span>(Key.F12)
+    <span class="kw">else</span>:
+        <span class="skw">popup</span>(<span class="str">"Unknown action"</span>)
+
+<span class="kw">def</span> doConfirm():
+    <span class="skw">click</span>(<img src="ok-button.png" />)
+
+<span class="kw">def</span> waitMindMapLong():
+    <span class="skw">sleep</span>(<span class="dig">1</span>)
+    <span class="skw">wait</span>(<img src="1373882388791.png" />, <span class="dig">15</span>)
+
+
+<span class="kw">def</span> waitMindMap():
+    <span class="skw">sleep</span>(<span class="dig">1</span>)
+    <span class="skw">wait</span>(<img src="1373882388791.png" />)
+
+<span class="kw">def</span> closeMap():
+    <span class="skw">type</span>(<span class="str">"w"</span>, Key.CTRL)
+
+
+<span class="cmt">####################################
+</span><span class="cmt"># init
+</span><span class="cmt">####################################
+</span>
+<span class="cmt">#import subprocess
+</span><span class="cmt">#popup("Start cleaning")
+</span><span class="cmt">#p = subprocess.Popen("c:\\My program files\\init-tests.bat")
+</span><span class="cmt">#p.wait()
+</span><span class="cmt">#popup("Cleaning Ok")
+</span>
+
+
+<span class="cmt">####################################
+</span><span class="cmt"># no versionning
+</span><span class="cmt">####################################
+</span>
+<span class="kw">def</span> testNoVersionning():
+    <span class="cmt"># init
+</span>    openApp(<span class="str">r'C:\My Program Files\Freeplane\freeplane.exe c:\users\dmxf8215\documents\personnel\projets\freeplane\tests\novcs\tests.mm'</span>)
+    waitMindMapLong()
+
+    <span class="kw">for</span> action <span class="kw">in</span> (<span class="str">'compare'</span>, <span class="str">'update'</span>, <span class="str">'commit'</span>):
+        doAction(action)
+        <span class="skw">wait</span>(<img src="1373710934684.png" />)
+        doConfirm()
+        waitMindMap()
+    closeMap()
+
+
+<span class="cmt">####################################
+</span><span class="cmt"># fake versionning
+</span><span class="cmt">####################################
+</span>
+<span class="kw">def</span> testFakeVersionning(vcs):
+    <span class="cmt"># init
+</span>    myApp = <span class="str">"C:\\My Program Files\\Freeplane\\freeplane.exe c:\\users\\dmxf8215\\documents\\personnel\\projets\\freeplane\\tests\\"</span> + vcs + <span class="str">"-fake\\tests.mm"</span>
+
+    openApp(myApp)
+    waitMindMap()
+
+    <span class="kw">for</span> action <span class="kw">in</span> (<span class="str">'compare'</span>, <span class="str">'update'</span>, <span class="str">'commit'</span>):
+        doAction(action)
+        <span class="kw">try</span>:
+            <span class="skw">wait</span>(<img src="1373928728167.png" />)
+        <span class="kw">except</span>:
+            <span class="skw">find</span>(<img src="1373819751379.png" />)
+
+        doConfirm()
+        waitMindMap()
+
+    closeMap()
+
+<span class="cmt">###################################
+</span><span class="cmt"># add test versionning
+</span><span class="cmt">###################################
+</span>
+<span class="kw">def</span> testAddToVersionning(vcs):
+    <span class="cmt"># init
+</span>    myApp = <span class="str">"C:\\My Program Files\\Freeplane\\freeplane.exe c:\\users\\dmxf8215\\documents\\personnel\\projets\\freeplane\\tests\\"</span> + vcs + <span class="str">"-userA\\mindmaps\\test-to-add.mm"</span>
+
+    openApp(myApp)
+    waitMindMapLong()
+
+    <span class="cmt"># compare
+</span>    doAction(<span class="str">"commit"</span>)
+    <span class="skw">wait</span>(<img src="1373825742171.png" />)
+    <span class="skw">click</span>(<img src="1373825770747.png" />)
+    <span class="skw">wait</span>(<img src="1373825811828.png" />)
+    doConfirm()
+
+    doAction(<span class="str">"commit"</span>)
+    <span class="skw">wait</span>(<img src="1373825742171.png" />)
+    <span class="skw">click</span>(<img src="1373825781197.png" />)
+    <span class="skw">wait</span>(<img src="1373825932424.png" />)
+    doConfirm()
+    <span class="skw">wait</span>(<img src="1373825968949.png" />)
+    <span class="skw">click</span>(<img src="1373829749083.png" />)
+    <span class="skw">wait</span>(<img src="1374071065186.png" />)
+    doConfirm()
+    doAction(<span class="str">"commit"</span>)
+    <span class="skw">type</span>(<span class="str">"plop"</span>)
+    <span class="skw">click</span>(<img src="1373829749083.png" />)
+
+    <span class="skw">wait</span>(<img src="1373826059964.png" />)
+    doConfirm()
+    <span class="kw">if</span> vcs == <span class="str">"git"</span>:
+        <span class="skw">wait</span>(<img src="1373894925109.png" />)
+        <span class="skw">click</span>(<img src="1373894937127.png" />)
+        <span class="skw">wait</span>(<img src="1373894953715.png" />)
+        doConfirm()
+
+    waitMindMap()
+    closeMap()
+
+
+<span class="cmt">#####################################
+</span><span class="cmt"># up2date mindmap
+</span><span class="cmt">####################################
+</span><span class="kw">def</span> testNothingToDo(vcs):
+    <span class="cmt"># init
+</span>    myApp = <span class="str">"C:\\My Program Files\\Freeplane\\freeplane.exe c:\\users\\dmxf8215\\documents\\personnel\\projets\\freeplane\\tests\\"</span> + vcs + <span class="str">"-userA\\mindmaps\\tests.mm"</span>
+
+    openApp(myApp)
+    waitMindMapLong()
+
+    actions = [<span class="str">'compare'</span>, <span class="str">'update'</span>]
+    <span class="kw">for</span> action <span class="kw">in</span> (actions):
+        doAction(action)
+        <span class="skw">wait</span>(<img src="1373880970061.png" />, <span class="dig">10</span>)
+        doConfirm()
+        waitMindMap()
+
+    doAction(<span class="str">"commit"</span>)
+<span class="cmt">#    if vcs == "git":
+</span><span class="cmt">#        wait("1373882037155.png")
+</span><span class="cmt">#        paste("plop")
+</span><span class="cmt">#        click("1373882113393.png")       
+</span>    <span class="skw">wait</span>(<img src="1373881045981.png" />, <span class="dig">10</span>)
+    doConfirm()
+    waitMindMap()
+    closeMap()
+
+<span class="cmt">#####################################
+</span><span class="cmt"># commit / update
+</span><span class="cmt">####################################
+</span><span class="kw">def</span> testMerge(vcs, conflict):
+    <span class="cmt"># init
+</span>    myApp = <span class="str">"C:\\My Program Files\\Freeplane\\freeplane.exe c:\\users\\dmxf8215\\documents\\personnel\\projets\\freeplane\\tests\\"</span> + vcs + <span class="str">"-userA\\mindmaps\\tests.mm"</span>
+
+    openApp(myApp)
+    waitMindMapLong()
+
+    <span class="skw">type</span>(<img src="1373881357895.png" />, Key.ENTER)
+    paste(<span class="str">"branch c"</span>)
+    <span class="skw">type</span>(Key.ENTER)
+    <span class="skw">sleep</span>(<span class="dig">1</span>)
+    <span class="skw">type</span>(<span class="str">"s"</span>, Key.CTRL)
+
+    <span class="cmt"># diff
+</span>    <span class="kw">if</span> vcs != <span class="str">"git"</span>:
+        doAction(<span class="str">"compare"</span>)
+        <span class="skw">wait</span>(<img src="1373926818907.png" />)
+        doConfirm()
+        waitMindMap()
+
+    <span class="cmt"># update
+</span>    <span class="cmt">#doAction("update")
+</span>    <span class="cmt">#wait("1373881993621.png")
+</span>    <span class="cmt">#doConfirm()
+</span>    <span class="cmt">#waitMindMap()
+</span>
+    <span class="cmt"># commit
+</span>    doAction(<span class="str">"commit"</span>)
+    <span class="skw">wait</span>(<img src="1373882037155.png" />)
+    paste(<span class="str">"plop"</span>)
+    <span class="skw">click</span>(<img src="1373882113393.png" />)
+    <span class="skw">wait</span>(<img src="1373882135697.png" />)
+    doConfirm()
+    <span class="kw">if</span> vcs == <span class="str">"git"</span>:
+        <span class="skw">wait</span>(<img src="1373926143621.png" />)
+        <span class="skw">click</span>(<img src="1373926157464.png" />)
+        <span class="skw">wait</span>(<img src="1373926174535.png" />)
+        doConfirm()
+    waitMindMap()
+
+    <span class="cmt"># check
+</span>    <span class="kw">if</span> vcs != <span class="str">"git"</span>:
+        doAction(<span class="str">"compare"</span>)
+        <span class="skw">wait</span>(<img src="1373880970061.png" />)
+        doConfirm()
+        waitMindMap()
+
+    <span class="cmt"># add a second branch for later update
+</span>    <span class="kw">if</span> conflict == <span class="str">"false"</span>:
+        <span class="skw">type</span>(<img src="1373928278544.png" />, Key.INSERT)
+        paste(<span class="str">"new leaf a.a.a"</span>)
+        <span class="skw">type</span>(Key.ENTER)
+        <span class="skw">sleep</span>(<span class="dig">1</span>)
+    <span class="kw">else</span>:
+        <span class="skw">type</span>(<img src="1373882836977.png" />, Key.ENTER)
+        paste(<span class="str">"branch e"</span>)
+        <span class="skw">type</span>(Key.ENTER)
+    <span class="skw">sleep</span>(<span class="dig">1</span>)
+    <span class="skw">type</span>(<span class="str">"s"</span>, Key.CTRL)
+    closeMap()
+
+<span class="cmt">## user B : update
+</span>    <span class="cmt"># init
+</span>    myApp = <span class="str">"C:\\My Program Files\\Freeplane\\freeplane.exe c:\\users\\dmxf8215\\documents\\personnel\\projets\\freeplane\\tests\\"</span> + vcs + <span class="str">"-userB\\mindmaps\\tests.mm"</span>
+
+    openApp(myApp)
+    <span class="skw">sleep</span>(<span class="dig">2</span>)
+    waitMindMapLong()
+
+    <span class="cmt"># diff
+</span>    doAction(<span class="str">"compare"</span>)
+    <span class="skw">wait</span>(<img src="1373882752480.png" />)
+    doConfirm()
+    waitMindMap()
+
+    <span class="cmt"># update
+</span>    doAction(<span class="str">"update"</span>)
+    <span class="skw">wait</span>(<img src="1373882819103.png" />, <span class="dig">10</span>)
+    <span class="skw">click</span>(<img src="1373885970844.png" />)
+    <span class="skw">wait</span>(<img src="1373882836977.png" />)
+
+
+    <span class="cmt"># modif &amp; commit
+</span>    <span class="skw">type</span>(<img src="1373882836977.png" />, Key.ENTER)
+    paste(<span class="str">"branch d"</span>)
+    <span class="skw">type</span>(Key.ENTER)
+    <span class="skw">sleep</span>(<span class="dig">1</span>)
+    <span class="skw">type</span>(<span class="str">"s"</span>, Key.CTRL)
+    doAction(<span class="str">"commit"</span>)
+    <span class="skw">wait</span>(<img src="1373882037155.png" />)
+    paste(<span class="str">"plop"</span>)
+    <span class="skw">click</span>(<img src="1373882113393.png" />)
+    <span class="skw">wait</span>(<img src="1373927489627.png" />)
+    doConfirm()
+    <span class="kw">if</span> vcs == <span class="str">"git"</span>:
+        <span class="skw">wait</span>(<img src="1373926143621.png" />)
+        <span class="skw">click</span>(<img src="1373926157464.png" />)
+        <span class="skw">wait</span>(<img src="1373926174535.png" />)
+        doConfirm()
+    waitMindMap()
+    closeMap()
+
+<span class="cmt">## back to user A and update
+</span>    myApp = <span class="str">"C:\\My Program Files\\Freeplane\\freeplane.exe c:\\users\\dmxf8215\\documents\\personnel\\projets\\freeplane\\tests\\"</span> + vcs + <span class="str">"-userA\\mindmaps\\tests.mm"</span>
+
+    openApp(myApp)
+    <span class="skw">sleep</span>(<span class="dig">2</span>)
+    waitMindMapLong()
+
+    doAction(<span class="str">"update"</span>)
+
+    <span class="kw">if</span> conflict == <span class="str">"true"</span>:
+        <span class="kw">if</span> vcs == <span class="str">"git"</span>:
+            <span class="skw">wait</span>(<img src="1374162538809.png" />)
+            doConfirm()
+            doAction(<span class="str">"commit"</span>)
+            <span class="skw">wait</span>(<img src="1373882037155.png" />)
+            paste(<span class="str">"plop"</span>)
+            <span class="skw">click</span>(<img src="1373882113393.png" />)
+            <span class="skw">wait</span>(<img src="1373927489627.png" />)
+            doConfirm()
+            <span class="skw">wait</span>(<img src="1373926143621.png" />)
+            <span class="skw">click</span>(<img src="1374162645369.png" />)
+            doAction(<span class="str">"update"</span>)
+            <span class="skw">wait</span>(<img src="1374163494960.png" />)
+        <span class="kw">else</span>:
+
+            <span class="skw">wait</span>(<img src="1373888276467.png" />, <span class="dig">10</span>)
+        doConfirm()
+
+
+        doConfirm()
+    <span class="kw">else</span>:
+        <span class="kw">if</span> vcs == <span class="str">"git"</span>:
+            <span class="skw">wait</span>(<img src="1374162538809.png" />)
+            doConfirm()
+            doAction(<span class="str">"commit"</span>)
+            <span class="skw">wait</span>(<img src="1373882037155.png" />)
+            paste(<span class="str">"plop"</span>)
+            <span class="skw">click</span>(<img src="1373882113393.png" />)
+            <span class="skw">wait</span>(<img src="1373927489627.png" />)
+            doConfirm()
+            <span class="skw">wait</span>(<img src="1373926143621.png" />)
+            <span class="skw">click</span>(<img src="1374162645369.png" />)
+            doAction(<span class="str">"update"</span>)
+        <span class="skw">wait</span>(<img src="1373882819103.png" />, <span class="dig">10</span>)
+        <span class="skw">click</span>(<img src="1373932420483.png" />)
+        <span class="skw">wait</span>(<img src="1373883510086.png" />)
+    <span class="skw">type</span>(<span class="str">"s"</span>, Key.CTRL)
+    closeMap()
+
+<span class="cmt">#
+</span><span class="cmt"># Main
+</span><span class="cmt">#
+</span>
+
+<span class="cmt">#testNoVersionning()
+</span>
+<span class="cmt">#testFakeVersionning('cvs')
+</span><span class="cmt">#testAddToVersionning('cvs')
+</span><span class="cmt">#testNothingToDo('cvs')
+</span><span class="cmt">#testMerge('cvs', 'false')
+</span><span class="cmt">#testMerge('cvs', 'true')
+</span>
+<span class="cmt">#testFakeVersionning('svn')
+</span><span class="cmt">#testAddToVersionning('svn')
+</span><span class="cmt">#testNothingToDo('svn')
+</span><span class="cmt">#testMerge('svn', 'false')
+</span><span class="cmt">#testMerge('svn', 'true')
+</span><span class="cmt">#
+</span><span class="cmt">#testFakeVersionning('git')
+</span><span class="cmt">#testAddToVersionning('git')
+</span><span class="cmt">#testNothingToDo('git')
+</span>testMerge(<span class="str">'git'</span>, <span class="str">'false'</span>)
+testMerge(<span class="str">'git'</span>, <span class="str">'true'</span>)
+</pre>
+</body>
+</html>
