@@ -2,7 +2,7 @@ freeplane-collaborative-addon
 =============================
 
 A [freeplane](http://freeplane.sourceforge.net/) add-on containing useful tools to work toghether on a single mindmap.
-Currently providing : diff/update/commit operations on a map via cvs
+Currently providing : diff/update/commit operations on a map via cvs, svn or git.
 
 The latest version of the addon and the user documentation can be found at http://freeplanecollab.sourceforge.net/
 
@@ -12,6 +12,9 @@ Content
 
 - collaborativeTools.mm : mindmap used to build the add-on
 - scripts/* : scripts provided by the add-on
+- freeplane-collaborative-addon.sikuli : sikuli script (non regression tests)
+- website : sources of http://freeplane.sourceforge.net/
+- images : project icons
 
 
 Changelog
@@ -47,6 +50,10 @@ v0.7 :
 
 v0.8 :
 - added svn support
+
+v0.9
+- complete refactoring to improve maintenability
+- non regression tests with sikuli
 
 Todo
 =============================
