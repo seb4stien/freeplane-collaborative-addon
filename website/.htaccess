@@ -1,0 +1,3 @@
+RewriteEngine on
+RewriteRule ^fr/(.*).html /$1.php?l=fr
+RewriteRule ^en/(.*).html /$1.php?l=en

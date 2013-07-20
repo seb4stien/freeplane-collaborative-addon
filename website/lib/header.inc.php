@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <?
-$l = "";
+$l = "en";
 if ($_GET['l'] == "fr") {
 	$l = "fr";
 }
@@ -17,7 +17,7 @@ function t() {
 <head>
 <title>
 <? if ($l == "fr"){ ?>
-freeplane : outils collaboratifs";
+freeplane : outils collaboratifs
 <? } else { ?>
 freeplane : collaborative tools
 <? } ?>

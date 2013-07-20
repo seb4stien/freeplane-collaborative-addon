@@ -15,7 +15,7 @@
 </p>
 
 <? } else { ?>
-<p><a href="http://freeplane.sourceforge.net">Freeplane</a> in an application for mind mapping.</p>
+<p>freeplane-collaborative-tools is a <a href="http://freeplane.sourceforge.net">freeplane</a> extension.</p>
 <p>This addon brings versionning control to freeplane enabling:
 <ul>
 <li>versionning of mindmaps</li>
@@ -23,11 +23,15 @@
 </ul>
 </p>
 
-<p>It currently supports diff/update/commit operations on a map via cvs, svn orgit.</p>
+<p>It currently supports diff/update/commit operations on a map via cvs, svn or git.</p>
 <? } ?>
 </td>
 <td>
+<? if ($l == "fr"){ ?>
+<iframe width="420" height="315" src="//www.youtube.com/embed/p_4qVWyurIw?rel=0" frameborder="0" allowfullscreen></iframe>
+<? } else { ?>
 <iframe width="420" height="315" src="//www.youtube.com/embed/PeoxhbGOk_Y?rel=0" frameborder="0" allowfullscreen></iframe>
+<? } ?>
 </td>
 </tr>
 </table>
@@ -35,7 +39,7 @@
 <? if ($l == "fr"){ ?>
 
 <p>Pour réaliser cela, l'extension s'appuie sur un outil tiers : un système de gestion de version. Ce type d'outil est largement utilisé dans le monde du développement.</p>
-<p>Actuellement, deux systèmes de gestion de version sont supportés : CVS et GIT.</p>
+<p>Actuellement, deux systèmes de gestion de version sont supportés : CVS, SVN et GIT.</p>
 
 <br />
 <p>
@@ -62,12 +66,12 @@ sources and download
 <?
 if ($l == "fr") {
 ?>
-<li>Dernières version en téléchargement sur <a href="https://sourceforge.net/projects/freeplanecollab/files/">sourceforge</a></li>
+<li>Dernières version en téléchargement sur <a href="https://sourceforge.net/projects/freeplanecollab/files/stable/">sourceforge</a></li>
 <li>Sources disponibles sur <a href="https://github.com/seb4stien/freeplane-collaborative-addon">github</a></li>
 <?
 } else {
 ?>
-<li>Latest release can be found on <a href="https://sourceforge.net/projects/freeplanecollab/files/">sourceforge</a></li>
+<li>Latest release can be found on <a href="https://sourceforge.net/projects/freeplanecollab/files/stable/">sourceforge</a></li>
 <li>Sources can be found on <a href="https://github.com/seb4stien/freeplane-collaborative-addon">github</a></li>
 <?
 }
