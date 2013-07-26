@@ -1,6 +1,6 @@
 <map version="freeplane 1.2.0">
 <!--To view this file, download free mind mapping software Freeplane from http://freeplane.sourceforge.net -->
-<node TEXT="collaborative tools" ID="ID_1723255651" CREATED="1283093380553" MODIFIED="1374174888746" BACKGROUND_COLOR="#97c7dc">
+<node TEXT="collaborative tools" ID="ID_1723255651" CREATED="1283093380553" MODIFIED="1374877263864" BACKGROUND_COLOR="#97c7dc">
 <font SIZE="16" BOLD="true" ITALIC="true"/>
 <hook NAME="MapStyle">
     <properties show_icon_for_attributes="true" show_note_icons="true"/>
@@ -57,6 +57,7 @@
 <attribute NAME="name" VALUE="collaborativeTools"/>
 <attribute NAME="version" VALUE="v0.9" OBJECT="org.freeplane.features.format.FormattedObject|v0.9|number:decimal:#0.####"/>
 <attribute NAME="author" VALUE="seb4stien"/>
+<attribute NAME="homepage" VALUE="http://freeplanecollab.sourceforge.net" OBJECT="java.net.URI|http://freeplanecollab.sourceforge.net"/>
 <attribute NAME="freeplaneVersionFrom" VALUE="1.2.23"/>
 <attribute NAME="freeplaneVersionTo" VALUE=""/>
 <richcontent TYPE="NOTE">
@@ -161,6 +162,9 @@
 <node TEXT="complete refactoring" ID="ID_1916020756" CREATED="1374174896132" MODIFIED="1374174904183"/>
 <node TEXT="non regression tests" ID="ID_1295959458" CREATED="1374174904730" MODIFIED="1374174912171"/>
 <node TEXT="full cvs/svn/git support" ID="ID_89964569" CREATED="1374174914828" MODIFIED="1374174921301"/>
+<node TEXT="0.9.1" ID="ID_72544017" CREATED="1374877278314" MODIFIED="1374877283892">
+<node TEXT="added homepage attribute to root node" ID="ID_855881107" CREATED="1374877285290" MODIFIED="1374877293254"/>
+</node>
 </node>
 </node>
 <node TEXT="license" POSITION="left" ID="ID_915883933" CREATED="1371158990126" MODIFIED="1371158990131">
