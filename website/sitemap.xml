@@ -31,6 +31,10 @@
   <changefreq>weekly</changefreq>
 </url>
 <url>
+  <loc>http://freeplanecollab.sourceforge.net/fr/svn.html</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
   <loc>http://freeplanecollab.sourceforge.net/en/documentation.html</loc>
   <changefreq>weekly</changefreq>
 </url>
