@@ -1,6 +1,6 @@
 <map version="freeplane 1.2.0">
 <!--To view this file, download free mind mapping software Freeplane from http://freeplane.sourceforge.net -->
-<node TEXT="collaborative tools" ID="ID_1723255651" CREATED="1283093380553" MODIFIED="1376131069037" BACKGROUND_COLOR="#97c7dc" LINK="http://freeplanecollab.sourceforge.net">
+<node TEXT="collaborative tools" ID="ID_1723255651" CREATED="1283093380553" MODIFIED="1376135900095" BACKGROUND_COLOR="#97c7dc" LINK="http://freeplanecollab.sourceforge.net">
 <font SIZE="16" BOLD="true" ITALIC="true"/>
 <hook NAME="MapStyle">
     <properties show_icon_for_attributes="true" show_note_icons="true"/>
@@ -55,7 +55,7 @@
 <hook NAME="AutomaticEdgeColor" COUNTER="10"/>
 <attribute_layout NAME_WIDTH="121" VALUE_WIDTH="137"/>
 <attribute NAME="name" VALUE="collaborativeTools"/>
-<attribute NAME="version" VALUE="0.9.2" OBJECT="org.freeplane.features.format.FormattedObject|0.9.2|number:decimal:#0.####"/>
+<attribute NAME="version" VALUE="0.9.3" OBJECT="org.freeplane.features.format.FormattedObject|0.9.3|number:decimal:#0.####"/>
 <attribute NAME="author" VALUE="seb4stien"/>
 <attribute NAME="freeplaneVersionFrom" VALUE="1.2.23"/>
 <attribute NAME="freeplaneVersionTo" VALUE=""/>
@@ -167,6 +167,9 @@
 </node>
 <node TEXT="0.9.2" ID="ID_1890939788" CREATED="1376131281745" MODIFIED="1376131283791">
 <node TEXT="added quiet mode" ID="ID_1730176809" CREATED="1376131285345" MODIFIED="1376131290272"/>
+</node>
+<node TEXT="0.9.3" ID="ID_1565936436" CREATED="1376135903478" MODIFIED="1376135905709">
+<node TEXT="optimization for git : do not propose to push if there is not remote" ID="ID_254435384" CREATED="1376135907170" MODIFIED="1376135928358"/>
 </node>
 </node>
 <node TEXT="license" POSITION="left" ID="ID_915883933" CREATED="1371158990126" MODIFIED="1371158990131">
