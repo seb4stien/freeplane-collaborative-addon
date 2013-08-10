@@ -1,6 +1,6 @@
 <map version="freeplane 1.2.0">
 <!--To view this file, download free mind mapping software Freeplane from http://freeplane.sourceforge.net -->
-<node TEXT="collaborative tools" ID="ID_1723255651" CREATED="1283093380553" MODIFIED="1374877263864" BACKGROUND_COLOR="#97c7dc">
+<node TEXT="collaborative tools" ID="ID_1723255651" CREATED="1283093380553" MODIFIED="1374921141224" BACKGROUND_COLOR="#97c7dc" LINK="http://freeplanecollab.sourceforge.net">
 <font SIZE="16" BOLD="true" ITALIC="true"/>
 <hook NAME="MapStyle">
     <properties show_icon_for_attributes="true" show_note_icons="true"/>
@@ -55,9 +55,8 @@
 <hook NAME="AutomaticEdgeColor" COUNTER="9"/>
 <attribute_layout NAME_WIDTH="121" VALUE_WIDTH="137"/>
 <attribute NAME="name" VALUE="collaborativeTools"/>
-<attribute NAME="version" VALUE="v0.9" OBJECT="org.freeplane.features.format.FormattedObject|v0.9|number:decimal:#0.####"/>
+<attribute NAME="version" VALUE="0.9.1" OBJECT="org.freeplane.features.format.FormattedObject|0.9.1|number:decimal:#0.####"/>
 <attribute NAME="author" VALUE="seb4stien"/>
-<attribute NAME="homepage" VALUE="http://freeplanecollab.sourceforge.net" OBJECT="java.net.URI|http://freeplanecollab.sourceforge.net"/>
 <attribute NAME="freeplaneVersionFrom" VALUE="1.2.23"/>
 <attribute NAME="freeplaneVersionTo" VALUE=""/>
 <richcontent TYPE="NOTE">
