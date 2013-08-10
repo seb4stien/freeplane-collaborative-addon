@@ -15,15 +15,16 @@
 </p>
 
 <? } else { ?>
-<p>freeplane-collaborative-tools is a <a href="http://freeplane.sourceforge.net">freeplane</a> extension.</p>
-<p>This addon brings versionning control to freeplane enabling:
+<p>freeplane-collaborative-tools is a <a href="http://freeplane.sourceforge.net">freeplane</a> extension enabling collaborative mind mapping.</p>
+
+<p>It's designed for asynchronous collaborative work:
 <ul>
-<li>versionning of mindmaps</li>
-<li>team working on a single mindmap</li>
+<li>Each user works on a copy of the mindmap.</li>
+<li>During his work he puslishes the modifications on a central server where he can fetch other users contributions.</li>
+<li>Every user can work offline and then synchronize their work.</li>
 </ul>
 </p>
 
-<p>It currently supports diff/update/commit operations on a map via cvs, svn or git.</p>
 <? } ?>
 </td>
 <td>
@@ -39,7 +40,7 @@
 <? if ($l == "fr"){ ?>
 
 <p>Pour réaliser cela, l'extension s'appuie sur un outil tiers : un système de gestion de version. Ce type d'outil est largement utilisé dans le monde du développement.</p>
-<p>Actuellement, deux systèmes de gestion de version sont supportés : CVS, SVN et GIT.</p>
+<p>Actuellement, trois systèmes de gestion de version sont supportés : CVS, SVN et GIT.</p>
 
 <br />
 <p>
@@ -51,6 +52,20 @@
 </ul>
 </p>
 
+<? } else { ?>
+<p>The synchronization mechanism is provided by an external tool: a versionning control system. This type of tool is massively used in software development.</p>
+
+<p>Currently, three versionning systems are supported : CVS, SVN and GIT.</p>
+<br />
+
+<p>
+<strong>Use cases</strong>
+<ul>
+	<li>you work on a big mindmap for a complex project where several people have updates to make</li>
+	<li>you are a software developper and want to integrate your mindmap in your versionning system</li>
+	<li>your mindmap contains important data, and you want to be able to access older versions if necessary</li>
+</ul>
+</p>
 <? } ?>
 
 
@@ -66,12 +81,12 @@ sources and download
 <?
 if ($l == "fr") {
 ?>
-<li>Dernières version en téléchargement sur <a href="https://sourceforge.net/projects/freeplanecollab/files/stable/">sourceforge</a></li>
+<li>Télécharger la <a href="http://sourceforge.net/projects/freeplanecollab/files/stable/collaborativeTools-0.9.1.addon.mm/download">version 0.9.1</a> (<a href="http://sourceforge.net/projects/freeplanecollab/files/stable/">anciennes versions</a>)</li>
 <li>Sources disponibles sur <a href="https://github.com/seb4stien/freeplane-collaborative-addon">github</a></li>
 <?
 } else {
 ?>
-<li>Latest release can be found on <a href="https://sourceforge.net/projects/freeplanecollab/files/stable/">sourceforge</a></li>
+<li>Download <a href="http://sourceforge.net/projects/freeplanecollab/files/stable/collaborativeTools-0.9.1.addon.mm/download">version 0.9.1</a> (<a ="http://sourceforge.net/projects/freeplanecollab/files/stable/">older releases</a>)</li>
 <li>Sources can be found on <a href="https://github.com/seb4stien/freeplane-collaborative-addon">github</a></li>
 <?
 }
