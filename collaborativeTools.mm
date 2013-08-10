@@ -1,6 +1,6 @@
 <map version="freeplane 1.2.0">
 <!--To view this file, download free mind mapping software Freeplane from http://freeplane.sourceforge.net -->
-<node TEXT="collaborative tools" ID="ID_1723255651" CREATED="1283093380553" MODIFIED="1374921141224" BACKGROUND_COLOR="#97c7dc" LINK="http://freeplanecollab.sourceforge.net">
+<node TEXT="collaborative tools" ID="ID_1723255651" CREATED="1283093380553" MODIFIED="1376131069037" BACKGROUND_COLOR="#97c7dc" LINK="http://freeplanecollab.sourceforge.net">
 <font SIZE="16" BOLD="true" ITALIC="true"/>
 <hook NAME="MapStyle">
     <properties show_icon_for_attributes="true" show_note_icons="true"/>
@@ -55,7 +55,7 @@
 <hook NAME="AutomaticEdgeColor" COUNTER="9"/>
 <attribute_layout NAME_WIDTH="121" VALUE_WIDTH="137"/>
 <attribute NAME="name" VALUE="collaborativeTools"/>
-<attribute NAME="version" VALUE="0.9.1" OBJECT="org.freeplane.features.format.FormattedObject|0.9.1|number:decimal:#0.####"/>
+<attribute NAME="version" VALUE="0.9.2" OBJECT="org.freeplane.features.format.FormattedObject|0.9.2|number:decimal:#0.####"/>
 <attribute NAME="author" VALUE="seb4stien"/>
 <attribute NAME="freeplaneVersionFrom" VALUE="1.2.23"/>
 <attribute NAME="freeplaneVersionTo" VALUE=""/>
@@ -213,11 +213,11 @@
   </body>
 </html>
 </richcontent>
-<node TEXT="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#xa;&lt;preferences_structure&gt;&#xa;&lt;tabbed_pane&gt;&#xa;&lt;tab name=&quot;plugins&quot;&gt;&#xa;&lt;separator name=&quot;collaborativeTools&quot;&gt;&#xa;&lt;path name=&quot;addons.collab.cvs.bin&quot; /&gt;&#xa;&lt;path name=&quot;addons.collab.git.bin&quot; /&gt;&#xa;&lt;path name=&quot;addons.collab.svn.bin&quot; /&gt;&#xa;&lt;boolean name=&quot;addons.collab.verbose&quot; /&gt;&#xa;&lt;!--&#xa;&lt;number name=&quot;addons.collab.reportIntervalInDays&quot; min=&quot;1&quot; max=&quot;100&quot; /&gt;&#xa;&lt;number name=&quot;addons.collab.reportMaxDepth&quot; min=&quot;1&quot; /&gt;&#xa;--&gt;&#xa;&lt;/separator&gt;&#xa;&lt;/tab&gt;&#xa;&lt;/tabbed_pane&gt;&#xa;&lt;/preferences_structure&gt;" ID="ID_873595672" CREATED="1358304692163" MODIFIED="1373402931654">
+<node TEXT="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#xa;&lt;preferences_structure&gt;&#xa;&lt;tabbed_pane&gt;&#xa;&lt;tab name=&quot;plugins&quot;&gt;&#xa;&lt;separator name=&quot;collaborativeTools&quot;&gt;&#xa;&lt;path name=&quot;addons.collab.cvs.bin&quot; /&gt;&#xa;&lt;path name=&quot;addons.collab.git.bin&quot; /&gt;&#xa;&lt;path name=&quot;addons.collab.svn.bin&quot; /&gt;&#xa;&lt;boolean name=&quot;addons.collab.verbose&quot; /&gt;&#xa;&lt;boolean name=&quot;addons.collab.quiet&quot; /&gt;&#xa;&lt;!--&#xa;&lt;number name=&quot;addons.collab.reportIntervalInDays&quot; min=&quot;1&quot; max=&quot;100&quot; /&gt;&#xa;&lt;number name=&quot;addons.collab.reportMaxDepth&quot; min=&quot;1&quot; /&gt;&#xa;--&gt;&#xa;&lt;/separator&gt;&#xa;&lt;/tab&gt;&#xa;&lt;/tabbed_pane&gt;&#xa;&lt;/preferences_structure&gt;" ID="ID_873595672" CREATED="1358304692163" MODIFIED="1376131087544">
 <attribute_layout NAME_WIDTH="100" VALUE_WIDTH="100"/>
 </node>
 </node>
-<node TEXT="default.properties" POSITION="left" ID="ID_808793413" CREATED="1371158990170" MODIFIED="1373403045371">
+<node TEXT="default.properties" POSITION="left" ID="ID_808793413" CREATED="1371158990170" MODIFIED="1376131099380">
 <edge COLOR="#00ffff"/>
 <richcontent TYPE="NOTE">
 
@@ -237,6 +237,7 @@
 <attribute NAME="addons.collab.git.bin" VALUE="C:/Program Files (x86)/git/bin/git.exe"/>
 <attribute NAME="addons.collab.svn.bin" VALUE="C:/Program Files/TortoiseSVN/bin/svn.exe"/>
 <attribute NAME="addons.collab.verbose" VALUE="false"/>
+<attribute NAME="addons.collab.quiet" VALUE="false"/>
 </node>
 <node TEXT="translations" POSITION="left" ID="ID_1644304879" CREATED="1371158990174" MODIFIED="1371158990178">
 <edge COLOR="#ffff00"/>
@@ -253,7 +254,7 @@
   </body>
 </html>
 </richcontent>
-<node TEXT="en" ID="ID_1232293217" CREATED="1371158990178" MODIFIED="1373888033337">
+<node TEXT="en" ID="ID_1232293217" CREATED="1371158990178" MODIFIED="1376131131661">
 <attribute_layout NAME_WIDTH="219" VALUE_WIDTH="243"/>
 <attribute NAME="addons.${name}" VALUE="Collaborative Tools"/>
 <attribute NAME="addons.vcsUpdate" VALUE="Update my map"/>
@@ -266,6 +267,7 @@
 <attribute NAME="OptionPanel.addons.collab.git.bin" VALUE="Path to GIT"/>
 <attribute NAME="OptionPanel.addons.collab.svn.bin" VALUE="Path to SVN"/>
 <attribute NAME="OptionPanel.addons.collab.verbose" VALUE="Verbose mode"/>
+<attribute NAME="OptionPanel.addons.collab.quiet" VALUE="Quiet mode"/>
 <attribute NAME="OptionPanel.addons.collab.reportIntervalInDays" VALUE="Days between two reports on modifications"/>
 <attribute NAME="OptionPanel.addons.collab.reportMaxDepth" VALUE="Max depth of modifications reports"/>
 <attribute NAME="addons.collab.commandDetails" VALUE="Command"/>
@@ -299,7 +301,7 @@
 <attribute NAME="addons.collab.unknownFileStatus" VALUE="Unknown file status"/>
 <attribute NAME="addons.collab.vcsAddFailed" VALUE="Could not add file to the versionning system."/>
 </node>
-<node TEXT="fr" ID="ID_1204840493" CREATED="1371158990178" MODIFIED="1373888114153" HGAP="39" VSHIFT="41">
+<node TEXT="fr" ID="ID_1204840493" CREATED="1371158990178" MODIFIED="1376131166009" HGAP="39" VSHIFT="41">
 <attribute_layout NAME_WIDTH="219" VALUE_WIDTH="350"/>
 <attribute NAME="addons.${name}" VALUE="Outils collaboratifs"/>
 <attribute NAME="addons.vcsUpdate" VALUE="Mettre &#xe0; jour ma version"/>
@@ -311,7 +313,8 @@
 <attribute NAME="OptionPanel.addons.collab.cvs.bin" VALUE="Chemin vers l&apos;ex&#xe9;cutable CVS"/>
 <attribute NAME="OptionPanel.addons.collab.git.bin" VALUE="Chemin vers l&apos;ex&#xe9;cutable GIT"/>
 <attribute NAME="OptionPanel.addons.collab.svn.bin" VALUE="Chemin vers l&apos;ex&#xe9;cutable SVN"/>
-<attribute NAME="OptionPanel.addons.collab.verbose" VALUE="Verbose mode"/>
+<attribute NAME="OptionPanel.addons.collab.verbose" VALUE="Mode verbeux"/>
+<attribute NAME="OptionPanel.addons.collab.verbose" VALUE="Mode silencieux"/>
 <attribute NAME="OptionPanel.addons.collab.reportIntervalInDays" VALUE="Jours entre deux rapports de modifications"/>
 <attribute NAME="OptionPanel.addons.collab.reportMaxDepth" VALUE="Profondeur maximum pour les rapports de modifications"/>
 <attribute NAME="addons.collab.commandDetails" VALUE="Commande ex&#xe9;cut&#xe9;e"/>
