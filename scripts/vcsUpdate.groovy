@@ -69,6 +69,7 @@ def execCommand(vcs, action) {
 
 	def verbose = config.getBooleanProperty('addons.collab.verbose')
 	
+	
 	def vcsBin = config.getProperty('addons.collab.' + vcs + '.bin', "note : set /path/to/vcs in preferences")
 	if (!(new File(vcsBin)).exists()) {
 		displayError(textUtils.getText("addons.collab.vcsBinNotFound") + "\n  " + vcsBin)			
@@ -557,6 +558,7 @@ def vcsAddFile(vcs) {
 //
 def vcsCommitFile(vcs) {
 	def verbose = config.getBooleanProperty('addons.collab.verbose')
+	def quiet = config.getBooleanProperty('addons.collab.quiet')
 
 	def status = vcsGetStatus(vcs)
 	
@@ -583,7 +585,14 @@ def vcsCommitFile(vcs) {
 	if (exitStatus == 99) {	return "fatalError" }
 
 	if (exitStatus == 0) {
-		translateInfo("addons.collab.mapCommitted")
+		if (!quiet) {
+			translateInfo("addons.collab.mapCommitted")
+		}
+		def now = new Date()
+		def df = new java.text.SimpleDateFormat("HH:mm:ss")
+		c.setStatusInfo("standard",
+			textUtils.getText("addons.collab.status.successfullyCommittedAt") + df.format(now),
+			"button_ok");
 	} else {
 		return errStream
 	}
