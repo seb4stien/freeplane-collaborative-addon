@@ -52,7 +52,7 @@
 </stylenode>
 </map_styles>
 </hook>
-<hook NAME="AutomaticEdgeColor" COUNTER="9"/>
+<hook NAME="AutomaticEdgeColor" COUNTER="10"/>
 <attribute_layout NAME_WIDTH="121" VALUE_WIDTH="137"/>
 <attribute NAME="name" VALUE="collaborativeTools"/>
 <attribute NAME="version" VALUE="0.9.2" OBJECT="org.freeplane.features.format.FormattedObject|0.9.2|number:decimal:#0.####"/>
