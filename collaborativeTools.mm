@@ -305,7 +305,7 @@
 <attribute NAME="addons.collab.vcsAddFailed" VALUE="Could not add file to the versionning system."/>
 <attribute NAME="addons.collab.status.successfullyCommittedAt" VALUE="Map successfully committed at "/>
 </node>
-<node TEXT="fr" ID="ID_1204840493" CREATED="1371158990178" MODIFIED="1376132331268" HGAP="39" VSHIFT="41">
+<node TEXT="fr" ID="ID_1204840493" CREATED="1371158990178" MODIFIED="1376132876533" HGAP="39" VSHIFT="41">
 <attribute_layout NAME_WIDTH="219" VALUE_WIDTH="350"/>
 <attribute NAME="addons.${name}" VALUE="Outils collaboratifs"/>
 <attribute NAME="addons.vcsUpdate" VALUE="Mettre &#xe0; jour ma version"/>
@@ -318,7 +318,7 @@
 <attribute NAME="OptionPanel.addons.collab.git.bin" VALUE="Chemin vers l&apos;ex&#xe9;cutable GIT"/>
 <attribute NAME="OptionPanel.addons.collab.svn.bin" VALUE="Chemin vers l&apos;ex&#xe9;cutable SVN"/>
 <attribute NAME="OptionPanel.addons.collab.verbose" VALUE="Mode verbeux"/>
-<attribute NAME="OptionPanel.addons.collab.verbose" VALUE="Mode silencieux"/>
+<attribute NAME="OptionPanel.addons.collab.quiet" VALUE="Quiet mode"/>
 <attribute NAME="OptionPanel.addons.collab.reportIntervalInDays" VALUE="Jours entre deux rapports de modifications"/>
 <attribute NAME="OptionPanel.addons.collab.reportMaxDepth" VALUE="Profondeur maximum pour les rapports de modifications"/>
 <attribute NAME="addons.collab.commandDetails" VALUE="Commande ex&#xe9;cut&#xe9;e"/>
