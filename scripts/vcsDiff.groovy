@@ -133,6 +133,7 @@ def execCommand(vcs, action) {
 				
 				case "push":
 				case "pull":
+				case "remote":
 					vcsCommandArray = [vcsBin, action]
 				break
 			}
@@ -607,17 +608,22 @@ def vcsCommitFile(vcs) {
 		case "git":
 			// The file has been committed => prompt the user if he wants to push
 			if (vcs == "git") {
-				final int pushFile = JOptionPane.showConfirmDialog(ui.frame, 
-					textUtils.getText("addons.collab.doYouWantToPush"),
-					textUtils.getText("addons.collaborativeTools"),
-					JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 			
-				if (pushFile == JOptionPane.YES_OPTION) {
-					def (pushExitStatus, pushOutStream, pushErrStream) = execCommand(vcs, "push")
-					if (pushExitStatus == 99) {	
-						return "fatalError"
-					} else {
-						translateInfo("addons.collab.mapPushed")
+				def (getRemoteExitStatus, getRemoteOutStream, getRemoteErrStream) = execCommand(vcs, "remote")
+				
+				if ( (getRemoteExitStatus == 0) && (getRemoteOutStream.size() > 0)) {
+					final int pushFile = JOptionPane.showConfirmDialog(ui.frame, 
+						textUtils.getText("addons.collab.doYouWantToPush"),
+						textUtils.getText("addons.collaborativeTools"),
+						JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+			
+					if (pushFile == JOptionPane.YES_OPTION) {
+						def (pushExitStatus, pushOutStream, pushErrStream) = execCommand(vcs, "push")
+						if (pushExitStatus == 99) {	
+							return "fatalError"
+						} else {
+							translateInfo("addons.collab.mapPushed")
+						}
 					}
 				}
 			}
