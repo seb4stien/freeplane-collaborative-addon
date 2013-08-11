@@ -261,7 +261,7 @@
   </body>
 </html>
 </richcontent>
-<node TEXT="en" ID="ID_1232293217" CREATED="1371158990178" MODIFIED="1376216979679">
+<node TEXT="en" ID="ID_1232293217" CREATED="1371158990178" MODIFIED="1376222848868">
 <attribute_layout NAME_WIDTH="219" VALUE_WIDTH="243"/>
 <attribute NAME="addons.${name}" VALUE="Collaborative Tools"/>
 <attribute NAME="addons.vcsUpdate" VALUE="Update my map"/>
@@ -310,8 +310,9 @@
 <attribute NAME="addons.collab.status.successfullyCommittedAt" VALUE="Map successfully committed at "/>
 <attribute NAME="addons.collab.status.successfullyAddedAt" VALUE="Map successfully added at "/>
 <attribute NAME="addons.collab.status.successfullyUpdatedAt" VALUE="Map successfully updated at "/>
+<attribute NAME="addons.collab.status.successfullyPushedAt" VALUE="Map successfully pushed at "/>
 </node>
-<node TEXT="fr" ID="ID_1204840493" CREATED="1371158990178" MODIFIED="1376216962513" HGAP="39" VSHIFT="41">
+<node TEXT="fr" ID="ID_1204840493" CREATED="1371158990178" MODIFIED="1376222869427" HGAP="39" VSHIFT="41">
 <attribute_layout NAME_WIDTH="219" VALUE_WIDTH="350"/>
 <attribute NAME="addons.${name}" VALUE="Outils collaboratifs"/>
 <attribute NAME="addons.vcsUpdate" VALUE="Mettre &#xe0; jour ma version"/>
@@ -360,6 +361,7 @@
 <attribute NAME="addons.collab.status.successfullyCommittedAt" VALUE="Carte publi&#xe9;e avec succ&#xe8;s &#xe0; "/>
 <attribute NAME="addons.collab.status.successfullyAddedAt" VALUE="Carte ajout&#xe9;e avec succ&#xe8;s &#xe0;"/>
 <attribute NAME="addons.collab.status.successfullyUpdatedAt" VALUE="Carte mise &#xe0; jour avec succ&#xe8;s &#xe0; "/>
+<attribute NAME="addons.collab.status.successfullyPushedAt" VALUE="Carte publi&#xe9;e &#xe0; distance avec succ&#xe8;s &#xe0; "/>
 </node>
 </node>
 <node TEXT="deinstall" POSITION="left" ID="ID_1936073781" CREATED="1371158990182" MODIFIED="1371209683326">
