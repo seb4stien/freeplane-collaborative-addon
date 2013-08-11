@@ -170,6 +170,7 @@
 </node>
 <node TEXT="0.9.3" ID="ID_1565936436" CREATED="1376135903478" MODIFIED="1376135905709">
 <node TEXT="optimization for git : do not propose to push if there is not remote" ID="ID_254435384" CREATED="1376135907170" MODIFIED="1376135928358"/>
+<node TEXT="extended quiet mode to &quot;add&quot; and &quot;update&quot; actions" ID="ID_791363029" CREATED="1376216870440" MODIFIED="1376216886001"/>
 </node>
 </node>
 <node TEXT="license" POSITION="left" ID="ID_915883933" CREATED="1371158990126" MODIFIED="1371158990131">
@@ -260,7 +261,7 @@
   </body>
 </html>
 </richcontent>
-<node TEXT="en" ID="ID_1232293217" CREATED="1371158990178" MODIFIED="1376132306597">
+<node TEXT="en" ID="ID_1232293217" CREATED="1371158990178" MODIFIED="1376216979679">
 <attribute_layout NAME_WIDTH="219" VALUE_WIDTH="243"/>
 <attribute NAME="addons.${name}" VALUE="Collaborative Tools"/>
 <attribute NAME="addons.vcsUpdate" VALUE="Update my map"/>
@@ -307,8 +308,10 @@
 <attribute NAME="addons.collab.unknownFileStatus" VALUE="Unknown file status"/>
 <attribute NAME="addons.collab.vcsAddFailed" VALUE="Could not add file to the versionning system."/>
 <attribute NAME="addons.collab.status.successfullyCommittedAt" VALUE="Map successfully committed at "/>
+<attribute NAME="addons.collab.status.successfullyAddedAt" VALUE="Map successfully added at "/>
+<attribute NAME="addons.collab.status.successfullyUpdatedAt" VALUE="Map successfully updated at "/>
 </node>
-<node TEXT="fr" ID="ID_1204840493" CREATED="1371158990178" MODIFIED="1376132876533" HGAP="39" VSHIFT="41">
+<node TEXT="fr" ID="ID_1204840493" CREATED="1371158990178" MODIFIED="1376216962513" HGAP="39" VSHIFT="41">
 <attribute_layout NAME_WIDTH="219" VALUE_WIDTH="350"/>
 <attribute NAME="addons.${name}" VALUE="Outils collaboratifs"/>
 <attribute NAME="addons.vcsUpdate" VALUE="Mettre &#xe0; jour ma version"/>
@@ -355,6 +358,8 @@
 <attribute NAME="addons.collab.unknownFileStatus" VALUE="Statut de fichier inconnu"/>
 <attribute NAME="addons.collab.vcsAddFailed" VALUE="L&apos;ajoutdu fichier au syst&#xe8;me de gestion de version a &#xe9;chou&#xe9;."/>
 <attribute NAME="addons.collab.status.successfullyCommittedAt" VALUE="Carte publi&#xe9;e avec succ&#xe8;s &#xe0; "/>
+<attribute NAME="addons.collab.status.successfullyAddedAt" VALUE="Carte ajout&#xe9;e avec succ&#xe8;s &#xe0;"/>
+<attribute NAME="addons.collab.status.successfullyUpdatedAt" VALUE="Carte mise &#xe0; jour avec succ&#xe8;s &#xe0; "/>
 </node>
 </node>
 <node TEXT="deinstall" POSITION="left" ID="ID_1936073781" CREATED="1371158990182" MODIFIED="1371209683326">
