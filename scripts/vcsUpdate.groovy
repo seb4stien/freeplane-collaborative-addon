@@ -57,10 +57,24 @@ def displayWarning(message) {
 		textUtils.getText("addons.collaborativeTools"), JOptionPane.WARNING_MESSAGE)
 }
 
+def setStatus(status, message) {
+	def now = new Date()
+	def df = new java.text.SimpleDateFormat("HH:mm:ss")
+	
+	def statusIcon;
+	if (status == "ok") {
+		statusIcon = "button_ok"
+	} else if (status == "info") {
+		statusIcon = "info"
+	}
+	c.setStatusInfo("standard",
+		textUtils.getText(message) + df.format(now),
+		statusIcon);
+}
+
 def translateError(message) { displayError (textUtils.getText(message)) }
 def translateInfo(message) { displayInfo (textUtils.getText(message)) }
 def translateWarning(message) { displayWarning (textUtils.getText(message)) }
-
 
 //
 // run command
@@ -113,22 +127,42 @@ def execCommand(vcs, action) {
 		break
 		
 		case "git":
+
 			switch (action) {
 				case "status":
 					vcsCommandArray = [vcsBin, action, "--porcelain", node.map.file.name]
 				break
 				
 				case "diff":
-					vcsCommandArray = [vcsBin, action, "master", "origin/master", node.map.file.name]	
+					remote = getGitRemote()
+					if (remote == "fatalError") {
+						return "fatalError"
+					} else if (remote != "") {
+						vcsCommandArray = [vcsBin, action, "master", "origin/master", node.map.file.name]
+					} else {
+						vcsCommandArray = [vcsBin, action, node.map.file.name]
+					}
 				break
 				
 				case "merge":
 				case "fetch":
-					vcsCommandArray = [vcsBin, action, "origin"]
+					remote = getGitRemote()
+					if (remote == "fatalError") {
+						return "fatalError"
+					} else if (remote != "") {
+						vcsCommandArray = [vcsBin, action, "origin"]
+					}
 				break
 				
 				case "checkdiff":
-					vcsCommandArray = [vcsBin, "diff", "origin", node.map.file.name]
+					remote = getGitRemote()
+					if (remote == "fatalError") {
+						return "fatalError"
+					} else if (remote != ""){
+						vcsCommandArray = [vcsBin, "diff", "origin", node.map.file.name]
+					} else {
+						vcsCommandArray = [vcsBin, "diff", node.map.file.name]
+					}
 				break
 				
 				case "push":
@@ -213,6 +247,19 @@ def execCommand(vcs, action) {
 }
 
 
+// get git remote
+def getGitRemote() {
+	def (getRemoteExitStatus, getRemoteOutStream, getRemoteErrStream) = execCommand("git", "remote")
+
+	if ( (getRemoteExitStatus == 0) && (getRemoteOutStream.size() > 0)) {
+		return getRemoteOutStream
+	} else if (getRemoteExitStatus == 99) {
+		return "fatalError"
+	} else {
+		return ""
+	}
+}
+
 //
 // which vcs are we using ?
 //
@@ -249,9 +296,15 @@ def vcsGetStatus(vcs) {
 	
 	switch (vcs) {
 		case "git":
-			def (exitStatus, outStream, errStream) = execCommand(vcs, "fetch")
-			if (exitStatus == 99) {	return "fatalError" }
-
+			// looking for a remote repository
+			
+			remote = getGitRemote()
+			if (remote == "fatalError") {
+				return "fatalError"
+			} else if (remote != "") {
+				def (exitStatus, outStream, errStream) = execCommand(vcs, "fetch")
+				if (exitStatus == 99) {	return "fatalError" }
+			}
 	}
 	
 	
@@ -332,7 +385,7 @@ def vcsGetStatus(vcs) {
 			if (vcsAddFile(vcs) == "fileAdded") {
 				def commitReturn = vcsCommitFile(vcs)
 				if (commitReturn == "fileCommitted") {
-					status = "upToDate"
+					status = "addedAndCommitted"
 				} else {
 					status = commitReturn
 				}
@@ -369,6 +422,7 @@ def vcsGetStatus(vcs) {
 //
 def vcsUpdateFile(vcs) {
 	def verbose = config.getBooleanProperty('addons.collab.verbose')
+	def quiet = config.getBooleanProperty('addons.collab.quiet')
 
 	// don't get status since it's not a user action
 	def status = vcsGetStatus(vcs)
@@ -376,7 +430,10 @@ def vcsUpdateFile(vcs) {
 	if (status == "fatalError") { return }
 
 	if (status == "upToDate") {
-		translateInfo("addons.collab.mapIsUpToDate")
+		if (!quiet) {
+			translateInfo("addons.collab.mapIsUpToDate")
+		}
+		setStatus("info", "addons.collab.mapIsUpToDate")
 		return
 	}
 	
@@ -429,7 +486,10 @@ def vcsUpdateFile(vcs) {
 					def uri = node.map.file.toURI()
 					node.map.close(false, true)
 					loadUri(uri)
-					translateInfo("addons.collab.mapUpdated")
+					if (!quiet) {
+						translateInfo("addons.collab.mapUpdated")
+					}
+					setStatus("ok", "addons.collab.status.mapSuccessfullyUpdatedAt")
 					return "updated"
 				} else if ( outStream =~ /C /) {
 					//node.map.close(true, false) // let user do a backup
@@ -449,7 +509,10 @@ def vcsUpdateFile(vcs) {
 					def uri = node.map.file.toURI()
 					node.map.close(false, true)
 					loadUri(uri)
-					translateInfo("addons.collab.mapUpdated")
+					if (!quiet) {
+						translateInfo("addons.collab.mapUpdated")
+					}
+					setStatus("ok", "addons.collab.status.mapSuccessfullyUpdatedAt")
 					return "updated"
 				} else if ( (lines[1] =~/^C /) ) {
 					translateError("addons.collab.mapConflict")
@@ -466,7 +529,10 @@ def vcsUpdateFile(vcs) {
 				def uri = node.map.file.toURI()
 				node.map.close(false, true)
 				loadUri(uri)
-				translateInfo("addons.collab.mapUpdated")
+				if (!quiet) {
+					translateInfo("addons.collab.mapUpdated")
+				}
+				setStatus("ok", "addons.collab.status.mapSuccessfullyUpdatedAt")
 				return "updated"
 			} else {
 				displayError(textUtils.getText("addons.collab.vcsReturnedAnError") + "\n" + outStream + "\n" + errStream)			
@@ -537,6 +603,7 @@ def vcsDiffFile(vcs) {
 //
 def vcsAddFile(vcs) {
 	def verbose = config.getBooleanProperty('addons.collab.verbose')
+	def quiet = config.getBooleanProperty('addons.collab.quiet')
 
 	// don't get status since it's not a user action
 	//def status = vcsGetStatus(vcs)
@@ -545,7 +612,10 @@ def vcsAddFile(vcs) {
 	if (exitStatus == 99) {	return "fatalError" }
 
 	if (exitStatus == 0) {
-		translateInfo("addons.collab.mapAdded")
+		if (!quiet) {
+			translateInfo("addons.collab.mapAdded")
+		}
+		setStatus("ok", "addons.collab.status.mapSuccessfullyAddedAt")
 		return "fileAdded"
 	} else {
 		displayError(textUtils.getText("addons.collab.vcsReturnedAnError") + "\n" + errStream)			
@@ -568,7 +638,10 @@ def vcsCommitFile(vcs) {
 			return status
 			
 		case "upToDate":
-			translateInfo("addons.collab.mapDoesntNeedCommit")
+			if (!quiet) {
+				translateInfo("addons.collab.mapDoesntNeedCommit")
+			}
+			setStatus("info", "addons.collab.mapDoesntNeedCommit")
 			return status
 		
 		case "needsMerge":
@@ -578,6 +651,9 @@ def vcsCommitFile(vcs) {
 		case "needsUpdate":
 			translateWarning("addons.collab.mapNeedsUpdate")
 			return status
+			
+		case "addedAndCommitted":
+			return "fileCommitted"
 	}
 
 		
@@ -589,11 +665,7 @@ def vcsCommitFile(vcs) {
 		if (!quiet) {
 			translateInfo("addons.collab.mapCommitted")
 		}
-		def now = new Date()
-		def df = new java.text.SimpleDateFormat("HH:mm:ss")
-		c.setStatusInfo("standard",
-			textUtils.getText("addons.collab.status.successfullyCommittedAt") + df.format(now),
-			"button_ok");
+		setStatus("ok", "addons.collab.status.mapSuccessfullyCommittedAt")
 	} else {
 		return errStream
 	}
@@ -607,27 +679,27 @@ def vcsCommitFile(vcs) {
 		
 		case "git":
 			// The file has been committed => prompt the user if he wants to push
-			if (vcs == "git") {
+			remote = getGitRemote()
+			if (remote == "fatalError") {
+				return "fatalError"
+			} else if (remote != "") {
+				final int pushFile = JOptionPane.showConfirmDialog(ui.frame, 
+					textUtils.getText("addons.collab.doYouWantToPush"),
+					textUtils.getText("addons.collaborativeTools"),
+					JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 			
-				def (getRemoteExitStatus, getRemoteOutStream, getRemoteErrStream) = execCommand(vcs, "remote")
-				
-				if ( (getRemoteExitStatus == 0) && (getRemoteOutStream.size() > 0)) {
-					final int pushFile = JOptionPane.showConfirmDialog(ui.frame, 
-						textUtils.getText("addons.collab.doYouWantToPush"),
-						textUtils.getText("addons.collaborativeTools"),
-						JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-			
-					if (pushFile == JOptionPane.YES_OPTION) {
-						def (pushExitStatus, pushOutStream, pushErrStream) = execCommand(vcs, "push")
-						if (pushExitStatus == 99) {	
-							return "fatalError"
-						} else {
+				if (pushFile == JOptionPane.YES_OPTION) {
+					def (pushExitStatus, pushOutStream, pushErrStream) = execCommand(vcs, "push")
+					if (pushExitStatus == 99) {	
+						return "fatalError"
+					} else {
+						if (!quiet) {
 							translateInfo("addons.collab.mapPushed")
 						}
+						setStatus("ok", "addons.collab.status.mapSuccessfullyPushedAt")
 					}
 				}
 			}
-
 		break
 	}
 	
