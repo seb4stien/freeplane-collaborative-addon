@@ -171,6 +171,7 @@
 <node TEXT="0.9.3" ID="ID_1565936436" CREATED="1376135903478" MODIFIED="1376135905709">
 <node TEXT="optimization for git : do not propose to push if there is not remote" ID="ID_254435384" CREATED="1376135907170" MODIFIED="1376135928358"/>
 <node TEXT="extended quiet mode to &quot;add&quot;, &quot;update&quot; and &quot;push&quot; actions" ID="ID_791363029" CREATED="1376216870440" MODIFIED="1376225364625"/>
+<node TEXT="added status info to status bar" ID="ID_1707180676" CREATED="1376309540861" MODIFIED="1376309547943"/>
 </node>
 </node>
 <node TEXT="license" POSITION="left" ID="ID_915883933" CREATED="1371158990126" MODIFIED="1371158990131">
