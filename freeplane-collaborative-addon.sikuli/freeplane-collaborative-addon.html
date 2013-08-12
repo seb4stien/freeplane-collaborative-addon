@@ -89,7 +89,10 @@
         <span class="skw">popup</span>(<span class="str">"Unknown action"</span>)
 
 <span class="kw">def</span> doConfirm():
-    <span class="skw">click</span>(<img src="ok-button.png" />)
+    <span class="kw">if</span> (exists(<img src="ok-button.png" />)):
+        <span class="skw">click</span>(<img src="ok-button.png" />)
+    <span class="kw">else</span>:
+        <span class="skw">click</span>(<img src="1376306862302.png" />)
 
 <span class="kw">def</span> waitMindMapLong():
     <span class="skw">sleep</span>(<span class="dig">1</span>)
@@ -103,6 +106,45 @@
 <span class="kw">def</span> closeMap():
     <span class="skw">type</span>(<span class="str">"w"</span>, Key.CTRL)
 
+<span class="kw">def</span> setQuietMode(switch):
+    <span class="skw">wait</span>(<img src="1376226063138.png" />)
+    <span class="skw">type</span>(<span class="str">","</span>, Key.CTRL)
+    <span class="skw">wait</span>(<img src="1376226110773.png" />)
+    <span class="skw">click</span>(<img src="1376226119369.png" />)
+    <span class="skw">click</span>(<img src="1376226128916.png" />)
+    modif = <span class="dig">0</span>
+    <span class="kw">if</span> (switch == <span class="str">"on"</span>):
+        <span class="kw">if</span> (exists(Pattern(<img src="1376226481281.png" />).exact())):
+            <span class="skw">click</span>(<span class="skw">find</span>(Pattern(<img src="1376226391315.png" />).targetOffset(<span class="dig">44</span>,<span class="dig">0</span>)))
+            modif = <span class="dig">1</span>
+    <span class="kw">else</span>:
+        <span class="kw">if</span> (exists(Pattern(<img src="1376226558204.png" />).exact())):
+            <span class="skw">click</span>(<span class="skw">find</span>(Pattern(<img src="1376226391315.png" />).targetOffset(<span class="dig">44</span>,<span class="dig">0</span>)))
+            modif = <span class="dig">1</span>
+    <span class="skw">click</span>(<img src="1376226510613.png" />)
+    <span class="skw">sleep</span>(<span class="dig">1</span>)
+    <span class="kw">if</span> (modif == <span class="dig">1</span>):
+        doConfirm()
+
+<span class="kw">def</span> setVerboseMode(switch):
+    <span class="skw">wait</span>(<img src="1376226063138.png" />)
+    <span class="skw">type</span>(<span class="str">","</span>, Key.CTRL)
+    <span class="skw">wait</span>(<img src="1376226110773.png" />)
+    <span class="skw">click</span>(<img src="1376226119369.png" />)
+    <span class="skw">click</span>(<img src="1376226128916.png" />)
+    modif = <span class="dig">0</span>
+    <span class="kw">if</span> (switch == <span class="str">"on"</span>):
+        <span class="kw">if</span> (exists(Pattern(<img src="1376306117551.png" />).exact())):
+            <span class="skw">click</span>(<span class="skw">find</span>(Pattern(<img src="1376306154468.png" />).targetOffset(<span class="dig">50</span>,<span class="dig">0</span>)))
+            modif = <span class="dig">1</span>
+    <span class="kw">else</span>:
+        <span class="kw">if</span> (<span class="kw">not</span>(exists(Pattern(<img src="1376306117551.png" />).exact()))):
+            <span class="skw">click</span>(<span class="skw">find</span>(Pattern(<img src="1376306154468.png" />).targetOffset(<span class="dig">50</span>,<span class="dig">0</span>)))
+            modif = <span class="dig">1</span>
+    <span class="skw">click</span>(<img src="1376226510613.png" />)
+    <span class="skw">sleep</span>(<span class="dig">1</span>)
+    <span class="kw">if</span> (modif == <span class="dig">1</span>):
+        doConfirm()
 
 <span class="cmt">####################################
 </span><span class="cmt"># init
@@ -202,27 +244,37 @@
 <span class="cmt">#####################################
 </span><span class="cmt"># up2date mindmap
 </span><span class="cmt">####################################
-</span><span class="kw">def</span> testNothingToDo(vcs):
+</span><span class="kw">def</span> testNothingToDo(vcs, quiet):
     <span class="cmt"># init
 </span>    myApp = <span class="str">"C:\\My Program Files\\Freeplane\\freeplane.exe c:\\users\\dmxf8215\\documents\\personnel\\projets\\freeplane\\tests\\"</span> + vcs + <span class="str">"-userA\\mindmaps\\tests.mm"</span>
 
     openApp(myApp)
     waitMindMapLong()
 
-    actions = [<span class="str">'compare'</span>, <span class="str">'update'</span>]
-    <span class="kw">for</span> action <span class="kw">in</span> (actions):
-        doAction(action)
+    doAction(<span class="str">'compare'</span>)
+    <span class="skw">wait</span>(<img src="1373880970061.png" />, <span class="dig">10</span>)
+    doConfirm()
+    waitMindMap()
+
+
+    doAction(<span class="str">'update'</span>)
+    <span class="kw">if</span> (quiet):
+        <span class="skw">wait</span>(<img src="1376225689812.png" />, <span class="dig">10</span>)
+    <span class="kw">else</span>:
         <span class="skw">wait</span>(<img src="1373880970061.png" />, <span class="dig">10</span>)
         doConfirm()
-        waitMindMap()
+    waitMindMap()
 
     doAction(<span class="str">"commit"</span>)
 <span class="cmt">#    if vcs == "git":
 </span><span class="cmt">#        wait("1373882037155.png")
 </span><span class="cmt">#        paste("plop")
 </span><span class="cmt">#        click("1373882113393.png")       
-</span>    <span class="skw">wait</span>(<img src="1373881045981.png" />, <span class="dig">10</span>)
-    doConfirm()
+</span>    <span class="kw">if</span> (quiet):
+        <span class="skw">wait</span>(<img src="1376225835742.png" />, <span class="dig">10</span>)
+    <span class="kw">else</span>:
+        <span class="skw">wait</span>(<img src="1373881045981.png" />, <span class="dig">10</span>)
+        doConfirm()
     waitMindMap()
     closeMap()
 
@@ -344,14 +396,17 @@
         <span class="kw">if</span> vcs == <span class="str">"git"</span>:
             <span class="skw">wait</span>(<img src="1374162538809.png" />)
             doConfirm()
+            <span class="skw">sleep</span>(<span class="dig">2</span>)
             doAction(<span class="str">"commit"</span>)
             <span class="skw">wait</span>(<img src="1373882037155.png" />)
             paste(<span class="str">"plop"</span>)
             <span class="skw">click</span>(<img src="1373882113393.png" />)
             <span class="skw">wait</span>(<img src="1373927489627.png" />)
+            <span class="skw">sleep</span>(<span class="dig">2</span>)
             doConfirm()
             <span class="skw">wait</span>(<img src="1373926143621.png" />)
             <span class="skw">click</span>(<img src="1374162645369.png" />)
+            <span class="skw">sleep</span>(<span class="dig">2</span>)
             doAction(<span class="str">"update"</span>)
             <span class="skw">wait</span>(<img src="1374163494960.png" />)
         <span class="kw">else</span>:
@@ -380,30 +435,77 @@
     <span class="skw">type</span>(<span class="str">"s"</span>, Key.CTRL)
     closeMap()
 
+
+<span class="kw">def</span> testLocalVersionningInQuietMode(vcs):
+    <span class="cmt"># init
+</span>    myApp = <span class="str">"C:\\My Program Files\\Freeplane\\freeplane.exe c:\\users\\dmxf8215\\documents\\personnel\\projets\\freeplane\\tests\\"</span> + vcs + <span class="str">"-noremote\\tests.mm"</span>
+
+    openApp(myApp)
+    waitMindMapLong()
+
+    <span class="skw">type</span>(<img src="1373881357895.png" />, Key.ENTER)
+    paste(<span class="str">"branch c"</span>)
+    <span class="skw">type</span>(Key.ENTER)
+    <span class="skw">sleep</span>(<span class="dig">1</span>)
+    <span class="skw">type</span>(<span class="str">"s"</span>, Key.CTRL)
+
+    <span class="cmt"># compare    
+</span>    doAction(<span class="str">"commit"</span>)
+    <span class="skw">wait</span>(<img src="1373825742171.png" />)
+    <span class="skw">click</span>(<img src="1373825781197.png" />)
+    <span class="skw">wait</span>(<img src="1373825968949.png" />)
+    paste(<span class="str">"plop"</span>)
+    doConfirm()
+    <span class="skw">wait</span>(<img src="1376230843086.png" />)
+
+    <span class="skw">type</span>(<img src="1373928278544.png" />, Key.INSERT)
+    paste(<span class="str">"new leaf a.a.a"</span>)
+    <span class="skw">type</span>(Key.ENTER)
+    <span class="skw">sleep</span>(<span class="dig">1</span>)
+    <span class="skw">type</span>(<span class="str">"s"</span>, Key.CTRL)
+
+    doAction(<span class="str">"commit"</span>)
+    <span class="skw">wait</span>(<img src="1373825968949.png" />)
+    paste(<span class="str">"plop"</span>)
+    doConfirm()
+    <span class="skw">wait</span>(<img src="1376230843086.png" />)
+
+    doAction(<span class="str">"update"</span>)
+    <span class="skw">wait</span>(<img src="1376306904240.png" />)
+
 <span class="cmt">#
 </span><span class="cmt"># Main
 </span><span class="cmt">#
 </span>
 
-<span class="cmt">#testNoVersionning()
+<span class="cmt">#setQuietMode("off")
+</span><span class="cmt">#setVerboseMode("off")
+</span><span class="cmt">#testNoVersionning()
 </span>
 <span class="cmt">#testFakeVersionning('cvs')
 </span><span class="cmt">#testAddToVersionning('cvs')
-</span><span class="cmt">#testNothingToDo('cvs')
+</span><span class="cmt">#testNothingToDo('cvs', 0)
 </span><span class="cmt">#testMerge('cvs', 'false')
 </span><span class="cmt">#testMerge('cvs', 'true')
 </span>
 <span class="cmt">#testFakeVersionning('svn')
 </span><span class="cmt">#testAddToVersionning('svn')
-</span><span class="cmt">#testNothingToDo('svn')
+</span><span class="cmt">#testNothingToDo('svn', 0)
 </span><span class="cmt">#testMerge('svn', 'false')
 </span><span class="cmt">#testMerge('svn', 'true')
-</span><span class="cmt">#
-</span><span class="cmt">#testFakeVersionning('git')
+</span>
+<span class="cmt">#testFakeVersionning('git')
 </span><span class="cmt">#testAddToVersionning('git')
-</span><span class="cmt">#testNothingToDo('git')
-</span>testMerge(<span class="str">'git'</span>, <span class="str">'false'</span>)
-testMerge(<span class="str">'git'</span>, <span class="str">'true'</span>)
+</span><span class="cmt">#testNothingToDo('git', 0)
+</span><span class="cmt">#testMerge('git', 'false')
+</span>
+<span class="cmt">#setQuietMode("on")
+</span><span class="cmt">#testNothingToDo('cvs', 1)
+</span><span class="cmt">#testNothingToDo('svn', 1)
+</span><span class="cmt">#testNothingToDo('git', 1)
+</span>testLocalVersionningInQuietMode(<span class="str">'git'</span>)
+
+<span class="cmt">#testMerge('git', 'true')</span>
 </pre>
 </body>
 </html>
