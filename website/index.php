@@ -79,14 +79,18 @@ sources and download
 
 <ul>
 <?
+$latestRelease = "0.9.3";
+?>
+
+<?
 if ($l == "fr") {
 ?>
-<li>Télécharger la <a href="http://sourceforge.net/projects/freeplanecollab/files/stable/collaborativeTools-0.9.1.addon.mm/download">version 0.9.1</a> (<a href="http://sourceforge.net/projects/freeplanecollab/files/stable/">anciennes versions</a>)</li>
+<li>Télécharger la <a href="http://sourceforge.net/projects/freeplanecollab/files/stable/collaborativeTools-<?=$latestRelease?>.addon.mm/download">version <?=$latestRelease?></a></li>
 <li>Sources disponibles sur <a href="https://github.com/seb4stien/freeplane-collaborative-addon">github</a></li>
 <?
 } else {
 ?>
-<li>Download <a href="http://sourceforge.net/projects/freeplanecollab/files/stable/collaborativeTools-0.9.1.addon.mm/download">version 0.9.1</a> (<a ="http://sourceforge.net/projects/freeplanecollab/files/stable/">older releases</a>)</li>
+<li>Download <a href="http://sourceforge.net/projects/freeplanecollab/files/stable/collaborativeTools-<?=$latestRelease?>.addon.mm/download">version <?=$latestRelease?></a></li>
 <li>Sources can be found on <a href="https://github.com/seb4stien/freeplane-collaborative-addon">github</a></li>
 <?
 }
