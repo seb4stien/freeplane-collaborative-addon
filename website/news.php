@@ -4,6 +4,7 @@
 <?
 if ($l == "fr") {
 ?>
+<li>13 août 2013 : publication de la <a href="https://sourceforge.net/projects/freeplanecollab/files/stable/">version 0.9.3</a> qui ajoute un mode 'silencieux' pour limiter le nombre de popups et une optimisation pour git (pas de push si par de repository distant de configuré)</li>
 <li>18 juillet 2013 : publication de la <a href="https://sourceforge.net/projects/freeplanecollab/files/stable/">version 0.9</a> qui est une refonte des versions précédentes intégrant le support cvs, svn et git</li>
 <li>13 juillet 2013 : support experimental de svn dans la <a href="https://sourceforge.net/projects/freeplanecollab/files/experimental/">version 0.8</a></li>
 <li>6 juillet 2013 : support experimental de git dans la <a href="https://sourceforge.net/projects/freeplanecollab/files/experimental/">version 0.7</a></li>
@@ -23,6 +24,7 @@ if ($l == "fr") {
 <?
 } else {
 ?>
+<li>13 august 2013 : release of <a href="https://sourceforge.net/projects/freeplanecollab/files/stable/">version 0.9.3</a> adding a 'quiet mode' to limit the number of popups and an optimization for git (no push question if there is no remote repository)</li>
 <li>18 july 2013 : release of <a href="https://sourceforge.net/projects/freeplanecollab/files/stable/">version 0.9</a> which is a major refactoring including cvs, svn and git support</li>
 <li>13 july 2013 : experimental git support in <a href="https://sourceforge.net/projects/freeplanecollab/files/experimental/">version 0.8</a></li>
 <li>6 july 2013 : experimental git support in <a href="https://sourceforge.net/projects/freeplanecollab/files/experimental/">version 0.7</a></li>
