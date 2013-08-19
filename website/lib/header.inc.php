@@ -22,7 +22,7 @@ freeplane : outils collaboratifs
 freeplane : collaborative tools
 <? } ?>
 </title>
-<meta name="description" xml:lang="fr-FR" content="extention à freeplane permettant la gestion de version et le travail collaboratif">
+<meta name="description" xml:lang="fr-FR" content="extension à freeplane permettant la gestion de versions et le travail collaboratif">
 <meta name="keywords" xml:lang="fr-FR" content="mindmap, mind mapping, carte heuristique, collaboratif, gestion de version, freeplane, cvs, git">
 <meta name="description" xml:lang="en-EN" content="freeplane mind mapping tool addon to support versionning and collaborative work">
 <meta name="keywords" xml:lang="en-EN" content="mind map, mind mapping, collaborative, versionning, freeplane, cvs, git">
