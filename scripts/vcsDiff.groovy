@@ -186,18 +186,7 @@ def execCommand(vcs, action) {
 	def vcsProcess = processBuilder.start()
 	vcsProcess.consumeProcessOutput(outStream, errStream)
 
-	// feed the process with user input in case of empty commit log
-	vcsProcess.withWriter { writer ->
-		// Writes the following commands to the spawned process
-		def gWriter = new GroovyPrintWriter(writer)
-		// send "a" for "abort"
-		if (vcs == "cvs") {
-			gWriter.println "a"
-		} else if (vcs == "git") {
-			gWriter.println ":q"
-		}
-	} 
-
+	
 	// waiting process ending
 	vcsProcess.waitFor()
 	def exitStatus = vcsProcess.exitValue()
