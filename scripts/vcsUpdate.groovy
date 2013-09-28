@@ -188,8 +188,35 @@ def execCommand(vcs, action) {
 
 	
 	// waiting process ending
-	vcsProcess.waitFor()
-	def exitStatus = vcsProcess.exitValue()
+	long timeoutInSeconds = 15;
+	long now = System.currentTimeMillis();
+    long timeoutInMillis = 1000L * timeoutInSeconds;
+    long finish = now + timeoutInMillis;
+
+	interrupted = 0
+    while ( true )
+    {
+		try {
+			vcsProcess.exitValue()
+			break
+		} catch (IllegalThreadStateException e) {
+			if (System.currentTimeMillis() > finish) {
+				vcsProcess.destroy()
+				Thread.sleep( 1000 )
+				interrupted = 1
+				break
+			}
+		}
+        Thread.sleep( 100 )
+    }
+	
+	def exitStatus
+	if (interrupted == 1) {
+		exitStatus = 99
+		displayError(textUtils.getText("addons.collab.vcsHasTimedOut"))
+	} else {
+		exitStatus = vcsProcess.exitValue()
+	}
 	
 
 	// verbose mode : show command and results
