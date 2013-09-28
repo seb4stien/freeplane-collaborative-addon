@@ -1,8 +1,8 @@
 <map version="freeplane 1.2.0">
 <!--To view this file, download free mind mapping software Freeplane from http://freeplane.sourceforge.net -->
-<node TEXT="collaborative tools" ID="ID_1723255651" CREATED="1283093380553" MODIFIED="1376135900095" BACKGROUND_COLOR="#97c7dc" LINK="http://freeplanecollab.sourceforge.net">
+<node TEXT="collaborative tools" ID="ID_1723255651" CREATED="1283093380553" MODIFIED="1380368149616" BACKGROUND_COLOR="#97c7dc" LINK="http://freeplanecollab.sourceforge.net">
 <font SIZE="16" BOLD="true" ITALIC="true"/>
-<hook NAME="MapStyle">
+<hook NAME="MapStyle" zoom="0.909">
     <properties show_icon_for_attributes="true" show_note_icons="true"/>
 
 <map_styles>
@@ -55,7 +55,7 @@
 <hook NAME="AutomaticEdgeColor" COUNTER="12"/>
 <attribute_layout NAME_WIDTH="121" VALUE_WIDTH="137"/>
 <attribute NAME="name" VALUE="collaborativeTools"/>
-<attribute NAME="version" VALUE="0.9.3" OBJECT="org.freeplane.features.format.FormattedObject|0.9.3|number:decimal:#0.####"/>
+<attribute NAME="version" VALUE="0.9.4" OBJECT="org.freeplane.features.format.FormattedObject|0.9.4|number:decimal:#0.####"/>
 <attribute NAME="author" VALUE="seb4stien"/>
 <attribute NAME="freeplaneVersionFrom" VALUE="1.2.23"/>
 <attribute NAME="freeplaneVersionTo" VALUE=""/>
@@ -173,6 +173,9 @@
 <node TEXT="extended quiet mode to &quot;add&quot;, &quot;update&quot; and &quot;push&quot; actions" ID="ID_791363029" CREATED="1376216870440" MODIFIED="1376225364625"/>
 <node TEXT="added status info to status bar" ID="ID_1707180676" CREATED="1376309540861" MODIFIED="1376309547943"/>
 </node>
+<node TEXT="0.9.4" ID="ID_749908988" CREATED="1380368154346" MODIFIED="1380368157361">
+<node TEXT="adding timeout for vcs actions" ID="ID_1153124182" CREATED="1380368158453" MODIFIED="1380368173384"/>
+</node>
 </node>
 <node TEXT="license" POSITION="left" ID="ID_915883933" CREATED="1371158990126" MODIFIED="1371158990131">
 <edge COLOR="#00ff00"/>
@@ -262,7 +265,7 @@
   </body>
 </html>
 </richcontent>
-<node TEXT="en" ID="ID_1232293217" CREATED="1371158990178" MODIFIED="1376308300566">
+<node TEXT="en" ID="ID_1232293217" CREATED="1371158990178" MODIFIED="1380371391841">
 <attribute_layout NAME_WIDTH="219" VALUE_WIDTH="243"/>
 <attribute NAME="addons.${name}" VALUE="Collaborative Tools"/>
 <attribute NAME="addons.vcsUpdate" VALUE="Update my map"/>
@@ -306,6 +309,7 @@
 <attribute NAME="addons.collab.mapPushed" VALUE="Your map has been pushed to the remote repository."/>
 <attribute NAME="addons.collab.notAvailableForThisVcs" VALUE="Not available for this versionning system"/>
 <attribute NAME="addons.collab.vcsReturnedAnError" VALUE="The versionning system returned the following error:"/>
+<attribute NAME="addons.collab.vcsHasTimedOut" VALUE="The versionning system has timed out (check your connection)."/>
 <attribute NAME="addons.collab.unknownFileStatus" VALUE="Unknown file status"/>
 <attribute NAME="addons.collab.vcsAddFailed" VALUE="Could not add file to the versionning system."/>
 <attribute NAME="addons.collab.status.mapSuccessfullyCommittedAt" VALUE="Map successfully committed at "/>
@@ -313,7 +317,7 @@
 <attribute NAME="addons.collab.status.mapSuccessfullyUpdatedAt" VALUE="Map successfully updated at "/>
 <attribute NAME="addons.collab.status.mapSuccessfullyPushedAt" VALUE="Map successfully pushed at "/>
 </node>
-<node TEXT="fr" ID="ID_1204840493" CREATED="1371158990178" MODIFIED="1376308322876" HGAP="39" VSHIFT="41">
+<node TEXT="fr" ID="ID_1204840493" CREATED="1371158990178" MODIFIED="1380371374346" HGAP="39" VSHIFT="41">
 <attribute_layout NAME_WIDTH="219" VALUE_WIDTH="350"/>
 <attribute NAME="addons.${name}" VALUE="Outils collaboratifs"/>
 <attribute NAME="addons.vcsUpdate" VALUE="Mettre &#xe0; jour ma version"/>
@@ -357,6 +361,7 @@
 <attribute NAME="addons.collab.mapPushed" VALUE="La carte a &#xe9;t&#xe9; publi&#xe9;e sur le serveur distant."/>
 <attribute NAME="addons.collab.notAvailableForThisVcs" VALUE="Non disponible pour ce syst&#xe8;me de gestion de versions"/>
 <attribute NAME="addons.collab.vcsReturnedAnError" VALUE="Le syst&#xe8;me de gestion de versions a retourn&#xe9; l&apos;erreur suivante :"/>
+<attribute NAME="addons.collab.vcsHasTimedOut" VALUE="Le syst&#xe8;me de gestion de version a mis trop de temps &#xe0; r&#xe9;pondre (v&#xe9;rifiez votre connexion)."/>
 <attribute NAME="addons.collab.unknownFileStatus" VALUE="Statut de fichier inconnu"/>
 <attribute NAME="addons.collab.vcsAddFailed" VALUE="L&apos;ajoutdu fichier au syst&#xe8;me de gestion de version a &#xe9;chou&#xe9;."/>
 <attribute NAME="addons.collab.status.mapSuccessfullyCommittedAt" VALUE="Carte publi&#xe9;e avec succ&#xe8;s &#xe0; "/>
