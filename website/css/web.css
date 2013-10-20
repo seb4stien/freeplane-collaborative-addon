@@ -11,7 +11,12 @@ body {
 
 body div.body{
 	border: 1px solid #099;
-	padding: 0px 20px 0px 20px;
+	padding: 0px 20px 20px 20px;
+	border-bottom: 5px solid #099;
+}
+
+body div.pub {
+	
 }
 
 div.header {
@@ -56,8 +61,26 @@ h1 {
 
 div.footer {
 	float: right;
+	background-color: #099;
+	color: white;
+	padding: 3px 10px 3px 10px;
+	margin-bottom: 10px;
+}
+
+div.footer a {
+	color: white;
 }
 
 p {
 	margin-left: 20px;
+}
+
+div.msb {
+	border: 1px solid #099;
+	position: fixed;
+	top: 20%;
+	left: -5px;
+	border-radius: 5px;
+	padding: 10px;
+	//z-index: -1;
 }

@@ -79,7 +79,7 @@ sources and download
 
 <ul>
 <?
-$latestRelease = "0.9.3";
+$latestRelease = "1.0.0";
 ?>
 
 <?

@@ -13,6 +13,7 @@ include("lib/header.inc.php");
 	<ul>
 		<li><a href="#videos">vidéos</a></li>
 		<li><a href="#install">installation</a></li>
+		<li><a href="#configure">configuration</a></li>
 		<li><a href="#use">utilisation</a></li>
 		<li><a href="#uninstall">désinstallation</a></li>
 	</ul>
@@ -31,6 +32,7 @@ include("lib/header.inc.php");
 	<ul>
 		<li><a href="#videos">videos</a></li>
 		<li><a href="#install">install</a></li>
+		<li><a href="#configure">configuration</a></li>
 		<li><a href="#use">use</a></li>
 		<li><a href="#uninstall">uninstall</a></li>
 	</ul>
@@ -68,10 +70,6 @@ Important : ce addon nécessite d'avoir un système de gestion de version d'instal
 <li>Confirmer l'installation <br /> <img src="/doc/screenshots/addon-install-2.png" width="600" alt="addon installation confirmation" /></li>
 <li>Accepter la licence <br /> <img src="/doc/screenshots/addon-install-3.png" alt="accepter la license" /></li>
 <li>Redémarrer freeplane une fois l'installation terminée <br /> <img src="/doc/screenshots/addon-install-4.png" alt="redémarrer freeplane" /></li>
-<li>Paramétrer l'addon en allant dans <i>Outils > Préférences</i>, puis dans <i>Plugins</i> <br />
-	<img src="/doc/screenshots/addon-configure.png" alt="configurer" /> <br />
-	<img src="/doc/screenshots/addon-configure-2.png" alt="configurer" width="600" /> <br />
-</i>	
 </ol>
 
 
@@ -92,12 +90,47 @@ Important : this addon requires a working versionning control system. Currently 
 <li>Confirm installation <br /> <img src="/doc/screenshots/addon-install-2.png" width="600" alt="addon installation confirmation" /></li>
 <li>Accept the license <br /> <img src="/doc/screenshots/addon-install-3.png" alt="accepter la license" /></li>
 <li>Restart freeplane <br /> <img src="/doc/screenshots/addon-install-4.png" alt="redémarrer freeplane" /></li>
-<li>Configure the addon under <i>Tools > Preferences</i>, then <i>Plugins</i> <br />
-	<img src="/doc/screenshots/addon-configure.png" alt="configure" /> <br />
-	<img src="/doc/screenshots/addon-configure-2.png" alt="configure" width="600" /> <br />
-</i>	
 </ol>
 
+<?
+}
+?>
+
+<?
+if ($l == "fr"){
+?>
+<h1 id="configure">configuration</h1>
+<ol>
+<li>Paramétrer l'addon en allant dans <i>Outils > Préférences</i>, puis dans <i>Plugins</i> <br />
+	<img src="/doc/screenshots/addon-configure.png" alt="configurer" /> <br />
+</li>
+<li>Configurer l'add-on
+	<img src="/doc/screenshots/addon-configure-2.png" alt="configurer" width="600" />
+	<ul>
+	<li><b>Chemin vers l'exécutable XXX</b> : seul celui du système de gestion de version que vous utilisez est obligatoire.</li>
+	<li><b>Mode verbeux</b> : principalement pour débugger l'add-on.</li>
+	<li><b>Mode silencieux</b> : pour limiter le nombre de popups affichés lorsque vous êtes familiarisé avec l'add-on (les statuts "ok" sont affichés dans la barre d'état, les erreurs continuent à s'afficher sous forme de popup)</li>
+	</ul>
+</li>	
+</ol>
+
+<?
+} else {
+?>
+<h1 id="configure">configuration</h1>
+<ol>
+<li>Configure the addon under <i>Tools > Preferences</i>, then <i>Plugins</i> <br />
+	<img src="/doc/screenshots/addon-configure.png" alt="configure" />
+</li>
+<li>
+	<img src="/doc/screenshots/addon-configure-2.png" alt="configure" width="600" /> <br />
+	<ul>
+	<li><b>Path to XXX</b> : only the one to the versionning system you use is mandatory.</li>
+	<li><b>Verbose mode</b> : mainly for debugging.</li>
+	<li><b>Quiet mode</b> : to limit the number of confirmation popups when you're used to the add-on ("ok" are shown in the status bar, errors are still displayed as popups.</li>
+	</ul>
+</li>	
+</ol>
 <?
 }
 ?>
